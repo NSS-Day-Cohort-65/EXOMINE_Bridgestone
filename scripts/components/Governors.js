@@ -1,3 +1,26 @@
+import { getGovernors, setGovernor } from '../api/dataaccess.js'
+
+document.addEventListener(
+    "change",
+    e => {
+        if (e.target.id.startsWith("governor")) {
+            let [, governorId] = e.target.id.split("--")
+            setGovernor(parseInt(governorId));
+        }
+    }
+)
+
 export const Governors = () => {
-    return "<h1>Governors</h1>"
+    const governors = getGovernors();
+
+    let html = `<select id="governor-selector">
+        <option value="">Select a governor...</option>
+        ${governors.map(
+        governor => {
+            if (governor.is_active) return `<option value="governor--${governor.id}">${governor.name}</option>`
+        })}
+        </select>
+        `;
+
+    return html
 }
