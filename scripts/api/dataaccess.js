@@ -57,7 +57,7 @@ export const getSpaceCart = () => {
 }
 
 export const getState = () => {
-    return database.transientState.map(f => ({ ...f }))
+    return database.transientState;
 }
 
 export const getFacilitiesInventory = () => {
