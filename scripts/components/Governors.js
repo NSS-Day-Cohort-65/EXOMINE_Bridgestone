@@ -1,17 +1,17 @@
-import { getGoverners, setGovernor } from '../api/dataaccess.js'
+import { getGovernors, setGovernor } from '../api/dataaccess.js'
 
 document.addEventListener(
     "change",
     e => {
         if (e.target.id.startsWith("governor")) {
-            let [, governorId] = e.target.id.spilt("--")
+            let [, governorId] = e.target.id.split("--")
             setGovernor(parseInt(governorId));
         }
     }
 )
 
 export const Governors = () => {
-    const governors = getGoverners();
+    const governors = getGovernors();
 
     let html = `<select id="governor-selector">
         <option value="">Select a governor...</option>
