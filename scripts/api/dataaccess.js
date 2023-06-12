@@ -60,7 +60,13 @@ export const getState = () => {
     return database.transientState.map(f => ({ ...f }))
 }
 
+export const getFacilitiesInventory = () => {
+    return database.facility_inventory.map(f => ({ ...f }))
+}
 
+export const getColoniesInventory = () => {
+    return database.colony_inventory.map(f => ({ ...f }))
+}
 
 
 export const purchaseMineral = () => {
