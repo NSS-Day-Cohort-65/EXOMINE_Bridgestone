@@ -81,7 +81,7 @@ export const Cart = () => {
         }
     )
     if (chosenMineral && chosenFacility) {
-        html += `<p>1 ton of ${chosenMineral.name} from ${chosenFacility.name}</p>`
+        html += `<p class="cart__item">1 ton of ${chosenMineral.name} from ${chosenFacility.name}</p>`
     }
 
     html += `<div>

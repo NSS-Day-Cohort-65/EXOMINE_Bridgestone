@@ -68,7 +68,7 @@ export const ColonyResources = () => {
 
         const colonyInvArr = findColInvObjsWithColObj(matchedColony) //stores the arr of colony inventory objects gotten by matching the id of the colony passed to it with the colony_id's on the colony_inventory objects
 
-        html += `<h2 id='colonyName_heading'>${matchedColony.name} Minerals:</h2>
+        html += `<h1 id='colonyName_heading'>${matchedColony.name} Minerals:</h1>
     <ul id='colonyResources__list'>
     ${colonyInvHTMLGen(colonyInvArr)}
     </ul>` // parses the colonyInvArr sent and generates the html for each resource in a list item format

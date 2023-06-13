@@ -12,8 +12,18 @@ body {
     background-position: center;
     background-size: cover;
     color: rgb(228, 228, 228);
-    
+}
 
+h1 {
+    color: rgb(255, 255, 255);
+text-shadow: rgb(174, 204, 247) 1px 1px 7px;
+--darkreader-inline-color: #e8e6e3;
+--darkreader-inline-bgimage: initial;
+--darkreader-inline-bgcolor: #74231b;
+}
+
+.flex-container {
+    display: flex;
 }
 
 #top-section{
@@ -38,19 +48,32 @@ body {
     border:  rgb(228, 228, 228) dotted 2px;
     padding: 20px;
     width: 300px;
+}
+
+
+
+#heading__main {
+    margin: 30px;   
+}
 
 #minerals-selector {
     flex-direction: column;
+    justify-content: space-around;
+    border:  rgb(228, 228, 228) dotted 2px;
+    padding: 20px;
+    width: 300px;
+    margin-right: 50px;
 
 }
 
-.flex-container {
-    display: flex;
+#facility__header {
+    text-align: center;
+    margin: 10px 0px 10px 0;
+    
 }
 
-#heading__main {
-    margin: 30px;
-   
+.facilityInventory__items {
+    margin: 3px;
 }
 
 .selector {
@@ -62,6 +85,44 @@ body {
     list-style-type: disc;
 }
 
-.list__item {       
-
+.cart {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border:  rgb(228, 228, 228) dotted 2px;
+    padding: 50px;
+    margin: 50px 90px 50px 0px;
+    text-align: center;
 }
+
+button {
+	box-shadow: 3px 4px 0px 0px #899599;
+	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+	background-color:#ededed;
+	border-radius:15px;
+	border:1px solid #d6bcd6;
+	display:inline-block;
+	cursor:pointer;
+	color:#3a8a9e;
+	font-family:Arial;
+	font-size:17px;
+	padding:4px 15px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #e1e2ed;
+    margin-top: 20px;
+}
+button:hover {
+	background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+	background-color:#bab1ba;
+}
+button:active {
+	position:relative;
+	top:1px;
+}
+
+.cart__item {
+    margin: 20px 0px 10px 0px;
+}
+
+     
+
