@@ -34,6 +34,8 @@ export const setColony_Inventory = (colInvId) => {
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
+
+
 //getters
 
 export const getFacilities = () => {
@@ -53,19 +55,14 @@ export const getMinerals = () => {
 }
 
 export const getSpaceCart = () => {
-    return database.spaceCart.map(f => ({ ...f }))
+    return database.spaceCart
 }
 
 export const getState = () => {
-    return database.transientState.map(f => ({ ...f }))
+    return database.transientState
 }
 
 
 
 
-export const purchaseMineral = () => {
 
-    // Broadcast custom event to entire documement so that the
-    // application can re-render and update state
-    document.dispatchEvent(new CustomEvent("stateChanged"))
-}
