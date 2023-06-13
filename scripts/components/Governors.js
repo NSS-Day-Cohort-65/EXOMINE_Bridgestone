@@ -7,8 +7,8 @@ const state = getState()
 export const Governors = () => {
     const governors = getGovernors();
     
-
-    let html = `<select id="governor-selector">
+    
+    let html = `<p>Choose a Governor</p><select id="governor-selector" class="selector">
     <option value="">Select a governor...</option>`
 
     const listItems = governors.map( governor => {

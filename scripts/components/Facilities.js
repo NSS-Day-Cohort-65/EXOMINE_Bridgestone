@@ -10,7 +10,7 @@ const facilities = getFacilities()
 export const Facilities = () => {
     let html = "<p>Choose a facility</p>"
 
-    html += '<select id="facility">'
+    html += '<select id="facility" class="selector">'
     html += '<option value="0">Select a facility</option>'
 
     

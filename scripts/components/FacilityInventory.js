@@ -1,3 +1,3 @@
 export const FacilityInventory = () => {
-    return "<h1>FacilityInventory</h1>"
+    return "<h1>Facility Inventory</h1>"
 }

@@ -43,9 +43,9 @@ const findMineralObjwithMineralId = minId => {
 
 const colonyInvHTMLGen = colonyInvArr => {
     const colInvSpreadArr = colonyInvArr.map(colInvObj => ({ ...colInvObj }))
-    let html = `<ul id='colonyResources__list'>`
+    let html = `<ul id='colonyResources__list' class="list">`
     html += colInvSpreadArr.map(colInvObj => {
-        return `<li class='colonyResources__item'>${colInvObj.colony_stock} tons of ${findMineralObjwithMineralId(colInvObj.mineral_id).name}</li>`
+        return `<li class='colonyResources__item list__item'>${colInvObj.colony_stock} tons of ${findMineralObjwithMineralId(colInvObj.mineral_id).name}</li>`
     }).join('')
     html += `</ul>`
 
@@ -54,7 +54,7 @@ const colonyInvHTMLGen = colonyInvArr => {
 
 
 export const ColonyResources = () => {
-    let html = `<h1 id='colonyResources_heading'>Colony Resources</h1>`
+    let html = ''
     if (state.selectedGovernor) {
         const stateGovId = state.selectedGovernor //grabs id of selected gov in state
 
@@ -72,7 +72,10 @@ export const ColonyResources = () => {
     </ul>` // parses the colonyInvArr sent and generates the html for each resource in a list item format
 
         
+    } else {
+        html += `<h1 id='colonyResources_heading'>Colony Resources</h1>`
     }
+
     return html
 }
 
