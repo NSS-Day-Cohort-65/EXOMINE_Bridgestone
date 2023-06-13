@@ -24,13 +24,28 @@ export const setMineral = (mineralId) => {
 
 //setters spaceCart
 
-export const setFacility_Inventory = (facInvId) => {
-    database.spaceCart.facility_inventory = facInvId
+export const setFacility_Inventory = (facInv) => {
+    const foundInventoryIndex = database.facility_inventory.findIndex(
+        inventory => {
+            return inventory.id === facInv.id
+        })
+
+    database.facility_inventory[foundInventoryIndex] = facInv;
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
-export const setColony_Inventory = (colInvId) => {
-    database.spaceCart.colony_inventory = colInvId
+export const setColony_Inventory = (colInv) => {
+    const foundInventoryIndex = database.colony_inventory.findIndex(
+        inventory => {
+            return inventory.id === colInv.id
+        })
+    if (foundInventoryIndex === -1) {
+        let id = database.colony_inventory.length + 1
+        colInv.colony_id = id;
+        database.colony_inventory.push(colInv);
+    } else {
+        database.colony_inventory[foundInventoryIndex] = colInv;
+    }
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
