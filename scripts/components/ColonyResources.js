@@ -55,8 +55,8 @@ const colonyInvHTMLGen = colonyInvArr => {
 
 export const ColonyResources = () => {
     let html = `<h1 id='colonyResources_heading'>Colony Resources</h1>`
-    if (state.selectedGov) {
-        const stateGovId = state.selectedGov //grabs id of selected gov in state
+    if (state.selectedGovernor) {
+        const stateGovId = state.selectedGovernor //grabs id of selected gov in state
 
         const matchedGov = governors.find(gov => {
             return gov.id === stateGovId
