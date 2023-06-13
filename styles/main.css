@@ -13,7 +13,11 @@ body {
     background-size: cover;
     color: rgb(228, 228, 228);
     
+    
+}
 
+.flex-container {
+    display: flex;
 }
 
 #top-section{
@@ -38,19 +42,32 @@ body {
     border:  rgb(228, 228, 228) dotted 2px;
     padding: 20px;
     width: 300px;
-
-#minerals-selector {
-    flex-direction: column;
-
 }
 
-.flex-container {
-    display: flex;
-}
+
 
 #heading__main {
     margin: 30px;
    
+}
+
+#minerals-selector {
+    flex-direction: column;
+    justify-content: space-around;
+    border:  rgb(228, 228, 228) dotted 2px;
+    padding: 20px;
+    width: 300px;
+
+}
+
+#facility__header {
+    text-align: center;
+    margin: 10px 0px 10px 0;
+    
+}
+
+.facilityInventory__items {
+    margin: 3px;
 }
 
 .selector {
@@ -62,6 +79,3 @@ body {
     list-style-type: disc;
 }
 
-.list__item {       
-
-}

@@ -17,7 +17,9 @@ export const Exomine = () => {
         </div>
     </section>
     <section id="bottom-section" class="flex-container">
+    <div id="facilities-container" class="flex-container">
         ${FacilityInventory()}
+    </div>
         ${Cart()}
     </section>`
 }

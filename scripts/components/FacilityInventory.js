@@ -24,7 +24,7 @@ export const FacilityInventory = () => {
             }
 
             return chosenFacilityInventory.map(inventory => {
-                return `<div><input type="radio" name="minerals" value="${inventory.mineral_id}">${inventory.facility_stock} tonnes of ${inventory.mineralName}</input></div>`
+                return `<div class="facilityInventory__items"><input type="radio" name="minerals" value="${inventory.mineral_id}">${inventory.facility_stock} tonnes of ${inventory.mineralName}</input></div>`
             }).join("")
         } else {
             return ""
@@ -36,7 +36,7 @@ export const FacilityInventory = () => {
     mineralRadioSelectors();
 
     let html = `<div class="flex-container" id="minerals-selector">
-        <h2>Facility Minerals ${state.chosenFacilityId ? `for ${facilityName}` : ""}</h2>
+        <h2 id="facility__header">Facility Minerals ${state.chosenFacilityId ? `for ${facilityName}` : ""}</h2>
             ${mineralRadioSelectors()}
         </div>`
 
