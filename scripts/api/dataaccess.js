@@ -56,10 +56,6 @@ export const getSpaceCart = () => {
     return database.spaceCart.map(f => ({ ...f }))
 }
 
-export const getColoniesInventory = () => {
-    return database.colony_inventory.map(f => ({...f}))
-}
-
 export const getState = () => {
     return database.transientState
 }
