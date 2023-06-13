@@ -51,7 +51,7 @@ export const FacilityInventory = () => {
     mineralRadioSelectors();
 
     let html = `<div class="flex-container" id="minerals-selector">
-        <h2 id="facility__header">Facility Minerals ${state.chosenFacilityId ? `for ${facilityName}` : ""}</h2>
+        <h1 id="facility__header">Facility Minerals ${state.chosenFacilityId ? `for ${facilityName}` : ""}</h1>
             ${mineralRadioSelectors()}
         </div>`
 

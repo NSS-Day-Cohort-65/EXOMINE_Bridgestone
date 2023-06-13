@@ -14,6 +14,14 @@ body {
     color: rgb(228, 228, 228);
 }
 
+h1 {
+    color: rgb(255, 255, 255);
+text-shadow: rgb(174, 204, 247) 1px 1px 10px;
+--darkreader-inline-color: #e8e6e3;
+--darkreader-inline-bgimage: initial;
+--darkreader-inline-bgcolor: #74231b;
+}
+
 .flex-container {
     display: flex;
 }
