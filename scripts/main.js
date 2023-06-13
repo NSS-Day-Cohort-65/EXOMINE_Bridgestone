@@ -9,7 +9,7 @@ document.addEventListener(
     }
 )
 
-const renderHtml = () => {
+export const renderHtml = () => {
     mainContainer.innerHTML = Exomine();
 }
 
