@@ -30,6 +30,7 @@ body {
     flex-direction: column;
 }
 
+
 #colonies-container {
     flex-direction: column;
     align-items: center;
@@ -37,6 +38,10 @@ body {
     border:  rgb(228, 228, 228) dotted 2px;
     padding: 20px;
     width: 300px;
+
+#minerals-selector {
+    flex-direction: column;
+
 }
 
 .flex-container {
