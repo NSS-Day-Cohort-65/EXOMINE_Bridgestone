@@ -1,4 +1,4 @@
-import { getFacilities, getFacilitiesInventory, getMinerals, getState, setFacility } from '../api/dataaccess.js'
+import { getFacilities, getFacilitiesInventory, getMinerals, getState, setMineral } from '../api/dataaccess.js'
 
 export const FacilityInventory = () => {
     const facilities = getFacilities();
@@ -6,6 +6,17 @@ export const FacilityInventory = () => {
     const facilitiesInventory = getFacilitiesInventory();
     const state = getState();
     const facilityName = facilities.find(facility => facility.id === state.selectedFacility)
+
+    document.addEventListener(
+        "change",
+        e => {
+            if (e.target.id.startsWith("mineral-radio")) {
+                let mineralId = parseInt(e.target.value);
+
+                setMineral(mineralId);
+            }
+        }
+    )
 
     const mineralRadioSelectors = () => {
         const chosenFacilityId = state.selectedFacility;
@@ -24,7 +35,11 @@ export const FacilityInventory = () => {
             }
 
             return chosenFacilityInventory.map(inventory => {
-                return `<div class="facilityInventory__items"><input type="radio" name="minerals" value="${inventory.mineral_id}">${inventory.facility_stock} tonnes of ${inventory.mineralName}</input></div>`
+                if (inventory.mineral_id === state.selectedMineral) {
+                    return `<div><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}" checked>${inventory.facility_stock} tonnes of ${inventory.mineralName}</input></div>`
+                } else {
+                    return `<div><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}">${inventory.facility_stock} tonnes of ${inventory.mineralName}</input></div>`
+                }
             }).join("")
         } else {
             return ""
