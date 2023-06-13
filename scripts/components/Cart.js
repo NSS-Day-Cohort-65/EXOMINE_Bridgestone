@@ -4,7 +4,7 @@
 // And clear selected mineral
 // And update state of facility stock and colony stock
 
-import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getSpaceCart, getState, setColony_Inventory, setFacility_Inventory } from "../api/dataaccess.js"
+import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getSpaceCart, getState, setMineral, setColony_Inventory, setFacility_Inventory } from "../api/dataaccess.js"
 
 const minerals = getMinerals()
 const facilities = getFacilities()
@@ -63,6 +63,7 @@ export const Cart = () => {
 
             chosenFacilityInventory.facility_stock--
             setFacility_Inventory(chosenFacilityInventory);
+            setMineral(null)
         }
     }
 
