@@ -62,6 +62,13 @@ export const getState = () => {
     return database.transientState
 }
 
+export const getFacilitiesInventory = () => {
+    return database.facility_inventory.map(f => ({ ...f }))
+}
+
+export const getColoniesInventory = () => {
+    return database.colony_inventory.map(f => ({ ...f }))
+}
 
 
 
