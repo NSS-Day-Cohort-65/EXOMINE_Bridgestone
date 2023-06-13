@@ -2,7 +2,7 @@ import { Exomine } from './Exomine.js'
 
 const mainContainer = document.querySelector("#main-container")
 
-mainContainer.addEventListener(
+document.addEventListener(
     "stateChanged",
     customEvent => {
         renderHtml()
