@@ -7,6 +7,15 @@
     font-family: "Fox on the run";
 }
 
+body {
+    background-image: url("../images/kai-pilger-Ef6iL87-vOA-unsplash.jpg");
+    background-position: center;
+    background-size: cover;
+    color: rgb(228, 228, 228);
+    
+
+}
+
 #top-section{
     flex-direction: row;
     justify-content: space-around;
@@ -25,7 +34,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    border:  black dotted 1px;
+    border:  rgb(228, 228, 228) dotted 2px;
     padding: 20px;
     width: 300px;
 }
@@ -35,7 +44,8 @@
 }
 
 #heading__main {
-    margin-left: 20px;
+    margin: 30px;
+   
 }
 
 .selector {
