@@ -1,11 +1,11 @@
-import { getGovernors, getState, setGovernor } from '../api/dataaccess.js'
+import { getGovernors, getState, setColonies, setGovernor } from '../api/dataaccess.js'
 import { renderHtml } from '../main.js';
 
 const state = getState()
+const governors = getGovernors();
 
 
 export const Governors = () => {
-    const governors = getGovernors();
 
 
     let html = `<p>Choose a Governor</p><select id="governor-selector" class="selector">
@@ -33,8 +33,14 @@ document.addEventListener(
     e => {
         if (e.target.id.startsWith("governor")) {
             let [, governorId] = e.target.value.split("--")
+            const foundGovernor = governors.find(
+                gov => {
+                    return gov.id === parseInt(governorId)
+                }
+            )
+
+            setColonies(foundGovernor.colony_id)
             setGovernor(parseInt(governorId));
-            renderHtml()
         }
     }
 )
