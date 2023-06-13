@@ -33,6 +33,10 @@
     display: flex;
 }
 
+#heading__main {
+    margin-left: 20px;
+}
+
 .selector {
     margin: 5px 0px 30px 0px;
 }
