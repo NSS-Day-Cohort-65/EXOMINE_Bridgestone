@@ -6,24 +6,26 @@ const state = getState()
 
 export const Governors = () => {
     const governors = getGovernors();
-    
 
-    let html = `<select id="governor-selector">
+
+    let html = `<p>Choose a Governor</p><select id="governor-selector" class="selector">
     <option value="">Select a governor...</option>`
 
-    const listItems = governors.map( governor => {
-        if (state.selectedGovernor === governor.id) {
-            return `<option selected value="governor--${governor.id}">${governor.name}</option>` 
-        } else {
-            return `<option value="governor--${governor.id}">${governor.name}</option>`
+    const listItems = governors.map(governor => {
+        if (governor.is_active) {
+            if (state.selectedGovernor === governor.id) {
+                return `<option selected value="governor--${governor.id}">${governor.name}</option>`
+            } else {
+                return `<option value="governor--${governor.id}">${governor.name}</option>`
+            }
         }
     })
     html += listItems.join("")
 
     html += `</select>`
-                
+
     return html
-    
+
 }
 
 document.addEventListener(
