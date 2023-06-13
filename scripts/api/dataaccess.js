@@ -56,8 +56,12 @@ export const getSpaceCart = () => {
     return database.spaceCart.map(f => ({ ...f }))
 }
 
+export const getColoniesInventory = () => {
+    return database.colony_inventory.map(f => ({...f}))
+}
+
 export const getState = () => {
-    return database.transientState;
+    return database.transientState
 }
 
 export const getFacilitiesInventory = () => {
@@ -67,6 +71,7 @@ export const getFacilitiesInventory = () => {
 export const getColoniesInventory = () => {
     return database.colony_inventory.map(f => ({ ...f }))
 }
+
 
 
 export const purchaseMineral = () => {
