@@ -120,5 +120,9 @@ button:active {
 	top:1px;
 }
 
+.cart__item {
+    margin: 20px 0px 10px 0px;
+}
+
      
 
