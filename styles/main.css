@@ -27,6 +27,7 @@
     justify-content: space-around;
     border:  black dotted 1px;
     padding: 20px;
+    width: 300px;
 }
 
 .flex-container {
