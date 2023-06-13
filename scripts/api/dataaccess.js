@@ -41,7 +41,7 @@ export const setColony_Inventory = (colInv) => {
         })
     if (foundInventoryIndex === -1) {
         let id = database.colony_inventory.length + 1
-        colInv.colony_id = id;
+        colInv.id = id;
         database.colony_inventory.push(colInv);
     } else {
         database.colony_inventory[foundInventoryIndex] = colInv;

@@ -6,12 +6,9 @@
 
 import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getSpaceCart, getState, setColony_Inventory, setFacility_Inventory } from "../api/dataaccess.js"
 
-const state = getState()
 const minerals = getMinerals()
 const facilities = getFacilities()
-const spaceCart = getSpaceCart()
-const facilitiesInventory = getFacilitiesInventory();
-const coloniesInventory = getColoniesInventory();
+
 
 document.addEventListener("click", (clickEvent) => {
     const itemClicked = clickEvent.target
@@ -25,6 +22,10 @@ document.addEventListener("click", (clickEvent) => {
 let purchaseMineral
 
 export const Cart = () => {
+    const state = getState()
+    const facilitiesInventory = getFacilitiesInventory();
+    const coloniesInventory = getColoniesInventory();
+
     purchaseMineral = () => {
         // increment colony stock 
         // spaceCart.facility_inventory++
