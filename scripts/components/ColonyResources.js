@@ -45,8 +45,8 @@ const colonyInvHTMLGen = colonyInvArr => {
     const colInvSpreadArr = colonyInvArr.map(colInvObj => ({ ...colInvObj }))
     let html = `<ul id='colonyResources__list'>`
     html += colInvSpreadArr.map(colInvObj => {
-        return `<li class='colonyResources__item'>${colInvObj.colony_stock} tons of ${findMineralObjwithMineralId(colInvObj.mineral_id).name}`
-    })
+        return `<li class='colonyResources__item'>${colInvObj.colony_stock} tons of ${findMineralObjwithMineralId(colInvObj.mineral_id).name}</li>`
+    }).join('')
     html += `</ul>`
 
     return html
