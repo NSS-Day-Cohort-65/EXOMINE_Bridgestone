@@ -5,7 +5,7 @@ export const FacilityInventory = () => {
     const minerals = getMinerals();
     const facilitiesInventory = getFacilitiesInventory();
     const state = getState();
-    const facilityName = facilities.find(facility => facility.id === state.selectedFacility)
+    const facility = facilities.find(facility => facility.id === state.selectedFacility)
 
     document.addEventListener(
         "change",
@@ -46,12 +46,8 @@ export const FacilityInventory = () => {
         }
     }
 
-
-
-    mineralRadioSelectors();
-
     let html = `<div class="flex-container" id="minerals-selector">
-        <h1 id="facility__header">Facility Minerals ${state.chosenFacilityId ? `for ${facilityName}` : ""}</h1>
+    <h1 id="facility__header">Facility Minerals ${state.selectedFacility ? `for ${facility.name}` : ""}</h1>
             ${mineralRadioSelectors()}
         </div>`
 
