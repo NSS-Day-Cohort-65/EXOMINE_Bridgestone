@@ -2,6 +2,7 @@ import { Cart } from './components/Cart.js'
 import { ColonyResources } from './components/ColonyResources.js'
 import { Facilities } from './components/Facilities.js'
 import { FacilityInventory } from './components/FacilityInventory.js'
+import { GovernorRecruiter } from './components/GovernorRecruiter.js'
 import { Governors } from './components/Governors.js'
 
 
@@ -13,6 +14,7 @@ export const Exomine = () => {
             ${Governors()}
             ${Facilities()}
         </div>
+        ${GovernorRecruiter()}
         <div id="colonies-container" class="flex-container">
         ${ColonyResources()}
         </div>
