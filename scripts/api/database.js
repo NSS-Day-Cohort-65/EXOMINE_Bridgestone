@@ -388,7 +388,9 @@ export const database = {
         }
     ],
     spaceCart: {},
-    transientState: {}
+    transientState: {
+        turn: 1,
+    }
 };
 
 

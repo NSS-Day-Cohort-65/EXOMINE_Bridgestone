@@ -22,6 +22,11 @@ export const setMineral = (mineralId) => {
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
+export const incrementTurn = () => {
+    database.transientState.turn++
+    document.dispatchEvent(new CustomEvent("stateChanged"))
+}
+
 //setters spaceCart
 
 export const setFacility_Inventory = (facInv) => {
