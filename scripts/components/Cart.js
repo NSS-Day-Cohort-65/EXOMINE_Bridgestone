@@ -1,12 +1,7 @@
-// Given that a mineral has been selected, display selected mineral
-// When the purchase button is clicked,
-// Then send completed order
-// And clear selected mineral
-// And update state of facility stock and colony stock
+import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getSpaceCart, getState, setMineral, setColony_Inventory, setFacility_Inventory } from "../api/dataaccess.js"
 
-import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getState, setMineral, putColony_Inventory, putFacility_Inventory, postColony_Inventory } from "../api/dataaccess.js"
-
-
+const minerals = getMinerals()
+const facilities = getFacilities()
 
 
 document.addEventListener("click", (clickEvent) => {
@@ -24,8 +19,6 @@ export const Cart = () => {
     const state = getState()
     const facilitiesInventory = getFacilitiesInventory();
     const coloniesInventory = getColoniesInventory();
-    const minerals = getMinerals()
-    const facilities = getFacilities()
 
     purchaseMineral = () => {
         // increment colony stock 
@@ -54,16 +47,30 @@ export const Cart = () => {
                 const newInventory = {
                     colony_id: state.selectedColony,
                     mineral_id: chosenMineral.id,
-                    colony_stock: 1
+                    colony_stock: 0
                 }
-                postColony_Inventory(newInventory)
+                for (const cart_mineral of state.cart_minerals) {
+                    if (cart_mineral.mineral_id === chosenColonyInventory.mineral_id) {
+                        newInventory.colony_stock += state.cart_mineral.amount
+                    }
+                }
+
+                setColony_Inventory(newInventory)
             } else {
-                chosenColonyInventory.colony_stock++
-                putColony_Inventory(chosenColonyInventory, chosenColonyInventory.id);
+                for (const cart_mineral of state.cart_minerals) {
+                    if (cart_mineral.mineral_id === chosenColonyInventory.mineral_id) {
+                        chosenColonyInventory.colony_stock += state.cart_mineral.amount 
+                    }
+                }
+                setColony_Inventory(chosenColonyInventory);
             }
 
-            chosenFacilityInventory.facility_stock--
-            putFacility_Inventory(chosenFacilityInventory, chosenFacilityInventory.id);
+            for (const cart_mineral of state.cart_minerals) {
+                if (cart_mineral.mineral_id === chosenColonyInventory.mineral_id) {
+                    chosenFacilityInventory.facility_stock += state.cart_mineral.amount
+                }
+            }
+            setFacility_Inventory(chosenFacilityInventory);
             setMineral(null)
         }
     }
@@ -93,4 +100,3 @@ export const Cart = () => {
 
     return html
 }
-
