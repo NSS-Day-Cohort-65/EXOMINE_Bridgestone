@@ -3,7 +3,7 @@ const API = "http://localhost:8088"
 const applicationState = {
     governors: [],
     colonies: [],
-    faciliites: [],
+    facilities: [],
     minerals: [],
     facility_inventory: [],
     colony_inventory: [],
@@ -11,11 +11,7 @@ const applicationState = {
 }
 
 const transientState = {
-    selectedFacility: [],
-    selectedGovernor: [],
-    selectedColony: [],
-    selectedMineralCartArr: [],
-    turnCounter: []
+
 }
 
 
@@ -38,8 +34,13 @@ export const setColonies = (colonyId) => {
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
-export const setMineralCartArr = (mineralCartArr) => {
-    transientState.selectedMineralCartArr = mineralCartArr
+export const setMineral = (mineral) => {
+    transientState.selectedMineral = mineral
+    document.dispatchEvent(new CustomEvent("stateChanged"))
+}
+
+export const incrementTurn = () => {
+    transientState.turnCounter++
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
@@ -48,10 +49,6 @@ export const setMineralCartArr = (mineralCartArr) => {
 //     document.dispatchEvent(new CustomEvent("stateChanged"))
 // }
 
-export const incrementTurn = () => {
-    transientState.turnCounter++
-    document.dispatchEvent(new CustomEvent("stateChanged"))
-}
 
 
 // transientState getter
@@ -98,7 +95,7 @@ export const getPirateInventory = () => {
 
 export const fetchGovernors = () => {
     return fetch(`${API}/governors`)
-        .then(response => response.join())
+        .then(response => response.json())
         .then(
             (governor) => {
                 applicationState.governors = governor
@@ -108,7 +105,7 @@ export const fetchGovernors = () => {
 
 export const fetchColonies = () => {
     return fetch(`${API}/colonies`)
-        .then(response => response.join())
+        .then(response => response.json())
         .then(
             (colony) => {
                 applicationState.colonies = colony
@@ -118,7 +115,7 @@ export const fetchColonies = () => {
 
 export const fetchFacilities = () => {
     return fetch(`${API}/facilities`)
-        .then(response => response.join())
+        .then(response => response.json())
         .then(
             (facility) => {
                 applicationState.facilities = facility
@@ -128,7 +125,7 @@ export const fetchFacilities = () => {
 
 export const fetchMinerals = () => {
     return fetch(`${API}/minerals`)
-        .then(response => response.join())
+        .then(response => response.json())
         .then(
             (mineral) => {
                 applicationState.minerals = mineral
@@ -138,7 +135,7 @@ export const fetchMinerals = () => {
 
 export const fetchFacility_Inventory = () => {
     return fetch(`${API}/facility_inventory`)
-        .then(response => response.join())
+        .then(response => response.json())
         .then(
             (facInv) => {
                 applicationState.facility_inventory = facInv
@@ -147,18 +144,18 @@ export const fetchFacility_Inventory = () => {
 }
 
 export const fetchColonies_Inventory = () => {
-    return fetch(`${API}/colonies_inventory`)
-        .then(response => response.join())
+    return fetch(`${API}/colony_inventory`)
+        .then(response => response.json())
         .then(
             (colInv) => {
-                applicationState.colonies_inventory = colInv
+                applicationState.colony_inventory = colInv
             }
         )
 }
 
 export const fetchPirate_Inventory = () => {
     return fetch(`${API}/pirate_inventory`)
-        .then(response => response.join())
+        .then(response => response.json())
         .then(
             (pirInv) => {
                 applicationState.pirate_inventory = pirInv
@@ -285,7 +282,7 @@ export const putFacility = (obj, id) => {
         })
 }
 
-export const putColonyInventory = (obj, id) => {
+export const putColony_Inventory = (obj, id) => {
     const updatedRequest = {
         method: "PUT",
         headers: {
@@ -303,7 +300,7 @@ export const putColonyInventory = (obj, id) => {
         })
 }
 
-export const putFacilityInventory = (obj, id) => {
+export const putFacility_Inventory = (obj, id) => {
     const updatedRequest = {
         method: "PUT",
         headers: {
@@ -321,7 +318,7 @@ export const putFacilityInventory = (obj, id) => {
         })
 }
 
-export const putPirateInventory = (obj, id) => {
+export const putPirate_Inventory = (obj, id) => {
     const updatedRequest = {
         method: "PUT",
         headers: {
