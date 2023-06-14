@@ -3,8 +3,7 @@ import { getGovernors, getState } from '../api/dataaccess.js';
 document.addEventListener(
     "click",
     e => {
-        if (e.target.id === "recruit-option") {
-            console.log("here")
+        if (e.target.id.startsWith("recruit")) {
             const governors = getGovernors();
             let [, governorId] = e.target.value.split("--")
             const foundGovernor = governors.find(
@@ -14,6 +13,15 @@ document.addEventListener(
             )
             // need to make a setRecruit function in dataaccess that sets the id equal to selectedRecruit.     
             // setRecruit(foundGovernor.id);
+        }
+    }
+)
+
+document.addEventListener(
+    "click",
+    e => {
+        if (e.target.id === "button-recruit") {
+            // toggle selected governor to is active and set colony
         }
     }
 )
@@ -37,7 +45,7 @@ export const GovernorRecruiter = () => {
     })
     html += listItems.join("")
 
-    html += `</select><button id="recruit-button">recruit</button>`
+    html += `</select><button id="button-recruit">recruit</button>`
 
     return html
 }
