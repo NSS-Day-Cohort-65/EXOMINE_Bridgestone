@@ -1,12 +1,4 @@
-import { getColonies } from "../api/dataaccess.js"
-import { getGovernors } from "../api/dataaccess.js"
-import { getState } from "../api/dataaccess.js"
-import { getColoniesInventory } from "../api/dataaccess.js"
-import { getMinerals } from "../api/dataaccess.js"
-
-const governors = getGovernors()
-const colonies = getColonies()
-const minerals = getMinerals()
+import { getColonies, getGovernors, getState, getColoniesInventory, getMinerals } from "../api/dataaccess.js"
 
 //write a function that will display the colony of the selected governor. This should display the resources it currently has.
 
@@ -15,6 +7,8 @@ const minerals = getMinerals()
 //Function that takes a governor object, iterates through the colonies, matches the colony_id on the governor object with the id on the colony object and returns that colony.
 
 const findColonyWithGovObj = (govObj) => {
+    const colonies = getColonies()
+
     const matchedColony = colonies.find(colony => {
         return govObj.colony_id === colony.id
     })
@@ -34,6 +28,7 @@ const findColInvObjsWithColObj = colObj => {
 //write a function that takes a mineral id, iterates all minerals, and returns the matching mineral object
 
 const findMineralObjwithMineralId = minId => {
+    const minerals = getMinerals()
     return minerals.find(mineral => {
         return mineral.id === minId
     })
@@ -54,8 +49,8 @@ const colonyInvHTMLGen = colonyInvArr => {
 
 
 export const ColonyResources = () => {
+    const governors = getGovernors()
     const state = getState()
-
     let html = ''
     if (state.selectedGovernor) {
         const stateGovId = state.selectedGovernor //grabs id of selected gov in state

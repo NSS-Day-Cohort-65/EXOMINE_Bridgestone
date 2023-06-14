@@ -5,11 +5,11 @@
 import { getState, setFacility } from "../api/dataaccess.js"
 import { getFacilities } from "../api/dataaccess.js"
 
-const state = getState()
-
-const facilities = getFacilities()
 
 export const Facilities = () => {
+    const state = getState()
+    
+    const facilities = getFacilities()
     
     let html = "<p>Choose a facility</p>"
 
