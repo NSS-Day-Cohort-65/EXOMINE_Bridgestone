@@ -3,6 +3,7 @@ import { ColonyResources } from './components/ColonyResources.js'
 import { Facilities } from './components/Facilities.js'
 import { FacilityInventory } from './components/FacilityInventory.js'
 import { Governors } from './components/Governors.js'
+import { Pirates } from './components/Pirates.js'
 import { TurnCounter } from './components/TurnCounter.js'
 
 
@@ -15,6 +16,7 @@ export const Exomine = () => {
             ${Governors()}
             ${Facilities()}
         </div>
+        ${Pirates()}
         <div id="colonies-container" class="flex-container">
         ${ColonyResources()}
         </div>
