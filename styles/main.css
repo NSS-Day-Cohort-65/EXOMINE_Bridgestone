@@ -52,6 +52,7 @@ text-shadow: rgb(174, 204, 247) 1px 1px 7px;
 
 
 
+
 #heading__main {
     margin: 30px;   
 }
@@ -125,5 +126,7 @@ button:active {
     position:relative;
     top:1px;
 }
+
+
 
 

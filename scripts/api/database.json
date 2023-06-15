@@ -318,6 +318,12 @@
       "colony_id": 5,
       "mineral_id": 9,
       "colony_stock": 276
+    },
+    {
+      "colony_id": 1,
+      "mineral_id": 11,
+      "colony_stock": 2,
+      "id": 21
     }
   ],
   "facility_inventory": [
@@ -343,7 +349,7 @@
       "id": 4,
       "facility_id": 2,
       "mineral_id": 11,
-      "facility_stock": 425
+      "facility_stock": 423
     },
     {
       "id": 5,
@@ -416,6 +422,12 @@
       "facility_id": 2,
       "mineral_id": 10,
       "facility_stock": 275
+    }
+  ],
+  "pirates": [
+    {
+      "id": 1,
+      "raider_stock": 0
     }
   ],
   "pirate_inventory": [
