@@ -21,6 +21,7 @@ export const Exomine = () => {
         ${ColonyResources()}
         </div>
     </section>
+    <h1 id="raid-alert">WARNING: A RAID HAS BEGUN!</h1>
     <section id="bottom-section" class="flex-container">
     <div id="facilities-container" class="flex-container">
         ${FacilityInventory()}

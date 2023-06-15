@@ -191,3 +191,11 @@ button:active {
         -webkit-transform: rotate(0deg);
       }
 }
+
+#raid-alert {
+    font-family: impact;
+    color: #90271d;
+    font-weight: 900;
+    
+}
+
