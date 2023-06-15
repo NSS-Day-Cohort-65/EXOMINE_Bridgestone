@@ -7,6 +7,7 @@ const applicationState = {
     minerals: [],
     facility_inventory: [],
     colony_inventory: [],
+    pirates: [],
     pirate_inventory: []
 }
 
@@ -76,6 +77,10 @@ export const getFacilitiesInventory = () => {
 
 export const getColoniesInventory = () => {
     return applicationState.colony_inventory.map(f => ({ ...f }))
+}
+
+export const getPirates = () => {
+    return applicationState.pirates.map(f => ({ ...f }))
 }
 
 export const getPirateInventory = () => {
@@ -154,6 +159,16 @@ export const fetchPirate_Inventory = () => {
         .then(
             (pirInv) => {
                 applicationState.pirate_inventory = pirInv
+            }
+        )
+}
+
+export const fetchPirates = () => {
+    return fetch(`${API}/pirates`)
+        .then(response => response.json())
+        .then(
+            (pirates) => {
+                applicationState.pirates = pirates
             }
         )
 }
@@ -313,6 +328,24 @@ export const putFacility_Inventory = (obj, id) => {
         })
 }
 
+export const putPirates = (obj, id) => {
+    const updatedRequest = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(obj)
+    }
+
+
+    return fetch(`${API}/pirates/${id}`, updatedRequest)
+        .then(response => response.json())
+        .then(() => {
+            document.dispatchEvent(new CustomEvent("stateChanged"))
+
+        })
+}
+
 export const putPirate_Inventory = (obj, id) => {
     const updatedRequest = {
         method: "PUT",
@@ -333,29 +366,29 @@ export const putPirate_Inventory = (obj, id) => {
 
 //old put methods
 
-export const setFacility_Inventory = (facInv) => {
-    const foundInventoryIndex = applicationState.facility_inventory.findIndex(
-        inventory => {
-            return inventory.id === facInv.id
-        })
+// export const setFacility_Inventory = (facInv) => {
+//     const foundInventoryIndex = applicationState.facility_inventory.findIndex(
+//         inventory => {
+//             return inventory.id === facInv.id
+//         })
 
-    database.facility_inventory[foundInventoryIndex] = facInv;
-    document.dispatchEvent(new CustomEvent("stateChanged"))
-}
+//     database.facility_inventory[foundInventoryIndex] = facInv;
+//     document.dispatchEvent(new CustomEvent("stateChanged"))
+// }
 
-export const setColony_Inventory = (colInv) => {
-    const foundInventoryIndex = database.colony_inventory.findIndex(
-        inventory => {
-            return inventory.id === colInv.id
-        })
-    if (foundInventoryIndex === -1) {
-        let id = database.colony_inventory.length + 1
-        colInv.id = id;
-        database.colony_inventory.push(colInv);
-    } else {
-        database.colony_inventory[foundInventoryIndex] = colInv;
-    }
-    document.dispatchEvent(new CustomEvent("stateChanged"))
-}
+// export const setColony_Inventory = (colInv) => {
+//     const foundInventoryIndex = database.colony_inventory.findIndex(
+//         inventory => {
+//             return inventory.id === colInv.id
+//         })
+//     if (foundInventoryIndex === -1) {
+//         let id = database.colony_inventory.length + 1
+//         colInv.id = id;
+//         database.colony_inventory.push(colInv);
+//     } else {
+//         database.colony_inventory[foundInventoryIndex] = colInv;
+//     }
+//     document.dispatchEvent(new CustomEvent("stateChanged"))
+// }
 
 
