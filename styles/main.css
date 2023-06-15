@@ -8,6 +8,7 @@
 }
 
 body {
+    width: 100%;
     background-image: url("../images/kai-pilger-Ef6iL87-vOA-unsplash.jpg");
     background-position: center;
     background-size: cover;
@@ -177,24 +178,36 @@ button:active {
 
     0% {
         -webkit-transform: rotate(0deg);
-      }
-      25% {
+    }
+
+    25% {
         -webkit-transform: rotate(3deg);
-      }
-      50% {
+    }
+
+    50% {
         -webkit-transform: rotate(0deg);
-      }
-      75% {
+    }
+
+    75% {
         -webkit-transform: rotate(-3deg);
-      }
-      100% {
+    }
+
+    100% {
         -webkit-transform: rotate(0deg);
-      }
+    }
 }
 
 #raid-alert-container {
     z-index: 100;
     display: none;
+    background: none;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    max-width: 30%;
 }
 
 #raid-alert-text {
@@ -202,19 +215,20 @@ button:active {
     color: #90271d;
     font-weight: 900;
     background: none;
-    text-shadow: 7px 5px 6px #691c15;
-    animation: alert 5s infinite;
+    text-shadow: 3px 2px 2px #561711c0;
+    animation: alert 2s infinite;
 }
 
 @keyframes alert {
     0% {
-        transform: scale(1);
+        -webkit-transform: scale(0);
     }
+
     50% {
-        transform: scale(10)
+        -webkit-transform: scale(3)
     }
+
     100% {
-        transform: scale(1)
+        -webkit-transform: scale(0)
     }
 }
-

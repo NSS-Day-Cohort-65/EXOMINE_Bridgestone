@@ -29,5 +29,14 @@ const raidAlert = () => {
 
     setTimeout(() => {
         alert.style.display = "none"
-    }, 4000);
+    }, 3000);
 }
+
+
+// for testing:
+// document.addEventListener("click", e => {
+//     if (e.target.id === "test") {
+//         document.dispatchEvent( new CustomEvent("startRaid"))
+
+//     }
+// })
