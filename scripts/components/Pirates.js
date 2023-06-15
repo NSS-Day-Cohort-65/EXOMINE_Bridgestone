@@ -10,6 +10,7 @@ document.addEventListener("click", e => {
         turnCount++
         if (turnCount === 3) {
             addPirateRaiders()
+            turnCount = 0
         }
     }
 })
@@ -22,12 +23,13 @@ const addPirateRaiders = () => {
     }
     
     putPirates(newPirateObj, pirates[0].id)
-    return pirates[0].raider_stock
 }
 
 //write a function that makes a visual representation of the pirate ship using an image. Below that, it should pull in the pirate inventory and generates an html representation of it (total minerals combined and pirate raider count)
 
 export const Pirates = () => {
+
+    const pirates = getPirates()
 
     const pirateInventory = getPirateInventory()
 
@@ -62,7 +64,7 @@ export const Pirates = () => {
 
     //take function that generates total pirate raider count and puts it into html representation
 
-    html += `<div id="pirate-raider-container" class="flex container pirate-resource-container"><h3 class="pirate-resource-heading">Raiders</h3><p id="pirate-raider-total" class="pirate-resource-paragraph">${addPirateRaiders()}</p></div>`
+    html += `<div id="pirate-raider-container" class="flex container pirate-resource-container"><h3 class="pirate-resource-heading">Raiders</h3><p id="pirate-raider-total" class="pirate-resource-paragraph">${pirates[0].raider_stock}</p></div>`
 
     //set up end of pirate-text-container div
 
