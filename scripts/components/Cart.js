@@ -30,7 +30,9 @@ export const Cart = () => {
         // Broadcast custom event to entire documement so that the
         // application can re-render and update state
 
-        if (chosenMineral && chosenFacility) {
+        if (chosenMinerals.length && chosenFacility) {
+            for (const chosenMineral of chosenMinerals) {
+
             let chosenFacilityInventory = facilitiesInventory.find(
                 inventory => {
                     return inventory.facility_id === chosenFacility.id && inventory.mineral_id === chosenMineral.id
@@ -67,30 +69,42 @@ export const Cart = () => {
 
             for (const cart_mineral of state.cart_minerals) {
                 if (cart_mineral.mineral_id === chosenColonyInventory.mineral_id) {
-                    chosenFacilityInventory.facility_stock += state.cart_mineral.amount
+                    chosenFacilityInventory.facility_stock -= state.cart_mineral.amount
                 }
             }
             setFacility_Inventory(chosenFacilityInventory);
             setMineral(null)
+        }
+        
         }
     }
 
     let html = `<div class="cart">
         <h1>Space Cart</h1>`
 
-    const chosenMineral = minerals.find(
-        (mineral) => {
-            return mineral.id === state.selectedMineral
+    const chosenMineralsArr = () => {
+        let chosenMinerals = []
+        for (const mineral of minerals) {
+            for (const cart_mineral of state.cart_minerals) {
+                if (mineral.id === cart_mineral.mineral_id) {
+                    mineral.amount = cart_mineral.amount
+                    chosenMinerals.push(mineral)
+                }
+            }
         }
-    )
+        return chosenMinerals
+    }    
+    const chosenMinerals = chosenMineralsArr()
 
     const chosenFacility = facilities.find(
         (facility) => {
             return facility.id === state.selectedFacility
         }
     )
-    if (chosenMineral && chosenFacility) {
-        html += `<p class="cart__item">1 ton of ${chosenMineral.name} from ${chosenFacility.name}</p>`
+    if (chosenMinerals.length && chosenFacility) {
+        for (const mineral of chosenMinerals) {
+            html += `<p class="cart__item">${mineral.amount} tonnes of ${mineral.name} from ${chosenFacility.name}</p>`
+        }
     }
 
     html += `<div>
