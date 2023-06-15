@@ -1,28 +1,34 @@
 import { getPirateInventory, getPirates, getState, putPirates } from "../api/dataaccess.js"
 
 
-//write a function that will get and update/add random amount of pirate raiders to pirate object. Will be determined by amount of turns take. Likely need to implement this functionality at a later point. Use putPirates function to do so.
+//write a click even that increments turnCount by 1 everytime purchaseButton is clicked. Write function that fires after 3 turns (turncount hits 3) and adds 5 raiders to the pirate object, then returns the new value.
+
+let turnCount = 0
+
+document.addEventListener("click", e => {
+    if (e.target.id === "purchaseButton") {
+        turnCount++
+        if (turnCount === 3) {
+            addPirateRaiders()
+        }
+    }
+})
 
 const addPirateRaiders = () => {
-   const pirates = getPirates()
-   const state = getState()
-
-   if (state.turnCounter % 3 === 0) {
-        let newPirateObj = {
-            id: pirates[0].id,
-            raider_stock: pirates[0].raider_stock + 5
-        }
-        putPirates(newPirateObj, pirates[0].id)
-   }
-
-   return pirates[0].raider_stock
+    const pirates = getPirates()
+    let newPirateObj = {
+        id: pirates[0].id,
+        raider_stock: pirates[0].raider_stock + 5
+    }
+    
+    putPirates(newPirateObj, pirates[0].id)
+    return pirates[0].raider_stock
 }
-
 
 //write a function that makes a visual representation of the pirate ship using an image. Below that, it should pull in the pirate inventory and generates an html representation of it (total minerals combined and pirate raider count)
 
 export const Pirates = () => {
-    
+
     const pirateInventory = getPirateInventory()
 
     let html = ''
