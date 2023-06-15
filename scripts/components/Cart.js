@@ -1,12 +1,8 @@
-import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getSpaceCart, getState, setMineral, setColony_Inventory, setFacility_Inventory } from "../api/dataaccess.js"
-
-const minerals = getMinerals()
-const facilities = getFacilities()
-
+import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getState, setMineral,putColony_Inventory, putFacility_Inventory, postColony_Inventory } from "../api/dataaccess.js"
 
 document.addEventListener("click", (clickEvent) => {
     const itemClicked = clickEvent.target
-
+    
     //check if itemClicked is the button 
     if (itemClicked.id === "purchaseButton") {
         purchaseMineral()
@@ -19,7 +15,9 @@ export const Cart = () => {
     const state = getState()
     const facilitiesInventory = getFacilitiesInventory();
     const coloniesInventory = getColoniesInventory();
-
+    const minerals = getMinerals()
+    const facilities = getFacilities()
+    
     purchaseMineral = () => {
         // increment colony stock 
         // spaceCart.facility_inventory++
@@ -57,14 +55,14 @@ export const Cart = () => {
                     }
                 }
 
-                setColony_Inventory(newInventory)
+                postColony_Inventory(newInventory)
             } else {
                 for (const cart_mineral of state.cart_minerals) {
                     if (cart_mineral.mineral_id === chosenColonyInventory.mineral_id) {
                         chosenColonyInventory.colony_stock += state.cart_mineral.amount 
                     }
                 }
-                setColony_Inventory(chosenColonyInventory);
+                putColony_Inventory(chosenColonyInventory, chosenColonyInventory.id);
             }
 
             for (const cart_mineral of state.cart_minerals) {
@@ -72,7 +70,7 @@ export const Cart = () => {
                     chosenFacilityInventory.facility_stock -= state.cart_mineral.amount
                 }
             }
-            setFacility_Inventory(chosenFacilityInventory);
+            putFacility_Inventory(chosenFacilityInventory, chosenFacilityInventory.id);
             setMineral(null)
         }
         
