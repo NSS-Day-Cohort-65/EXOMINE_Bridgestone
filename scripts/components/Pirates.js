@@ -42,6 +42,8 @@ const raid = () => {
 
         const targetColony = colonies[randomColonyIndex];
 
+        console.log(`Raided ${targetColony.name}`);
+
         let targetColonyInventory = [];
         for (const inventory of coloniesInventory) {
             if (inventory.colony_id === targetColony.id) {
@@ -62,6 +64,8 @@ const raid = () => {
         const randomFacilityIndex = Math.floor(Math.random() * facilities.length)
 
         const targetFacility = facilities[randomFacilityIndex];
+
+        console.log(`Raided ${targetFacility.name}`);
 
         let targetFacilityInventory = [];
         for (const inventory of facilitiesInventory) {
