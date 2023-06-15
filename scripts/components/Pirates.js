@@ -24,9 +24,13 @@ export const Pirates = () => {
 
     html += `<img id="pirate-ship-image" class="image" src="/images/pirate-ship.png" alt="EVIL SPACE PIRATES">`
 
+    //add pirates border container and heading
+
+    html += `<div id="pirate-text-container"> <h1 id="pirate-header">Pirates</h1>`
+
     //set up pirate resource container and pirate resource html representation. Will container total minerals and raider count, along with function to add raiders to count
 
-    html += `<div id="pirate-resource-container" class="flex-container">`
+    html += `<div id="pirate-resources-container-all" class="flex-container">`
 
     //write function to get all pirate-inventory objects, total the stock, and return that number
     const totalPirateInventoryStock = () => {
@@ -39,11 +43,15 @@ export const Pirates = () => {
 
     //put above function into html representation
 
-    html += `<div id="pirate-mineral-container" class="flex container"><h3 class="pirate-resource-heading">Minerals</h3><p id="pirate-mineral-total" class="pirate-resource-paragraph">${totalPirateInventoryStock()}</p></div>`
+    html += `<div id="pirate-mineral-container" class="flex container pirate-resource-container"><h3 class="pirate-resource-heading">Minerals</h3><p id="pirate-mineral-total" class="pirate-resource-paragraph">${totalPirateInventoryStock()}</p></div>`
 
     //take function that generates total pirate raider count and puts it into html representation
 
-    html += `<div id="pirate-raider-container" class="flex container"><h3 class="pirate-resource-heading">Raiders</h3><p id="pirate-raider-total" class="pirate-resource-paragraph">${addPirateRaiders()}</p></div>`
+    html += `<div id="pirate-raider-container" class="flex container pirate-resource-container"><h3 class="pirate-resource-heading">Raiders</h3><p id="pirate-raider-total" class="pirate-resource-paragraph">${addPirateRaiders()}</p></div>`
+
+    //set up end of pirate-text-container div
+
+    html += `</div>`
 
     //set up end of pirate-resource-container div
 

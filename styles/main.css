@@ -16,22 +16,23 @@ body {
 
 h1 {
     color: rgb(255, 255, 255);
-text-shadow: rgb(174, 204, 247) 1px 1px 7px;
---darkreader-inline-color: #e8e6e3;
---darkreader-inline-bgimage: initial;
---darkreader-inline-bgcolor: #74231b;
+    text-shadow: rgb(174, 204, 247) 1px 1px 7px;
+    --darkreader-inline-color: #e8e6e3;
+    --darkreader-inline-bgimage: initial;
+    --darkreader-inline-bgcolor: #74231b;
 }
 
 .flex-container {
     display: flex;
 }
 
-#top-section{
+#top-section {
     flex-direction: row;
     justify-content: space-around;
     margin: 20px;
 }
-#bottom-section{
+
+#bottom-section {
     flex-direction: row;
     justify-content: space-around;
 }
@@ -45,22 +46,25 @@ text-shadow: rgb(174, 204, 247) 1px 1px 7px;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    border:  rgb(228, 228, 228) dotted 2px;
+    border: rgb(228, 228, 228) dotted 2px;
     padding: 20px;
     width: 300px;
 }
 
-
+#pirate-section {
+    flex-direction: row;
+    justify-content: center;
+}
 
 
 #heading__main {
-    margin: 30px;   
+    margin: 30px;
 }
 
 #minerals-selector {
     flex-direction: column;
     justify-content: space-around;
-    border:  rgb(228, 228, 228) dotted 2px;
+    border: rgb(228, 228, 228) dotted 2px;
     padding: 20px;
     width: 300px;
     margin-right: 50px;
@@ -70,7 +74,7 @@ text-shadow: rgb(174, 204, 247) 1px 1px 7px;
 #facility__header {
     text-align: center;
     margin: 10px 0px 10px 0;
-    
+
 }
 
 .facilityInventory__items {
@@ -90,7 +94,7 @@ text-shadow: rgb(174, 204, 247) 1px 1px 7px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border:  rgb(228, 228, 228) dotted 2px;
+    border: rgb(228, 228, 228) dotted 2px;
     padding: 50px;
     margin: 50px 90px 50px 0px;
     text-align: center;
@@ -104,29 +108,86 @@ text-shadow: rgb(174, 204, 247) 1px 1px 7px;
 
 button {
     box-shadow: 3px 4px 0px 0px #899599;
-    background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
-    background-color:#ededed;
-    border-radius:15px;
-    border:1px solid #d6bcd6;
-    display:inline-block;
-    cursor:pointer;
-    color:#3a8a9e;
-    font-family:Arial;
-    font-size:17px;
-    padding:4px 15px;
-    text-decoration:none;
-    text-shadow:0px 1px 0px #e1e2ed;
+    background: linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+    background-color: #ededed;
+    border-radius: 15px;
+    border: 1px solid #d6bcd6;
+    display: inline-block;
+    cursor: pointer;
+    color: #3a8a9e;
+    font-family: Arial;
+    font-size: 17px;
+    padding: 4px 15px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #e1e2ed;
     margin-top: 20px;
 }
+
 button:hover {
-    background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
-    background-color:#bab1ba;
+    background: linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+    background-color: #bab1ba;
 }
+
 button:active {
-    position:relative;
-    top:1px;
+    position: relative;
+    top: 1px;
 }
 
+#pirate-container {
+    flex-direction: column;
+    justify-content: center;
+}
 
+#pirate-resources-container-all {
+    flex-direction: row;
+    justify-content: center;
+}
 
+.pirate-resource-container {
+    margin: 0px 30px;
+}
 
+#pirate-header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* #pirate-text-container {
+    border: rgb(228, 228, 228) dotted 2px;
+    padding: 20px;
+} */
+
+.pirate-resource-container {
+    color: rgb(255, 255, 255);
+    text-shadow: rgb(174, 204, 247) 1px 1px 7px;
+    --darkreader-inline-color: #e8e6e3;
+    --darkreader-inline-bgimage: initial;
+    --darkreader-inline-bgcolor: #74231b;
+}
+
+#pirate-ship-image {
+    width: 300px;
+    margin: 100px 0px 20px 0px;
+
+    animation: wobble 4s infinite linear;
+    /* Adjust the duration as needed */
+}
+
+@keyframes wobble {
+
+    0% {
+        -webkit-transform: rotate(0deg);
+      }
+      25% {
+        -webkit-transform: rotate(3deg);
+      }
+      50% {
+        -webkit-transform: rotate(0deg);
+      }
+      75% {
+        -webkit-transform: rotate(-3deg);
+      }
+      100% {
+        -webkit-transform: rotate(0deg);
+      }
+}
