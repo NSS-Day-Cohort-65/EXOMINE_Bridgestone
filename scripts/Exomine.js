@@ -5,6 +5,7 @@ import { FacilityInventory } from './components/FacilityInventory.js'
 import { Governors } from './components/Governors.js'
 import { TurnCounter } from './components/TurnCounter.js'
 import { Pirates } from './components/Pirates.js'
+import { raidAlertHTMLGen } from './components/RaidAlert.js'
 
 
 
@@ -21,7 +22,9 @@ export const Exomine = () => {
         ${ColonyResources()}
         </div>
     </section>
-    <h1 id="raid-alert">WARNING: A RAID HAS BEGUN!</h1>
+    <article id="raid-alert-container">
+    ${raidAlertHTMLGen()}
+    </article>
     <section id="bottom-section" class="flex-container">
     <div id="facilities-container" class="flex-container">
         ${FacilityInventory()}

@@ -192,10 +192,29 @@ button:active {
       }
 }
 
-#raid-alert {
-    font-family: impact;
+#raid-alert-container {
+    z-index: 100;
+    display: none;
+}
+
+#raid-alert-text {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color: #90271d;
     font-weight: 900;
-    
+    background: none;
+    text-shadow: 7px 5px 6px #691c15;
+    animation: alert 5s infinite;
+}
+
+@keyframes alert {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(10)
+    }
+    100% {
+        transform: scale(1)
+    }
 }
 
