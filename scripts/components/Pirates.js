@@ -1,4 +1,4 @@
-import { getColonies, getColoniesInventory, getFacilities, putColony_Inventory } from '../api/dataaccess.js'
+import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, putColony_Inventory, putFacility_Inventory } from '../api/dataaccess.js'
 
 
 // increase this number to decrease difficulty
@@ -35,14 +35,14 @@ const coinFlip = () => {
 }
 
 const raid = () => {
-    if (true) {
+    if (coinFlip()) {
         const colonies = getColonies();
         const coloniesInventory = getColoniesInventory();
         const randomColonyIndex = Math.floor(Math.random() * colonies.length)
 
         const targetColony = colonies[randomColonyIndex];
 
-        let targetColonyInventory = []
+        let targetColonyInventory = [];
         for (const inventory of coloniesInventory) {
             if (inventory.colony_id === targetColony.id) {
                 targetColonyInventory.push(inventory);
@@ -50,24 +50,42 @@ const raid = () => {
         }
 
         for (const inventory of targetColonyInventory) {
-            inventory.colony_stock = inventory.colony_stock / 2
+            inventory.colony_stock = Math.floor(inventory.colony_stock / 2);
         }
 
         for (const inventory of targetColonyInventory) {
-            putColony_Inventory(inventory, inventory.id)
+            putColony_Inventory(inventory, inventory.id);
         }
     } else {
         const facilities = getFacilities();
+        const facilitiesInventory = getFacilitiesInventory();
         const randomFacilityIndex = Math.floor(Math.random() * facilities.length)
+
+        const targetFacility = facilities[randomFacilityIndex];
+
+        let targetFacilityInventory = [];
+        for (const inventory of facilitiesInventory) {
+            if (inventory.facility_id === targetFacility.id) {
+                targetFacilityInventory.push(inventory);
+            }
+        }
+
+        for (const inventory of targetFacilityInventory) {
+            inventory.facility_stock = Math.floor(inventory.facility_stock / 2);
+        }
+
+        for (const inventory of targetFacilityInventory) {
+            putFacility_Inventory(inventory, inventory.id);
+        }
     }
 
-
     raidCounter = 1
+    document.dispatchEvent(new CustomEvent("startRaid"))
 }
 
 const checkForRaid = (turn) => {
     const randomRoll = Math.ceil(Math.random() * MAX)
-    if (randomRoll < turn) {
+    if (randomRoll <= turn) {
         return true
     } else {
         return false
