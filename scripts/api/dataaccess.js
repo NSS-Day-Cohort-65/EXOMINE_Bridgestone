@@ -1,36 +1,53 @@
-import { database } from "./database.js"
+const API = "http://localhost:8088"
+
+const applicationState = {
+    governors: [],
+    colonies: [],
+    facilities: [],
+    minerals: [],
+    facility_inventory: [],
+    colony_inventory: [],
+    pirate_inventory: []
+}
+
+const transientState = {
+
+}
+
+
+// transient
 
 //setters transient state
 
 export const setFacility = (facilityId) => {
-    database.transientState.selectedFacility = facilityId
+    transientState.selectedFacility = facilityId
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
 export const setGovernor = (governorId) => {
-    database.transientState.selectedGovernor = governorId
+    transientState.selectedGovernor = governorId
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
 export const setColonies = (colonyId) => {
-    database.transientState.selectedColony = colonyId
+    transientState.selectedColony = colonyId
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
-export const setMineral = (mineralId) => {
-    database.transientState.selectedMineral = mineralId
+export const setMineral = (mineral) => {
+    transientState.selectedMineral = mineral
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
 export const incrementTurn = () => {
-    database.transientState.turn++
+    transientState.turnCounter++
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
 //setters spaceCart
 
 export const setFacility_Inventory = (facInv) => {
-    const foundInventoryIndex = database.facility_inventory.findIndex(
+    const foundInventoryIndex = applicationState.facility_inventory.findIndex(
         inventory => {
             return inventory.id === facInv.id
         })
@@ -53,43 +70,6 @@ export const setColony_Inventory = (colInv) => {
     }
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
-
-
-
-//getters
-
-export const getFacilities = () => {
-    return database.facilities.map(f => ({ ...f }))
-}
-
-export const getGovernors = () => {
-    return database.governors.map(f => ({ ...f }))
-}
-
-export const getColonies = () => {
-    return database.colonies.map(f => ({ ...f }))
-}
-
-export const getMinerals = () => {
-    return database.minerals.map(f => ({ ...f }))
-}
-
-export const getSpaceCart = () => {
-    return database.spaceCart
-}
-
-export const getState = () => {
-    return database.transientState
-}
-
-export const getFacilitiesInventory = () => {
-    return database.facility_inventory.map(f => ({ ...f }))
-}
-
-export const getColoniesInventory = () => {
-    return database.colony_inventory.map(f => ({ ...f }))
-}
-
 
 
 

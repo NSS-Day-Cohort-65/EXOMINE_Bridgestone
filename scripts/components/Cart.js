@@ -4,10 +4,9 @@
 // And clear selected mineral
 // And update state of facility stock and colony stock
 
-import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getSpaceCart, getState, setMineral, setColony_Inventory, setFacility_Inventory } from "../api/dataaccess.js"
+import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getState, setMineral, putColony_Inventory, putFacility_Inventory, postColony_Inventory } from "../api/dataaccess.js"
 
-const minerals = getMinerals()
-const facilities = getFacilities()
+
 
 
 document.addEventListener("click", (clickEvent) => {
@@ -25,6 +24,8 @@ export const Cart = () => {
     const state = getState()
     const facilitiesInventory = getFacilitiesInventory();
     const coloniesInventory = getColoniesInventory();
+    const minerals = getMinerals()
+    const facilities = getFacilities()
 
     purchaseMineral = () => {
         // increment colony stock 
@@ -55,14 +56,14 @@ export const Cart = () => {
                     mineral_id: chosenMineral.id,
                     colony_stock: 1
                 }
-                setColony_Inventory(newInventory)
+                postColony_Inventory(newInventory)
             } else {
                 chosenColonyInventory.colony_stock++
-                setColony_Inventory(chosenColonyInventory);
+                putColony_Inventory(chosenColonyInventory, chosenColonyInventory.id);
             }
 
             chosenFacilityInventory.facility_stock--
-            setFacility_Inventory(chosenFacilityInventory);
+            putFacility_Inventory(chosenFacilityInventory, chosenFacilityInventory.id);
             setMineral(null)
         }
     }
