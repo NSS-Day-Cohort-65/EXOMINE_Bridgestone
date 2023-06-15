@@ -77,6 +77,10 @@ h1 {
 
 }
 
+#section-governor-recruiter {
+    flex-direction: column;
+}
+
 .facilityInventory__items {
     margin: 3px;
 }

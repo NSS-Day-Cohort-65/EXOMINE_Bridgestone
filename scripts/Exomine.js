@@ -19,7 +19,6 @@ export const Exomine = () => {
             ${Facilities()}
         </div>
         ${GovernorRecruiter()}
-        ${Pirates()}
         <div id="colonies-container" class="flex-container">
         ${ColonyResources()}
         </div>
@@ -28,9 +27,10 @@ export const Exomine = () => {
     <div id="facilities-container" class="flex-container">
         ${FacilityInventory()}
     </div>
-        ${Cart()}
+
     </section>
     <section id="pirate-section" class="flex-container">
         ${Pirates()}
     </section>`
 }
+        // ${Cart()}

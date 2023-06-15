@@ -41,9 +41,13 @@ export const setMineral = (mineral) => {
 }
 
 export const setLastLocationRaided = (location) => {
-    transientState.lastLocationRaided = (location) => {
-        document.dispatchEvent(new CustomEvent("stateChanged"))
-    }
+    transientState.lastLocationRaided = location
+    document.dispatchEvent(new CustomEvent("stateChanged"))
+}
+
+export const setSelectedRecruit = (govId) => {
+    transientState.selectedRecruit = govId;
+    document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
 export const incrementTurn = () => {
