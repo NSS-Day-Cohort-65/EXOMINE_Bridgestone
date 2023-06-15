@@ -18,8 +18,13 @@ document.addEventListener("startRaid", CustomEvent => {
 )
 
 const raidAlert = () => {
+
+    let alarmSound = new Audio('audio/alarm_sound.mp3')
+
     const alert = document.querySelector("#raid-alert-container")
 
+    alarmSound.play()
+    
     alert.style.display = "block"
 
     setTimeout(() => {
