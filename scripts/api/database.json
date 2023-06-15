@@ -419,6 +419,10 @@
     }
   ],
   "pirate_inventory": [
-
+    {
+      "id": 1,
+      "mineral_id": 3,
+      "pirate_stock": 104
+    }
   ]
 }

@@ -22,5 +22,8 @@ export const Exomine = () => {
         ${FacilityInventory()}
     </div>
         ${Cart()}
+    </section>
+    <section id="pirate-section" class="flex-container">
+    
     </section>`
 }
