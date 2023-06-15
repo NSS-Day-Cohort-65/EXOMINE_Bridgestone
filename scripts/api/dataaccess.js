@@ -39,6 +39,12 @@ export const setMineral = (mineral) => {
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
+export const setLastLocationRaided = (location) => {
+    transientState.lastLocationRaided = (location) => {
+        document.dispatchEvent(new CustomEvent("stateChanged"))
+    }
+}
+
 export const incrementTurn = () => {
     transientState.turnCounter++
     document.dispatchEvent(new CustomEvent("stateChanged"))

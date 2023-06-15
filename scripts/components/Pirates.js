@@ -1,4 +1,4 @@
-import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, putColony_Inventory, putFacility_Inventory } from '../api/dataaccess.js'
+import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, getPirateInventory, postPirate_Inventory, putColony_Inventory, putFacility_Inventory, putPirate_Inventory, setLastLocationRaided } from '../api/dataaccess.js'
 
 
 // increase this number to decrease difficulty
@@ -35,6 +35,9 @@ const coinFlip = () => {
 }
 
 const raid = () => {
+    let pirateInventory = getPirateInventory();
+    let piratePlunder = []
+
     if (coinFlip()) {
         const colonies = getColonies();
         const coloniesInventory = getColoniesInventory();
@@ -42,6 +45,7 @@ const raid = () => {
 
         const targetColony = colonies[randomColonyIndex];
 
+        setLastLocationRaided(targetColony);
         console.log(`Raided ${targetColony.name}`);
 
         let targetColonyInventory = [];
@@ -52,6 +56,12 @@ const raid = () => {
         }
 
         for (const inventory of targetColonyInventory) {
+            piratePlunder.push(
+                {
+                    mineral_id: inventory.mineral_id,
+                    pirate_stock: Math.floor(inventory.colony_stock / 2)
+                }
+            )
             inventory.colony_stock = Math.floor(inventory.colony_stock / 2);
         }
 
@@ -65,6 +75,7 @@ const raid = () => {
 
         const targetFacility = facilities[randomFacilityIndex];
 
+        setLastLocationRaided(targetFacility);
         console.log(`Raided ${targetFacility.name}`);
 
         let targetFacilityInventory = [];
@@ -75,11 +86,27 @@ const raid = () => {
         }
 
         for (const inventory of targetFacilityInventory) {
+            piratePlunder.push(
+                {
+                    mineral_id: inventory.mineral_id,
+                    pirate_stock: Math.floor(inventory.facility_stock / 2)
+                }
+            )
+
             inventory.facility_stock = Math.floor(inventory.facility_stock / 2);
         }
 
         for (const inventory of targetFacilityInventory) {
             putFacility_Inventory(inventory, inventory.id);
+        }
+    }
+    for (const plunder of piratePlunder) {
+        let foundInventory = pirateInventory.find(inventory => inventory.mineral_id === plunder.mineral_id)
+        if (foundInventory) {
+            plunder.pirate_stock += foundInventory.pirate_stock
+            putPirate_Inventory(plunder, foundInventory.id)
+        } else {
+            postPirate_Inventory(plunder);
         }
     }
 
