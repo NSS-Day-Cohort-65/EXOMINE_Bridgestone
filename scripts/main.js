@@ -12,19 +12,19 @@ document.addEventListener(
 
 export const renderHtml = () => {
     fetchPirate_Inventory()
-    .then(() => fetchGovernors())
-    .then(() => fetchMinerals())
-    .then(() => fetchColonies())
-    .then(() => fetchFacilities())
-    .then(() => fetchPirate_Inventory())
-    .then(() => fetchColonies_Inventory())
-    .then(() => fetchFacility_Inventory())
-    .then(
-        () => {
-            mainContainer.innerHTML = Exomine();
-        }
-    )
-    console.log("rerendered")
+        .then(() => fetchGovernors())
+        .then(() => fetchMinerals())
+        .then(() => fetchColonies())
+        .then(() => fetchFacilities())
+        .then(() => fetchPirate_Inventory())
+        .then(() => fetchColonies_Inventory())
+        .then(() => fetchFacility_Inventory())
+        .then(
+            () => {
+                mainContainer.innerHTML = Exomine();
+            }
+        )
+    // console.log("rerendered")
 }
 
 renderHtml(); 
