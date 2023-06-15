@@ -1,18 +1,8 @@
-// Given that a mineral has been selected, display selected mineral
-// When the purchase button is clicked,
-// Then send completed order
-// And clear selected mineral
-// And update state of facility stock and colony stock
-
-import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getSpaceCart, getState, setMineral, setColony_Inventory, setFacility_Inventory } from "../api/dataaccess.js"
-
-const minerals = getMinerals()
-const facilities = getFacilities()
-
+import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getState, setMineral,putColony_Inventory, putFacility_Inventory, postColony_Inventory } from "../api/dataaccess.js"
 
 document.addEventListener("click", (clickEvent) => {
     const itemClicked = clickEvent.target
-
+    
     //check if itemClicked is the button 
     if (itemClicked.id === "purchaseButton") {
         purchaseMineral()
@@ -25,7 +15,9 @@ export const Cart = () => {
     const state = getState()
     const facilitiesInventory = getFacilitiesInventory();
     const coloniesInventory = getColoniesInventory();
-
+    const minerals = getMinerals()
+    const facilities = getFacilities()
+    
     purchaseMineral = () => {
         // increment colony stock 
         // spaceCart.facility_inventory++
@@ -36,7 +28,9 @@ export const Cart = () => {
         // Broadcast custom event to entire documement so that the
         // application can re-render and update state
 
-        if (chosenMineral && chosenFacility) {
+        if (chosenMinerals.length && chosenFacility) {
+            for (const chosenMineral of chosenMinerals) {
+
             let chosenFacilityInventory = facilitiesInventory.find(
                 inventory => {
                     return inventory.facility_id === chosenFacility.id && inventory.mineral_id === chosenMineral.id
@@ -53,36 +47,62 @@ export const Cart = () => {
                 const newInventory = {
                     colony_id: state.selectedColony,
                     mineral_id: chosenMineral.id,
-                    colony_stock: 1
+                    colony_stock: 0
                 }
-                setColony_Inventory(newInventory)
+                for (const cart_mineral of state.cart_minerals) {
+                    if (cart_mineral.mineral_id === chosenColonyInventory.mineral_id) {
+                        newInventory.colony_stock += state.cart_mineral.amount
+                    }
+                }
+
+                postColony_Inventory(newInventory)
             } else {
-                chosenColonyInventory.colony_stock++
-                setColony_Inventory(chosenColonyInventory);
+                for (const cart_mineral of state.cart_minerals) {
+                    if (cart_mineral.mineral_id === chosenColonyInventory.mineral_id) {
+                        chosenColonyInventory.colony_stock += state.cart_mineral.amount 
+                    }
+                }
+                putColony_Inventory(chosenColonyInventory, chosenColonyInventory.id);
             }
 
-            chosenFacilityInventory.facility_stock--
-            setFacility_Inventory(chosenFacilityInventory);
+            for (const cart_mineral of state.cart_minerals) {
+                if (cart_mineral.mineral_id === chosenColonyInventory.mineral_id) {
+                    chosenFacilityInventory.facility_stock -= state.cart_mineral.amount
+                }
+            }
+            putFacility_Inventory(chosenFacilityInventory, chosenFacilityInventory.id);
             setMineral(null)
+        }
+        
         }
     }
 
     let html = `<div class="cart">
         <h1>Space Cart</h1>`
 
-    const chosenMineral = minerals.find(
-        (mineral) => {
-            return mineral.id === state.selectedMineral
+    const chosenMineralsArr = () => {
+        let chosenMinerals = []
+        for (const mineral of minerals) {
+            for (const cart_mineral of state.cart_minerals) {
+                if (mineral.id === cart_mineral.mineral_id) {
+                    mineral.amount = cart_mineral.amount
+                    chosenMinerals.push(mineral)
+                }
+            }
         }
-    )
+        return chosenMinerals
+    }    
+    const chosenMinerals = chosenMineralsArr()
 
     const chosenFacility = facilities.find(
         (facility) => {
             return facility.id === state.selectedFacility
         }
     )
-    if (chosenMineral && chosenFacility) {
-        html += `<p class="cart__item">1 ton of ${chosenMineral.name} from ${chosenFacility.name}</p>`
+    if (chosenMinerals.length && chosenFacility) {
+        for (const mineral of chosenMinerals) {
+            html += `<p class="cart__item">${mineral.amount} tonnes of ${mineral.name} from ${chosenFacility.name}</p>`
+        }
     }
 
     html += `<div>
@@ -92,4 +112,3 @@ export const Cart = () => {
 
     return html
 }
-

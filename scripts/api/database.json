@@ -1,0 +1,440 @@
+{
+  "governors": [
+    {
+      "id": 1,
+      "name": "Zara Kallan",
+      "colony_id": 3,
+      "is_active": true,
+      "is_alive": true
+    },
+    {
+      "id": 2,
+      "name": "Kael Orion",
+      "colony_id": 4,
+      "is_active": true,
+      "is_alive": true
+    },
+    {
+      "id": 3,
+      "name": "Lana Solis",
+      "colony_id": 1,
+      "is_active": true,
+      "is_alive": true
+    },
+    {
+      "id": 4,
+      "name": "Ezra Nova",
+      "colony_id": 5,
+      "is_active": true,
+      "is_alive": true
+    },
+    {
+      "id": 5,
+      "name": "Nia Argos",
+      "colony_id": 2,
+      "is_active": true,
+      "is_alive": true
+    },
+    {
+      "id": 6,
+      "name": "Astor Voss",
+      "colony_id": 1,
+      "is_active": true,
+      "is_alive": true
+    },
+    {
+      "id": 7,
+      "name": "Lyra Raine",
+      "colony_id": 4,
+      "is_active": true,
+      "is_alive": true
+    },
+    {
+      "id": 8,
+      "name": "Draco Kyros",
+      "colony_id": 3,
+      "is_active": true,
+      "is_alive": true
+    },
+    {
+      "id": 9,
+      "name": "Vera Solara",
+      "colony_id": 2,
+      "is_active": true,
+      "is_alive": true
+    },
+    {
+      "id": 10,
+      "name": "Liora Nova",
+      "colony_id": 5,
+      "is_active": true,
+      "is_alive": true
+    },
+    {
+      "id": 11,
+      "name": "Zion Remnar",
+      "colony_id": 3,
+      "is_active": false,
+      "is_alive": true
+    },
+    {
+      "id": 12,
+      "name": "Pierce Valen",
+      "colony_id": 2,
+      "is_active": false,
+      "is_alive": true
+    },
+    {
+      "id": 13,
+      "name": "Draavo Satomi",
+      "colony_id": 4,
+      "is_active": false,
+      "is_alive": true
+    }
+  ],
+  "minerals": [
+    {
+      "id": 1,
+      "name": "Xenite"
+    },
+    {
+      "id": 2,
+      "name": "Luminarite"
+    },
+    {
+      "id": 3,
+      "name": "Stellacite"
+    },
+    {
+      "id": 4,
+      "name": "Nebulite"
+    },
+    {
+      "id": 5,
+      "name": "Astroquartz"
+    },
+    {
+      "id": 6,
+      "name": "Galaxium"
+    },
+    {
+      "id": 7,
+      "name": "Celestite"
+    },
+    {
+      "id": 8,
+      "name": "Meteorium"
+    },
+    {
+      "id": 9,
+      "name": "Stargem"
+    },
+    {
+      "id": 10,
+      "name": "Cosmolite"
+    },
+    {
+      "id": 11,
+      "name": "Aetherite"
+    },
+    {
+      "id": 12,
+      "name": "Orbithyst"
+    },
+    {
+      "id": 13,
+      "name": "Nebulium"
+    },
+    {
+      "id": 14,
+      "name": "Quasarite"
+    },
+    {
+      "id": 15,
+      "name": "Stellite"
+    }
+  ],
+  "facilities": [
+    {
+      "id": 1,
+      "name": "Warforge Alpha",
+      "is_active": true
+    },
+    {
+      "id": 2,
+      "name": "Starhold Delta",
+      "is_active": true
+    },
+    {
+      "id": 3,
+      "name": "Battlespire Gamma",
+      "is_active": true
+    },
+    {
+      "id": 4,
+      "name": "Ravenspire Omega",
+      "is_active": true
+    }
+  ],
+  "colonies": [
+    {
+      "id": 1,
+      "name": "Terra Nova"
+    },
+    {
+      "id": 2,
+      "name": "Nexus Prime"
+    },
+    {
+      "id": 3,
+      "name": "Astraia"
+    },
+    {
+      "id": 4,
+      "name": "Elysium"
+    },
+    {
+      "id": 5,
+      "name": "Stellara"
+    }
+  ],
+  "colony_inventory": [
+    {
+      "id": 1,
+      "colony_id": 3,
+      "mineral_id": 6,
+      "colony_stock": 284
+    },
+    {
+      "id": 2,
+      "colony_id": 2,
+      "mineral_id": 10,
+      "colony_stock": 188
+    },
+    {
+      "id": 3,
+      "colony_id": 1,
+      "mineral_id": 1,
+      "colony_stock": 342
+    },
+    {
+      "id": 4,
+      "colony_id": 4,
+      "mineral_id": 9,
+      "colony_stock": 289
+    },
+    {
+      "id": 5,
+      "colony_id": 5,
+      "mineral_id": 2,
+      "colony_stock": 450
+    },
+    {
+      "id": 6,
+      "colony_id": 3,
+      "mineral_id": 8,
+      "colony_stock": 217
+    },
+    {
+      "id": 7,
+      "colony_id": 1,
+      "mineral_id": 3,
+      "colony_stock": 256
+    },
+    {
+      "id": 8,
+      "colony_id": 2,
+      "mineral_id": 12,
+      "colony_stock": 186
+    },
+    {
+      "id": 9,
+      "colony_id": 4,
+      "mineral_id": 11,
+      "colony_stock": 225
+    },
+    {
+      "id": 10,
+      "colony_id": 5,
+      "mineral_id": 7,
+      "colony_stock": 270
+    },
+    {
+      "id": 11,
+      "colony_id": 3,
+      "mineral_id": 5,
+      "colony_stock": 312
+    },
+    {
+      "id": 12,
+      "colony_id": 2,
+      "mineral_id": 4,
+      "colony_stock": 300
+    },
+    {
+      "id": 13,
+      "colony_id": 1,
+      "mineral_id": 14,
+      "colony_stock": 225
+    },
+    {
+      "id": 14,
+      "colony_id": 4,
+      "mineral_id": 13,
+      "colony_stock": 227
+    },
+    {
+      "id": 15,
+      "colony_id": 5,
+      "mineral_id": 15,
+      "colony_stock": 240
+    },
+    {
+      "id": 16,
+      "colony_id": 3,
+      "mineral_id": 2,
+      "colony_stock": 215
+    },
+    {
+      "id": 17,
+      "colony_id": 2,
+      "mineral_id": 6,
+      "colony_stock": 400
+    },
+    {
+      "id": 18,
+      "colony_id": 1,
+      "mineral_id": 10,
+      "colony_stock": 250
+    },
+    {
+      "id": 19,
+      "colony_id": 4,
+      "mineral_id": 1,
+      "colony_stock": 347
+    },
+    {
+      "id": 20,
+      "colony_id": 5,
+      "mineral_id": 9,
+      "colony_stock": 276
+    },
+    {
+      "colony_id": 1,
+      "mineral_id": 11,
+      "colony_stock": 2,
+      "id": 21
+    }
+  ],
+  "facility_inventory": [
+    {
+      "id": 1,
+      "facility_id": 1,
+      "mineral_id": 7,
+      "facility_stock": 350
+    },
+    {
+      "id": 2,
+      "facility_id": 4,
+      "mineral_id": 15,
+      "facility_stock": 260
+    },
+    {
+      "id": 3,
+      "facility_id": 3,
+      "mineral_id": 5,
+      "facility_stock": 390
+    },
+    {
+      "id": 4,
+      "facility_id": 2,
+      "mineral_id": 11,
+      "facility_stock": 423
+    },
+    {
+      "id": 5,
+      "facility_id": 1,
+      "mineral_id": 4,
+      "facility_stock": 320
+    },
+    {
+      "id": 6,
+      "facility_id": 4,
+      "mineral_id": 8,
+      "facility_stock": 289
+    },
+    {
+      "id": 7,
+      "facility_id": 3,
+      "mineral_id": 12,
+      "facility_stock": 215
+    },
+    {
+      "id": 8,
+      "facility_id": 2,
+      "mineral_id": 7,
+      "facility_stock": 310
+    },
+    {
+      "id": 9,
+      "facility_id": 1,
+      "mineral_id": 13,
+      "facility_stock": 277
+    },
+    {
+      "id": 10,
+      "facility_id": 4,
+      "mineral_id": 2,
+      "facility_stock": 215
+    },
+    {
+      "id": 11,
+      "facility_id": 3,
+      "mineral_id": 3,
+      "facility_stock": 227
+    },
+    {
+      "id": 12,
+      "facility_id": 2,
+      "mineral_id": 6,
+      "facility_stock": 400
+    },
+    {
+      "id": 13,
+      "facility_id": 1,
+      "mineral_id": 9,
+      "facility_stock": 375
+    },
+    {
+      "id": 14,
+      "facility_id": 4,
+      "mineral_id": 14,
+      "facility_stock": 246
+    },
+    {
+      "id": 15,
+      "facility_id": 3,
+      "mineral_id": 1,
+      "facility_stock": 400
+    },
+    {
+      "id": 16,
+      "facility_id": 2,
+      "mineral_id": 10,
+      "facility_stock": 275
+    }
+  ],
+  "pirates": [
+    {
+      "id": 1,
+      "raider_stock": 0
+    }
+  ],
+  "pirate_inventory": [
+    {
+      "id": 1,
+      "mineral_id": 3,
+      "pirate_stock": 104
+    }
+  ]
+}
