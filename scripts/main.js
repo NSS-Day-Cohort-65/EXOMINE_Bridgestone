@@ -1,5 +1,5 @@
 import { Exomine } from './Exomine.js'
-import { fetchColonies, fetchColonies_Inventory, fetchFacilities, fetchFacility_Inventory, fetchGovernors, fetchMinerals, fetchPirate_Inventory } from './api/dataaccess.js'
+import { fetchColonies, fetchColonies_Inventory, fetchFacilities, fetchFacility_Inventory, fetchGovernors, fetchMinerals, fetchPirate_Inventory, fetchPirates } from './api/dataaccess.js'
 
 const mainContainer = document.querySelector("#main-container")
 
@@ -16,6 +16,7 @@ export const renderHtml = () => {
     .then(() => fetchMinerals())
     .then(() => fetchColonies())
     .then(() => fetchFacilities())
+    .then(() => fetchPirates())
     .then(() => fetchPirate_Inventory())
     .then(() => fetchColonies_Inventory())
     .then(() => fetchFacility_Inventory())
@@ -24,7 +25,6 @@ export const renderHtml = () => {
             mainContainer.innerHTML = Exomine();
         }
     )
-    console.log("rerendered")
 }
 
 renderHtml(); 
