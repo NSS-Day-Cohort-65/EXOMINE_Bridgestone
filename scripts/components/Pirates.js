@@ -1,10 +1,19 @@
-import { getPirateInventory, getPirates } from "../api/dataaccess.js"
+import { getPirateInventory, getPirates, getState, putPirates } from "../api/dataaccess.js"
 
 
 //write a function that will get and update/add random amount of pirate raiders to pirate object. Will be determined by amount of turns take. Likely need to implement this functionality at a later point. Use putPirates function to do so.
 
 const addPirateRaiders = () => {
    const pirates = getPirates()
+   const state = getState()
+
+   if (state.turnCounter % 3 === 0) {
+        let newPirateObj = {
+            id: pirates[0].id,
+            raider_stock: pirates[0].raider_stock + 5
+        }
+        putPirates(newPirateObj, pirates[0].id)
+   }
 
    return pirates[0].raider_stock
 }
