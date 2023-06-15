@@ -1,4 +1,5 @@
-import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getSpaceCart, getState, setMineral, setColony_Inventory, setFacility_Inventory } from "../api/dataaccess.js"
+import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getSpaceCart, getState, setMineral, setColony_Inventory, setFacility_Inventory, putColony_Inventory, putFacility_Inventory, postColony_Inventory } from "../api/dataaccess.js"
+
 
 const minerals = getMinerals()
 const facilities = getFacilities()
