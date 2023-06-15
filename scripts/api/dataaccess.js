@@ -12,7 +12,7 @@ const applicationState = {
 }
 
 const transientState = {
-
+    turnCounter: 1,
 }
 
 
@@ -45,12 +45,7 @@ export const incrementTurn = () => {
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
-// export const setMineral = (mineralId) => {
-//     transientState.selectedMineral = mineralId
-//     document.dispatchEvent(new CustomEvent("stateChanged"))
-// }
-
-
+//setters spaceCart
 
 // transientState getter
 
@@ -395,6 +390,5 @@ export const putPirate_Inventory = (obj, id) => {
 //     }
 //     document.dispatchEvent(new CustomEvent("stateChanged"))
 // }
-
 
 
