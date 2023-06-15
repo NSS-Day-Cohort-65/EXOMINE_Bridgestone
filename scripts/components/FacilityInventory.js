@@ -1,5 +1,15 @@
 import { getFacilities, getFacilitiesInventory, getMinerals, getState, setMineral } from '../api/dataaccess.js'
 
+document.addEventListener(
+    "change",
+    e => {
+        if (e.target.id.startsWith("mineral-radio")) {
+            let mineralId = parseInt(e.target.value);
+
+            setMineral(mineralId);
+        }
+    }
+)
 export const FacilityInventory = () => {
     const facilities = getFacilities();
     const minerals = getMinerals();
@@ -7,16 +17,6 @@ export const FacilityInventory = () => {
     const state = getState();
     const facility = facilities.find(facility => facility.id === state.selectedFacility)
 
-    document.addEventListener(
-        "change",
-        e => {
-            if (e.target.id.startsWith("mineral-radio")) {
-                let mineralId = parseInt(e.target.value);
-
-                setMineral(mineralId);
-            }
-        }
-    )
 
     const mineralRadioSelectors = () => {
         const chosenFacilityId = state.selectedFacility;
