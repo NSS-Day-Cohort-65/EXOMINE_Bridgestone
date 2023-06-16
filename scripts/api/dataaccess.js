@@ -50,6 +50,11 @@ export const setSelectedRecruit = (govId) => {
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
+export const setSelectedRecruitColony = (colId) => {
+    transientState.selectedRecruitColony = colId;
+    document.dispatchEvent(new CustomEvent("stateChanged"))
+}
+
 export const incrementTurn = () => {
     transientState.turnCounter++
     document.dispatchEvent(new CustomEvent("stateChanged"))
