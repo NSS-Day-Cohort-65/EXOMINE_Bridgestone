@@ -2,6 +2,7 @@ import { Cart } from './components/Cart.js'
 import { ColonyResources } from './components/ColonyResources.js'
 import { Facilities } from './components/Facilities.js'
 import { FacilityInventory } from './components/FacilityInventory.js'
+import { GovernorRecruiter } from './components/GovernorRecruiter.js'
 import { Governors } from './components/Governors.js'
 import { TurnCounter } from './components/TurnCounter.js'
 import { Pirates } from './components/Pirates.js'
@@ -11,6 +12,10 @@ import { raidAlertHTMLGen } from './components/RaidAlert.js'
 
 
 export const Exomine = () => {
+
+    let cart = Cart()
+    let x
+
     return `<h1 id="heading__main">Solar System Mining Marketplace</h1>
     ${TurnCounter()}
     <section id="top-section" class="flex-container">
@@ -18,6 +23,7 @@ export const Exomine = () => {
             ${Governors()}
             ${Facilities()}
         </div>
+        ${GovernorRecruiter()}
         <div id="colonies-container" class="flex-container">
         ${ColonyResources()}
         </div>
@@ -35,3 +41,4 @@ export const Exomine = () => {
         ${Pirates()}
     </section>`
 }
+
