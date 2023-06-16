@@ -77,13 +77,18 @@ export const FacilityInventory = () => {
 
             return chosenFacilityInventory.map(inventory => {
                 if (mineralSelected) {
-                    amountSelector = 
-                    `<form>
-                        <label for="quantity"></label>
-                        <input type="number" id="quantity--${inventory.mineral_id}" name="quantity" min="10" max="500" step="10" value="${selectedAmount}">
-                    </form>`
-                    let addToCartButton = `<button id=${inventory.mineral_id} class="addToCartButton">Add to Cart</button>`
-                    return `<div class="facilityInventory__items"><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}" checked>${amountSelector} tonnes of ${inventory.mineralName}</input> ${addToCartButton}</div>`
+                    if (mineralSelected.id === inventory.mineral_id) {
+                        amountSelector = 
+                        `<form>
+                            <label for="quantity"></label>
+                            <input type="number" id="quantity--${inventory.mineral_id}" name="quantity" min="10" max="500" step="10" value="${selectedAmount}">
+                        </form>`
+                        let addToCartButton = `<button id=${inventory.mineral_id} class="addToCartButton">Add to Cart</button>`
+                        return `<div class="facilityInventory__items"><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}" checked>${amountSelector} tonnes of ${inventory.mineralName}</input> ${addToCartButton}</div>`
+                } else {
+                    return `<div><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}">${inventory.facility_stock} tonnes of ${inventory.mineralName}</input></div>`
+                }
+
                 } else {
                     return `<div><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}">${inventory.facility_stock} tonnes of ${inventory.mineralName}</input></div>`
                 }

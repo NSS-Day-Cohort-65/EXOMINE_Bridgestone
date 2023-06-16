@@ -45,15 +45,15 @@ export const Cart = () => {
                 }
             )
 
-            if (!chosenColonyInventory || !chosenFacilityInventory) {
+            if (!chosenColonyInventory) {
                 const newInventory = {
                     colony_id: state.selectedColony,
                     mineral_id: chosenMineral.id,
                     colony_stock: 0
                 }
                 for (const cart_mineral of state.cart_minerals) {
-                    if (cart_mineral.mineral_id === chosenColonyInventory.mineral_id) {
-                        newInventory.colony_stock += state.cart_mineral.amount
+                    if (cart_mineral.mineral_id === newInventory.mineral_id) {
+                        newInventory.colony_stock += cart_mineral.amount
                     }
                 }
 
@@ -61,7 +61,7 @@ export const Cart = () => {
             } else {
                 for (const cart_mineral of state.cart_minerals) {
                     if (cart_mineral.mineral_id === chosenColonyInventory.mineral_id) {
-                        chosenColonyInventory.colony_stock += state.cart_mineral.amount 
+                        chosenColonyInventory.colony_stock += cart_mineral.amount 
                     }
                 }
                 putColony_Inventory(chosenColonyInventory, chosenColonyInventory.id);
@@ -69,11 +69,12 @@ export const Cart = () => {
 
             for (const cart_mineral of state.cart_minerals) {
                 if (cart_mineral.mineral_id === chosenColonyInventory.mineral_id) {
-                    chosenFacilityInventory.facility_stock -= state.cart_mineral.amount
+                    chosenFacilityInventory.facility_stock -= cart_mineral.amount
                 }
             }
             putFacility_Inventory(chosenFacilityInventory, chosenFacilityInventory.id);
             state.cart_minerals = []
+            document.dispatchEvent(new CustomEvent("stateChanged"))
         }
         
         }
