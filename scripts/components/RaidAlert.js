@@ -4,11 +4,18 @@ import { getState } from "../api/dataaccess.js"
 
 export const raidAlertHTMLGen = () => {
     const state = getState()
+    const placeRaided = state.lastLocationRaided.name
+    const govKilled = state.lastGovernorKilled.name
+
+    if (state.lastLocationRaided && state.lastGovernorKilled) {
+        return `<h1 id="raid-alert-text">WARNING: ${placeRaided.toUpperCase()} WAS RAIDED! GOVERNOR ${govKilled.toUpperCase()} HAS BEEN KILLED!</h1>`
+    } 
     if (state.lastLocationRaided) {
-        const placeRaided = state.lastLocationRaided.name
-        return `<h1 id="raid-alert-text">WARNING: ${placeRaided.toUpperCase()} WAS RAIDED</h1>`
-    }
-}
+        return `<h1 id="raid-alert-text">WARNING: ${placeRaided.toUpperCase()} WAS RAIDED!</h1>`
+    } 
+    state.lastLocationRaided = []
+    state.govKilled = []
+};
 
 //write an event listener for startRaid custom event that launches the raidAlert function
 
