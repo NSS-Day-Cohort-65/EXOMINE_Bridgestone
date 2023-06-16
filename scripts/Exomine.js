@@ -31,7 +31,7 @@ export const Exomine = () => {
     <div id="facilities-container" class="flex-container">
         ${FacilityInventory()}
     </div>
-
+        ${Cart()}
     </section>
     <section id="pirate-section" class="flex-container">
         ${Pirates()}
