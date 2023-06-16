@@ -10,6 +10,10 @@ import { Pirates } from './components/Pirates.js'
 
 
 export const Exomine = () => {
+
+    let cart = Cart()
+    let x
+
     return `<h1 id="heading__main">Solar System Mining Marketplace</h1>
     ${TurnCounter()}
     <section id="top-section" class="flex-container">
@@ -31,3 +35,6 @@ git         <div id="colonies-container" class="flex-container">
         ${Pirates()}
     </section>`
 }
+
+Cart()
+let x
