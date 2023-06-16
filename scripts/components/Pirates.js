@@ -1,4 +1,4 @@
-import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, getPirateInventory, postPirate_Inventory, putColony_Inventory, putFacility_Inventory, putPirate_Inventory, setLastLocationRaided, getPirates, getGovernors, putGovernor } from '../api/dataaccess.js'
+import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, getPirateInventory, postPirate_Inventory, putColony_Inventory, putFacility_Inventory, putPirate_Inventory, setLastLocationRaided, getPirates, getGovernors, putGovernor, setLastGovernorKilled } from '../api/dataaccess.js'
 
 
 // increase this number to decrease difficulty
@@ -83,6 +83,7 @@ const raid = () => {
                 is_active: false,
                 is_alive: false,
             }
+            setLastGovernorKilled(newGovObj);
             console.log(`${foundGovernor.name} was killed!`)
             putGovernor(newGovObj, newGovObj.id)
         }

@@ -46,6 +46,11 @@ export const setLastLocationRaided = (location) => {
     }
 }
 
+export const setLastGovernorKilled = (gov) => {
+    transientState.lastGovernorKilled = gov
+    document.dispatchEvent(new CustomEvent("stateChanged"))
+}
+
 export const incrementTurn = () => {
     transientState.turnCounter++
     document.dispatchEvent(new CustomEvent("stateChanged"))
