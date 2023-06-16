@@ -12,7 +12,8 @@ const applicationState = {
 }
 
 const transientState = {
-    cart_minerals: []
+    cart_minerals: [],
+    turnCounter: 1,
 }
 
 
@@ -35,17 +36,18 @@ export const setColonies = (colonyId) => {
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
+export const setLastLocationRaided = (location) => {
+    transientState.lastLocationRaided = (location) => {
+        document.dispatchEvent(new CustomEvent("stateChanged"))
+    }
+}
+
 export const incrementTurn = () => {
     transientState.turnCounter++
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
-// export const setMineral = (mineralId) => {
-//     transientState.selectedMineral = mineralId
-//     document.dispatchEvent(new CustomEvent("stateChanged"))
-// }
-
-
+//setters spaceCart
 
 // transientState getter
 
@@ -390,6 +392,4 @@ export const putPirate_Inventory = (obj, id) => {
 //     }
 //     document.dispatchEvent(new CustomEvent("stateChanged"))
 // }
-
-
 
