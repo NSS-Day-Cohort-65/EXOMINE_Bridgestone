@@ -1,4 +1,4 @@
-import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getState, setMineral,putColony_Inventory, putFacility_Inventory, postColony_Inventory } from "../api/dataaccess.js"
+import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getState, putColony_Inventory, putFacility_Inventory, postColony_Inventory } from "../api/dataaccess.js"
 
 document.addEventListener("click", (clickEvent) => {
     const itemClicked = clickEvent.target
@@ -27,8 +27,10 @@ export const Cart = () => {
 
         // Broadcast custom event to entire documement so that the
         // application can re-render and update state
+       
 
         if (chosenMinerals.length && chosenFacility) {
+
             for (const chosenMineral of chosenMinerals) {
 
             let chosenFacilityInventory = facilitiesInventory.find(
@@ -71,7 +73,7 @@ export const Cart = () => {
                 }
             }
             putFacility_Inventory(chosenFacilityInventory, chosenFacilityInventory.id);
-            setMineral(null)
+            state.cart_minerals = []
         }
         
         }
@@ -93,6 +95,7 @@ export const Cart = () => {
         return chosenMinerals
     }    
     const chosenMinerals = chosenMineralsArr()
+    
 
     const chosenFacility = facilities.find(
         (facility) => {
