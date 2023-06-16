@@ -28,9 +28,6 @@ export const Exomine = () => {
         ${ColonyResources()}
         </div>
     </section>
-    <article id="raid-alert-container">
-    ${raidAlertHTMLGen()}
-    </article>
     <section id="bottom-section" class="flex-container">
     <div id="facilities-container" class="flex-container">
         ${FacilityInventory()}
@@ -39,6 +36,9 @@ export const Exomine = () => {
     </section>
     <section id="pirate-section" class="flex-container">
         ${Pirates()}
-    </section>`
+    </section>
+    <article id="raid-alert-container">
+    ${raidAlertHTMLGen()}
+    </article>`
 }
 

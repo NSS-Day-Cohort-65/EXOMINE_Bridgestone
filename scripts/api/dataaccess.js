@@ -12,6 +12,8 @@ const applicationState = {
 }
 
 const transientState = {
+    lastLocationRaided: '',
+    lastGovernorKilled: '',
     cart_minerals: [],
     turnCounter: 1,
 }
@@ -36,8 +38,8 @@ export const setColonies = (colonyId) => {
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
-export const setLastLocationRaided = (location) => {
-    transientState.lastLocationRaided = location
+export const setLastLocationRaided = (locationName) => {
+    transientState.lastLocationRaided = locationName
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
@@ -51,8 +53,8 @@ export const setSelectedRecruitColony = (colId) => {
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
-export const setLastGovernorKilled = (gov) => {
-    transientState.lastGovernorKilled = gov
+export const setLastGovernorKilled = (govName) => {
+    transientState.lastGovernorKilled = govName
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 

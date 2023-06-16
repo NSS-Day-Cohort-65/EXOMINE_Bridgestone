@@ -17,8 +17,8 @@ document.addEventListener(
             if (raidCounter >= GRACE_PERIOD) {
                 startRaid = checkForRaid(raidCounter);
             }
-
-            if (startRaid) {
+//should change below value to start raid. True for testing only
+            if (true) {
                 raid()
             }
         }
@@ -45,7 +45,7 @@ const raid = () => {
 
         const targetColony = colonies[randomColonyIndex];
 
-        setLastLocationRaided(targetColony);
+        setLastLocationRaided(targetColony.name);
         console.log(`Raided ${targetColony.name}`);
 
         let targetColonyInventory = [];
@@ -83,7 +83,7 @@ const raid = () => {
                 is_active: false,
                 is_alive: false,
             }
-            setLastGovernorKilled(newGovObj);
+            setLastGovernorKilled(newGovObj.name);
             console.log(`${foundGovernor.name} was killed!`)
             putGovernor(newGovObj, newGovObj.id)
         }
