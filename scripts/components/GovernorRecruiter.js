@@ -53,7 +53,7 @@ export const GovernorRecruiter = () => {
         <option value="">Select a recruit...</option>`
 
     html += governors.map(governor => {
-        if (!governor.is_active) {
+        if (!governor.is_active && governor.is_alive) {
             if (state.selectedRecruit === governor.id) {
                 return `<option selected value="recruit--${governor.id}">${governor.name}</option>`
             } else {
