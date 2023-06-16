@@ -12,6 +12,7 @@ const applicationState = {
 }
 
 const transientState = {
+    cart_minerals: [],
     turnCounter: 1,
 }
 
@@ -32,11 +33,6 @@ export const setGovernor = (governorId) => {
 
 export const setColonies = (colonyId) => {
     transientState.selectedColony = colonyId
-    document.dispatchEvent(new CustomEvent("stateChanged"))
-}
-
-export const setMineral = (mineral) => {
-    transientState.selectedMineral = mineral
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
