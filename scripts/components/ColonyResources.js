@@ -1,4 +1,4 @@
-import { getColonies, getGovernors, getState, getColoniesInventory, getMinerals } from "../api/dataaccess.js"
+import { getColonies, getGovernors, getState, getColoniesInventory, getMinerals, putColony_Inventory } from "../api/dataaccess.js"
 
 //write a function that will display the colony of the selected governor. This should display the resources it currently has.
 
@@ -77,4 +77,33 @@ export const ColonyResources = () => {
 }
 
 
+// write function to reduce colony minerals by a random amount every turn. Will trigger this function using a click event off of the purchase button
+
+const coloniesUseMinerals = () => {
+    const colInventory = getColoniesInventory()
+
+    for (const colInv of colInventory) {
+
+        let randomAmount = Math.ceil(Math.random() * 10);
+
+        let newObj = {
+            id: colInv.id,
+            colony_id: colInv.colony_id,
+            mineral_id: colInv.mineral_id,
+            colony_stock: colInv.colony_stock - randomAmount
+        }
+
+        putColony_Inventory(newObj, colInv.id)
+
+    }
+}
+
+document.addEventListener(
+    "click",
+    e => {
+        if (e.target.id === "purchaseButton") {
+            coloniesUseMinerals()
+        }
+    }
+)
 
