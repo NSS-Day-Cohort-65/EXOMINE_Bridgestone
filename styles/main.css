@@ -191,3 +191,14 @@ button:active {
         -webkit-transform: rotate(0deg);
       }
 }
+
+#reset-button-section {
+    display: flex;
+    justify-content: end;
+    padding: 20px;
+}
+
+#resetButton {
+    color: rgb(207, 36, 36);
+    margin-right: 10px;
+}

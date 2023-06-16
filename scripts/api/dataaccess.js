@@ -370,6 +370,36 @@ export const putPirate_Inventory = (obj, id) => {
         })
 }
 
+//delete requests
+
+export const deleteColonyInventory = (id) => {
+    return fetch(`${API}/colony_inventory/${id}`, { method: "DELETE" })
+        .then(
+            () => {
+                document.dispatchEvent(new CustomEvent("stateChanged"))
+            }
+        )
+}
+
+export const deleteGovernor = (id) => {
+    return fetch(`${API}/governors/${id}`, { method: "DELETE" })
+        .then(
+            () => {
+                document.dispatchEvent(new CustomEvent("stateChanged"))
+            }
+        )
+}
+
+export const deletePirateInventory = (id) => {
+    return fetch(`${API}/pirate_inventory/${id}`, { method: "DELETE" })
+        .then(
+            () => {
+                document.dispatchEvent(new CustomEvent("stateChanged"))
+            }
+        )
+}
+
+
 //old put methods
 
 // export const setFacility_Inventory = (facInv) => {
@@ -396,4 +426,3 @@ export const putPirate_Inventory = (obj, id) => {
 //     }
 //     document.dispatchEvent(new CustomEvent("stateChanged"))
 // }
-

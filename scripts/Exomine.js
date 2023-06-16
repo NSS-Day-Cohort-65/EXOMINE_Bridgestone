@@ -5,6 +5,7 @@ import { FacilityInventory } from './components/FacilityInventory.js'
 import { Governors } from './components/Governors.js'
 import { TurnCounter } from './components/TurnCounter.js'
 import { Pirates } from './components/Pirates.js'
+import { generateResetButtonHTML } from './components/ResetButton.js'
 
 
 
@@ -17,7 +18,7 @@ export const Exomine = () => {
             ${Governors()}
             ${Facilities()}
         </div>
-git         <div id="colonies-container" class="flex-container">
+    <div id="colonies-container" class="flex-container">
         ${ColonyResources()}
         </div>
     </section>
@@ -29,5 +30,8 @@ git         <div id="colonies-container" class="flex-container">
     </section>
     <section id="pirate-section" class="flex-container">
         ${Pirates()}
+    </section>
+    <section id="reset-button-section">
+        ${generateResetButtonHTML()}
     </section>`
 }
