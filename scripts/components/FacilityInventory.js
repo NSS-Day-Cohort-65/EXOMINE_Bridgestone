@@ -1,4 +1,4 @@
-import { getFacilities, getFacilitiesInventory, getMinerals, getState, setMineral } from '../api/dataaccess.js'
+import { getFacilities, getFacilitiesInventory, getMinerals, getState, putFacility_Inventory, setMineral } from '../api/dataaccess.js'
 
 export const FacilityInventory = () => {
     const facilities = getFacilities();
@@ -69,6 +69,36 @@ export const FacilityInventory = () => {
     return html
 
 }
+
+//write function that adds a random amount of minerals to a facility every turn. Trigger it off of click event from purchaseButton
+
+const facilitiesGainMinerals = () => {
+    const facInventory = getFacilitiesInventory()
+
+    for (const facInv of facInventory) {
+
+        let randomAmount = Math.ceil(Math.random() * 10);
+
+        let newObj = {
+            id: facInv.id,
+            facility_id: facInv.facility_id,
+            mineral_id: facInv.mineral_id,
+            facility_stock: facInv.facility_stock - randomAmount
+        }
+
+        putFacility_Inventory(newObj, facInv.id)
+
+    }
+}
+
+document.addEventListener(
+    "click",
+    e => {
+        if (e.target.id === "purchaseButton") {
+            facilitiesGainMinerals()
+        }
+    }
+)
 
 
 
