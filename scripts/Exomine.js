@@ -17,8 +17,7 @@ export const Exomine = () => {
             ${Governors()}
             ${Facilities()}
         </div>
-        ${Pirates()}
-        <div id="colonies-container" class="flex-container">
+git         <div id="colonies-container" class="flex-container">
         ${ColonyResources()}
         </div>
     </section>
