@@ -9,6 +9,18 @@ document.addEventListener("click", (clickEvent) => {
     }
 })
 
+document.addEventListener(
+    "change",
+    e => {
+        if (e.target.id === "facility") {
+            const state = getState();
+
+            state.cart_minerals = [];
+            document.dispatchEvent(new CustomEvent("stateChanged"))
+        }
+    }
+)
+
 let purchaseMineral
 
 export const Cart = () => {
