@@ -5,6 +5,7 @@ import { FacilityInventory } from './components/FacilityInventory.js'
 import { Governors } from './components/Governors.js'
 import { TurnCounter } from './components/TurnCounter.js'
 import { Pirates } from './components/Pirates.js'
+import { Security } from './components/Security.js'
 
 
 
@@ -17,7 +18,10 @@ export const Exomine = () => {
             ${Governors()}
             ${Facilities()}
         </div>
-git         <div id="colonies-container" class="flex-container">
+        <div class="flex-container" id="security-container">
+            ${Security()}
+        </div>
+        <div id="colonies-container" class="flex-container">
         ${ColonyResources()}
         </div>
     </section>
@@ -25,7 +29,7 @@ git         <div id="colonies-container" class="flex-container">
     <div id="facilities-container" class="flex-container">
         ${FacilityInventory()}
     </div>
-        ${Cart()}
+
     </section>
     <section id="pirate-section" class="flex-container">
         ${Pirates()}
