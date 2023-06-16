@@ -51,6 +51,11 @@ export const setSelectedRecruitColony = (colId) => {
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
+export const setLastGovernorKilled = (gov) => {
+    transientState.lastGovernorKilled = gov
+    document.dispatchEvent(new CustomEvent("stateChanged"))
+}
+
 export const incrementTurn = () => {
     transientState.turnCounter++
     document.dispatchEvent(new CustomEvent("stateChanged"))
