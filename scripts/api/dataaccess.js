@@ -11,11 +11,21 @@ const applicationState = {
     pirate_inventory: []
 }
 
-const transientState = {
+let transientState = {
     lastLocationRaided: '',
     lastGovernorKilled: '',
     cart_minerals: [],
     turnCounter: 1,
+}
+
+export const resetState = () => {
+        transientState = {
+        lastLocationRaided: '',
+        lastGovernorKilled: '',
+        cart_minerals: [],
+        turnCounter: 1,
+    }
+    document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
 
