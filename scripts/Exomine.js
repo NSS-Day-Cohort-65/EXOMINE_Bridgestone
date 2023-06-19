@@ -8,6 +8,7 @@ import { TurnCounter } from './components/TurnCounter.js'
 import { Pirates } from './components/Pirates.js'
 import { getState } from './api/dataaccess.js'
 // import { raidAlertHTMLGen } from './components/RaidAlert.js'
+import { generateResetButtonHTML } from './components/ResetButton.js'
 
 document.addEventListener("startRaid", CustomEvent => {
     const state = getState()
@@ -23,7 +24,6 @@ document.addEventListener("startRaid", CustomEvent => {
 
         window.alert(`WARNING: ${placeRaided.toUpperCase()} WAS RAIDED!`)
     }
-    raidAlert()
 });
 
 export const Exomine = () => {
@@ -50,8 +50,9 @@ export const Exomine = () => {
     <section id="pirate-section" class="flex-container">
         ${Pirates()}
     </section>
-    <article id="raid-alert-container">
-    </article>`
+    <section id="reset-button-section">
+        ${generateResetButtonHTML()}
+    </section>`
 }
 
 //if adding in none windwo based alert, place this back above last article tag (like 41 as of time of writing) ${raidAlertHTMLGen()} and uncomment the import statment on like 9.
