@@ -101,11 +101,9 @@ const coloniesUseMinerals = () => {
 }
 
 document.addEventListener(
-    "click",
+    "addAndUseMinerals",
     e => {
-        if (e.target.id === "purchaseButton") {
             coloniesUseMinerals()
-        }
     }
 )
 
