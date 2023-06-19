@@ -23,21 +23,38 @@ const deleteExtraColonyInventory = () => {
     }
 }
 
-const deleteExtraGovernors = () => {
+const resetGovernors = () => {
     const governors = getGovernors()
 
     for (const gov of governors) {
-        if (gov.id > 13) {
-            deleteGovernor(gov.id)
+        if (gov.id > 10) {
+            let newObj = {
+                id: gov.id,
+                name: gov.name,
+                colony_id: gov.colony_id,
+                is_active: false,
+                is_alive: true
+            }
+            putGovernor(newObj, gov.id)
+        } else {
+            let newObj = {
+                id: gov.id,
+                name: gov.name,
+                colony_id: gov.colony_id,
+                is_active: true,
+                is_alive: true
+            }
+            putGovernor(newObj, gov.id)
         }
     }
 }
 
 const deleteAllPirateInventory = () => {
     const pirateInv = getPirateInventory()
-
-    for (const pirInv of pirateInv) {
-        deletePirateInventory(pirInv.id)
+    if (pirateInv.length >= 1) {
+        for (const pirInv of pirateInv) {
+            deletePirateInventory(pirInv.id)
+        }
     }
 }
 
@@ -58,32 +75,16 @@ const resetFacilityMinerals = () => {
 
 const resetColonyMinerals = () => {
     const colonyInv = getColoniesInventory()
-
-    for (const colInv of colonyInv) {
-        let newObj = {
-            id: colInv.id,
-            colony_id: colInv.colony_id,
-            mineral_id: colInv.mineral_id,
-            colony_stock: 200
-        }
-
-        putColony_Inventory(newObj, colInv.id)
-    }
-}
-
-const reviveDeadGovernors = () => {
-    const governors = getGovernors()
-
-    for (const gov of governors) {
-        if (gov.is_alive === false) {
+    if (colonyInv.length >= 1) {
+        for (const colInv of colonyInv) {
             let newObj = {
-                id: gov.id,
-                name: gov.name,
-                colony_id: gov.colony_id,
-                is_active: gov.is_active,
-                is_alive: true
+                id: colInv.id,
+                colony_id: colInv.colony_id,
+                mineral_id: colInv.mineral_id,
+                colony_stock: 200
             }
-            putGovernor(newObj, gov.id)
+
+            putColony_Inventory(newObj, colInv.id)
         }
     }
 }
@@ -101,13 +102,12 @@ const resetRaiderCount = () => {
 }
 
 const resetAll = () => {
-    deleteExtraColonyInventory()
-    deleteExtraGovernors()
-    deleteAllPirateInventory()
-    resetFacilityMinerals()
     resetColonyMinerals()
-    reviveDeadGovernors()
+    resetFacilityMinerals()
+    resetGovernors()
     resetRaiderCount()
+    deleteExtraColonyInventory()
+    deleteAllPirateInventory()
 }
 
 document.addEventListener("click", e => {

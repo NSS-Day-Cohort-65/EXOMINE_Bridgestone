@@ -1,4 +1,4 @@
-import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, getPirateInventory, postPirate_Inventory, putColony_Inventory, putFacility_Inventory, putPirate_Inventory, setLastLocationRaided, getPirates } from '../api/dataaccess.js'
+import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, getPirateInventory, postPirate_Inventory, putColony_Inventory, putFacility_Inventory, putPirate_Inventory, setLastLocationRaided, getPirates, getGovernors, putGovernor, setLastGovernorKilled } from '../api/dataaccess.js'
 
 
 // increase this number to decrease difficulty
@@ -17,7 +17,7 @@ document.addEventListener(
             if (raidCounter >= GRACE_PERIOD) {
                 startRaid = checkForRaid(raidCounter);
             }
-
+            //should change below value to start raid. True for testing only
             if (startRaid) {
                 raid()
             }
@@ -45,7 +45,7 @@ const raid = () => {
 
         const targetColony = colonies[randomColonyIndex];
 
-        setLastLocationRaided(targetColony);
+        setLastLocationRaided(targetColony.name);
         console.log(`Raided ${targetColony.name}`);
 
         let targetColonyInventory = [];
@@ -68,6 +68,25 @@ const raid = () => {
         for (const inventory of targetColonyInventory) {
             putColony_Inventory(inventory, inventory.id);
         }
+
+        const randomRoll = Math.ceil(Math.random * 10)
+
+        if (randomRoll > 7) {
+            const governors = getGovernors();
+
+            let foundGovernor = governors.find(governor => governor.colony_id === targetColony.id)
+
+            let newGovObj = {
+                id: foundGovernor.id,
+                name: foundGovernor.name,
+                colony_id: foundGovernor.colony_id,
+                is_active: false,
+                is_alive: false,
+            }
+            setLastGovernorKilled(newGovObj.name);
+            console.log(`${foundGovernor.name} was killed!`)
+            putGovernor(newGovObj, newGovObj.id)
+        }
     } else {
         const facilities = getFacilities();
         const facilitiesInventory = getFacilitiesInventory();
@@ -75,7 +94,7 @@ const raid = () => {
 
         const targetFacility = facilities[randomFacilityIndex];
 
-        setLastLocationRaided(targetFacility);
+        setLastLocationRaided(targetFacility.name);
         console.log(`Raided ${targetFacility.name}`);
 
         let targetFacilityInventory = [];
@@ -126,16 +145,16 @@ const checkForRaid = (turn) => {
 //write a function that will get and update/add random amount of pirate raiders to pirate object. Will be determined by amount of turns take. Likely need to implement this functionality at a later point. Use putPirates function to do so.
 
 const addPirateRaiders = () => {
-   const pirates = getPirates()
+    const pirates = getPirates()
 
-   return pirates[0].raider_stock
+    return pirates[0].raider_stock
 }
 
 
 //write a function that makes a visual representation of the pirate ship using an image. Below that, it should pull in the pirate inventory and generates an html representation of it (total minerals combined and pirate raider count)
 
 export const Pirates = () => {
-    
+
     const pirateInventory = getPirateInventory()
 
     let html = ''
