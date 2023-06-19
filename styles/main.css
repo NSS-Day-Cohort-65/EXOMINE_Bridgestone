@@ -146,9 +146,17 @@ button:hover {
     background-color: #bab1ba;
 }
 
-button:active {
+button:enabled:active {
     position: relative;
     top: 1px;
+}
+
+button:disabled {
+    color: #516069;
+    background: linear-gradient(to bottom, #969696 5%, #777277 100%);
+    background-color: #949494;
+    box-shadow: 2px 3px 0px 0px #35383a;
+
 }
 
 #pirate-container {
