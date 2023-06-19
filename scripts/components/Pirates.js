@@ -1,7 +1,8 @@
 import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, getPirateInventory, postPirate_Inventory, putColony_Inventory, putFacility_Inventory, putPirate_Inventory, setLastLocationRaided, getPirates, getGovernors, putGovernor, setLastGovernorKilled, putPirates } from '../api/dataaccess.js'
+import { isRaidSuccessful, reduceSecurityAfterRaid } from './Defense.js'
 
 // increase this number to decrease difficulty
-const MAX = 10
+const MAX = 1
 const GRACE_PERIOD = 3
 
 let raidCounter = 1
@@ -36,6 +37,7 @@ const coinFlip = () => {
 const raid = () => {
     let pirateInventory = getPirateInventory();
     let piratePlunder = []
+    //import in whether or not a raid was successful from defense.js
 
     if (coinFlip()) {
         const colonies = getColonies();
@@ -47,44 +49,55 @@ const raid = () => {
         setLastLocationRaided(targetColony.name);
         console.log(`Raided ${targetColony.name}`);
 
-        let targetColonyInventory = [];
-        for (const inventory of coloniesInventory) {
-            if (inventory.colony_id === targetColony.id) {
-                targetColonyInventory.push(inventory);
-            }
-        }
+        //adding in logic to handle successful vs uncessful raids
 
-        for (const inventory of targetColonyInventory) {
-            piratePlunder.push(
-                {
-                    mineral_id: inventory.mineral_id,
-                    pirate_stock: Math.floor(inventory.colony_stock / 2)
+        let successCheck = isRaidSuccessful()
+
+        if (successCheck === true) {
+
+            let targetColonyInventory = [];
+            for (const inventory of coloniesInventory) {
+                if (inventory.colony_id === targetColony.id) {
+                    targetColonyInventory.push(inventory);
                 }
-            )
-            inventory.colony_stock = Math.floor(inventory.colony_stock / 2);
-        }
-
-        for (const inventory of targetColonyInventory) {
-            putColony_Inventory(inventory, inventory.id);
-        }
-
-        const randomRoll = Math.ceil(Math.random * 10)
-
-        if (randomRoll > 7) {
-            const governors = getGovernors();
-
-            let foundGovernor = governors.find(governor => governor.colony_id === targetColony.id)
-
-            let newGovObj = {
-                id: foundGovernor.id,
-                name: foundGovernor.name,
-                colony_id: foundGovernor.colony_id,
-                is_active: false,
-                is_alive: false,
             }
-            setLastGovernorKilled(newGovObj.name);
-            console.log(`${foundGovernor.name} was killed!`)
-            putGovernor(newGovObj, newGovObj.id)
+
+            for (const inventory of targetColonyInventory) {
+                piratePlunder.push(
+                    {
+                        mineral_id: inventory.mineral_id,
+                        pirate_stock: Math.floor(inventory.colony_stock / 2)
+                    }
+                )
+                inventory.colony_stock = Math.floor(inventory.colony_stock / 2);
+            }
+
+            for (const inventory of targetColonyInventory) {
+                putColony_Inventory(inventory, inventory.id);
+            }
+
+            const randomRoll = Math.ceil(Math.random * 10)
+
+            if (randomRoll > 7) {
+                const governors = getGovernors();
+
+                let foundGovernor = governors.find(governor => governor.colony_id === targetColony.id)
+
+                let newGovObj = {
+                    id: foundGovernor.id,
+                    name: foundGovernor.name,
+                    colony_id: foundGovernor.colony_id,
+                    is_active: false,
+                    is_alive: false,
+                }
+                setLastGovernorKilled(newGovObj.name);
+                console.log(`${foundGovernor.name} was killed!`)
+                putGovernor(newGovObj, newGovObj.id)
+            }
+            reduceSecurityAfterRaid()
+        } else {
+            console.log("Colony was defended successfully!")
+            reduceSecurityAfterRaid()
         }
     } else {
         const facilities = getFacilities();
@@ -95,6 +108,12 @@ const raid = () => {
 
         setLastLocationRaided(targetFacility.name);
         console.log(`Raided ${targetFacility.name}`);
+
+        //adding in logic to handle successful vs unsuccessful raids
+
+        let successCheck = isRaidSuccessful()
+
+        if (successCheck === true) {
 
         let targetFacilityInventory = [];
         for (const inventory of facilitiesInventory) {
@@ -117,7 +136,12 @@ const raid = () => {
         for (const inventory of targetFacilityInventory) {
             putFacility_Inventory(inventory, inventory.id);
         }
+        reduceSecurityAfterRaid()
+    } else {
+        console.log("Facility was defended successfully!")
+        reduceSecurityAfterRaid()
     }
+}
     for (const plunder of piratePlunder) {
         let foundInventory = pirateInventory.find(inventory => inventory.mineral_id === plunder.mineral_id)
         if (foundInventory) {
@@ -219,8 +243,6 @@ const addPirateRaiders = () => {
         id: pirates[0].id,
         raider_stock: pirates[0].raider_stock + 5
     }
-    
+
     putPirates(newPirateObj, pirates[0].id)
 }
-
-
