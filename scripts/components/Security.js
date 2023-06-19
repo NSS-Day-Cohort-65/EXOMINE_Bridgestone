@@ -1,12 +1,12 @@
-import { getColonies, getFacilities, putColony, putFacility } from "../api/dataaccess.js"
+import { getColonies, getColoniesInventory, getFacilities, getMinerals, putColony, putFacility } from "../api/dataaccess.js"
 
 let facilitySelected = null
 let colonySelected = null
 let numberSelected = 0
+let mineralsToSpend = {};
 
 //event listener to check if facility or colony is selected
-document.addEventListener(
-    "change",
+document.addEventListener("change",
     (event) => {
         if (event.target.id === "facility_security") {
             const facilities = getFacilities()
@@ -14,6 +14,7 @@ document.addEventListener(
                 return facility.id === parseInt(event.target.value)
             })
             colonySelected = null;
+            mineralsToSpend = {};
             document.dispatchEvent(new CustomEvent("stateChanged"))
 
         } else if (event.target.id === "colony_security") {
@@ -22,6 +23,7 @@ document.addEventListener(
                 return colony.id === parseInt(event.target.value)
             })
             facilitySelected = null;
+            mineralsToSpend = {};
             document.dispatchEvent(new CustomEvent("stateChanged"))
 
         }
@@ -96,8 +98,28 @@ document.addEventListener("click",
     }
 )
 
+document.addEventListener("change",
+    e => {
+        if (e.target.id.startsWith("securityMineralInput")) {
+            let [, mineralId] = e.target.name.split("--")
+            let [, inventoryId] = e.target.id.split("--")
+            if (mineralsToSpend[e.target.name]) {
+                mineralsToSpend[e.target.name].amount = e.target.value
+            } else {
+                mineralsToSpend[e.target.name] =
+                {
+                    amount: e.target.value,
+                    mineral_id: mineralId,
+                    inventory_id: inventoryId,
+                    value: parseInt(e.target.dataset.mineralvalue)
+                }
+            }
+        }
+    }
+)
+
 //colony dropdown
-export const ColoniesSecuritySelector = () => {
+const coloniesSecuritySelector = () => {
     const colonies = getColonies()
     let html = '<option value="0">Colony</option>'
 
@@ -117,7 +139,7 @@ export const ColoniesSecuritySelector = () => {
 }
 
 //facility dropdown
-export const FacilitiesSecuritySelector = () => {
+const facilitiesSecuritySelector = () => {
     const facilities = getFacilities()
     let html = '<option value="0">Facility</option>'
 
@@ -139,6 +161,14 @@ export const FacilitiesSecuritySelector = () => {
     return html
 }
 
+const showSecurityTotal = () => {
+    let securityTotal = 0
+    for (const key in mineralsToSpend) {
+        securityTotal += mineralsToSpend[key].amount * mineralsToSpend[key].value;
+    }
+    return securityTotal;
+}
+
 //display entire Security container-----------------------------------------------
 export const Security = () => {
 
@@ -147,33 +177,43 @@ export const Security = () => {
     <p>Choose a Facility or Colony:</p>`
 
     //disable one field or the other if selected 
-    // if (colonySelected === null) {
     html += `<select id="facility_security" class="selector">`
-    // } else {
-    //     html += `<select id="facility_security" disabled class="selector">`
-    // }
-    html += `${FacilitiesSecuritySelector()}
+
+    html += `${facilitiesSecuritySelector()}
         </select>`
 
-
-    // if (facilitySelected === null) {
     html += `<select id="colony_security" class="selector">`
-    // } else {
-    //     html += `<select id="colony_security" disabled class="selector">`
-    // }
-    html += `${ColoniesSecuritySelector()}
+
+    html += `${coloniesSecuritySelector()}
         </select>
         </div>`
+    if (colonySelected) {
+        const coloniesInventory = getColoniesInventory();
+        let foundColonyInventory = []
+        for (const inventory of coloniesInventory) {
+            if (inventory.colony_id === colonySelected.id) {
+                foundColonyInventory.push(inventory)
+            }
+        }
 
+        html += foundColonyInventory.map(
+            inventory => {
+                const minerals = getMinerals();
+                let foundMineral = minerals.find(mineral => mineral.id === inventory.mineral_id)
+                let inputName = `${foundMineral.name}--${inventory.mineral_id}`
+                return `<label for="${inputName}" >${foundMineral.name}</label>
+                    <p>Value: ${foundMineral.value}</p>
+                    <p>Available: ${inventory.colony_stock}</p>
+                    <input data-mineralValue=${foundMineral.value} name="${inputName}" id="securityMineralInput--${inventory.id}" type="number" min="0" max="${inventory.colony_stock}" value="${mineralsToSpend[inputName] ? mineralsToSpend[inputName].amount : 0}">`
+            }
+        ).join("")
+    }
     //Purchase section with number field and purchase button 
     html += `<div id="purchase-security">
-            <p>Number to Recruit:</p>
-            <form>
-                <label for="quantity"></label>
-                <input type="number" id="security-quantity" name="securityQuantity" min="0" max="500" step="10" value="${numberSelected}">
-            </form>
+            <p>Number to Recruit:${showSecurityTotal()}</p>
             <button id="securityButton">Purchase</button>
         </div>`
+    // disable security button if nothing is selected!!!!
     return html
 }
 
