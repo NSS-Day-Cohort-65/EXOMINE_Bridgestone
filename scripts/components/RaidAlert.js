@@ -13,8 +13,6 @@ export const raidAlertHTMLGen = () => {
         const placeRaided = state.lastLocationRaided
         return `<h1 id="raid-alert-text">WARNING: ${placeRaided.toUpperCase()} WAS RAIDED!</h1>`
     }
-    state.lastLocationRaided = ''
-    state.govKilled = ''
 };
 
 //write an event listener for startRaid custom event that launches the raidAlert function

@@ -17,8 +17,8 @@ document.addEventListener(
             if (raidCounter >= GRACE_PERIOD) {
                 startRaid = checkForRaid(raidCounter);
             }
-//should change below value to start raid. True for testing only
-            if (true) {
+            //should change below value to start raid. True for testing only
+            if (startRaid) {
                 raid()
             }
         }
@@ -94,7 +94,7 @@ const raid = () => {
 
         const targetFacility = facilities[randomFacilityIndex];
 
-        setLastLocationRaided(targetFacility);
+        setLastLocationRaided(targetFacility.name);
         console.log(`Raided ${targetFacility.name}`);
 
         let targetFacilityInventory = [];
