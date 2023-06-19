@@ -1,29 +1,146 @@
-import { getPirateInventory, getPirates, getState, putPirates } from "../api/dataaccess.js"
+import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, getPirateInventory, postPirate_Inventory, putColony_Inventory, putFacility_Inventory, putPirate_Inventory, setLastLocationRaided, getPirates, getGovernors, putGovernor, setLastGovernorKilled, putPirates } from '../api/dataaccess.js'
 
+// increase this number to decrease difficulty
+const MAX = 10
+const GRACE_PERIOD = 3
 
-//write a click even that increments turnCount by 1 everytime purchaseButton is clicked. Write function that fires after 3 turns (turncount hits 3) and adds 5 raiders to the pirate object, then returns the new value.
+let raidCounter = 1
 
-let turnCount = 0
+document.addEventListener(
+    "click",
+    e => {
+        if (e.target.id === "purchaseButton") {
+            let startRaid = false
+            raidCounter++
 
-document.addEventListener("click", e => {
-    if (e.target.id === "purchaseButton") {
-        turnCount++
-        if (turnCount === 3) {
-            addPirateRaiders()
-            turnCount = 0
+            if (raidCounter >= GRACE_PERIOD) {
+                startRaid = checkForRaid(raidCounter);
+            }
+            //should change below value to start raid. True for testing only
+            if (startRaid) {
+                raid()
+            }
         }
     }
-})
+)
 
-const addPirateRaiders = () => {
-    const pirates = getPirates()
-    let newPirateObj = {
-        id: pirates[0].id,
-        raider_stock: pirates[0].raider_stock + 5
+const coinFlip = () => {
+    let number = Math.random();
+    if (number < 0.5) {
+        return true
+    } else {
+        return false
     }
-    
-    putPirates(newPirateObj, pirates[0].id)
 }
+
+const raid = () => {
+    let pirateInventory = getPirateInventory();
+    let piratePlunder = []
+
+    if (coinFlip()) {
+        const colonies = getColonies();
+        const coloniesInventory = getColoniesInventory();
+        const randomColonyIndex = Math.floor(Math.random() * colonies.length)
+
+        const targetColony = colonies[randomColonyIndex];
+
+        setLastLocationRaided(targetColony.name);
+        console.log(`Raided ${targetColony.name}`);
+
+        let targetColonyInventory = [];
+        for (const inventory of coloniesInventory) {
+            if (inventory.colony_id === targetColony.id) {
+                targetColonyInventory.push(inventory);
+            }
+        }
+
+        for (const inventory of targetColonyInventory) {
+            piratePlunder.push(
+                {
+                    mineral_id: inventory.mineral_id,
+                    pirate_stock: Math.floor(inventory.colony_stock / 2)
+                }
+            )
+            inventory.colony_stock = Math.floor(inventory.colony_stock / 2);
+        }
+
+        for (const inventory of targetColonyInventory) {
+            putColony_Inventory(inventory, inventory.id);
+        }
+
+        const randomRoll = Math.ceil(Math.random * 10)
+
+        if (randomRoll > 7) {
+            const governors = getGovernors();
+
+            let foundGovernor = governors.find(governor => governor.colony_id === targetColony.id)
+
+            let newGovObj = {
+                id: foundGovernor.id,
+                name: foundGovernor.name,
+                colony_id: foundGovernor.colony_id,
+                is_active: false,
+                is_alive: false,
+            }
+            setLastGovernorKilled(newGovObj.name);
+            console.log(`${foundGovernor.name} was killed!`)
+            putGovernor(newGovObj, newGovObj.id)
+        }
+    } else {
+        const facilities = getFacilities();
+        const facilitiesInventory = getFacilitiesInventory();
+        const randomFacilityIndex = Math.floor(Math.random() * facilities.length)
+
+        const targetFacility = facilities[randomFacilityIndex];
+
+        setLastLocationRaided(targetFacility.name);
+        console.log(`Raided ${targetFacility.name}`);
+
+        let targetFacilityInventory = [];
+        for (const inventory of facilitiesInventory) {
+            if (inventory.facility_id === targetFacility.id) {
+                targetFacilityInventory.push(inventory);
+            }
+        }
+
+        for (const inventory of targetFacilityInventory) {
+            piratePlunder.push(
+                {
+                    mineral_id: inventory.mineral_id,
+                    pirate_stock: Math.floor(inventory.facility_stock / 2)
+                }
+            )
+
+            inventory.facility_stock = Math.floor(inventory.facility_stock / 2);
+        }
+
+        for (const inventory of targetFacilityInventory) {
+            putFacility_Inventory(inventory, inventory.id);
+        }
+    }
+    for (const plunder of piratePlunder) {
+        let foundInventory = pirateInventory.find(inventory => inventory.mineral_id === plunder.mineral_id)
+        if (foundInventory) {
+            plunder.pirate_stock += foundInventory.pirate_stock
+            putPirate_Inventory(plunder, foundInventory.id)
+        } else {
+            postPirate_Inventory(plunder);
+        }
+    }
+
+    raidCounter = 1
+    document.dispatchEvent(new CustomEvent("startRaid"))
+}
+
+const checkForRaid = (turn) => {
+    const randomRoll = Math.ceil(Math.random() * MAX)
+    if (randomRoll <= turn) {
+        return true
+    } else {
+        return false
+    };
+}
+
 
 //write a function that makes a visual representation of the pirate ship using an image. Below that, it should pull in the pirate inventory and generates an html representation of it (total minerals combined and pirate raider count)
 
@@ -80,3 +197,30 @@ export const Pirates = () => {
 
     return html
 }
+
+
+//write a click even that increments turnCount by 1 everytime purchaseButton is clicked. Write function that fires after 3 turns (turncount hits 3) and adds 5 raiders to the pirate object, then returns the new value.
+
+let turnCount = 0
+
+document.addEventListener("click", e => {
+    if (e.target.id === "purchaseButton") {
+        turnCount++
+        if (turnCount === 3) {
+            addPirateRaiders()
+            turnCount = 0
+        }
+    }
+})
+
+const addPirateRaiders = () => {
+    const pirates = getPirates()
+    let newPirateObj = {
+        id: pirates[0].id,
+        raider_stock: pirates[0].raider_stock + 5
+    }
+    
+    putPirates(newPirateObj, pirates[0].id)
+}
+
+

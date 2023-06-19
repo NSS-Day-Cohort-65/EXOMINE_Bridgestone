@@ -12,6 +12,9 @@ const applicationState = {
 }
 
 const transientState = {
+    lastLocationRaided: '',
+    lastGovernorKilled: '',
+    cart_minerals: [],
     turnCounter: 1,
 }
 
@@ -35,8 +38,23 @@ export const setColonies = (colonyId) => {
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
-export const setMineral = (mineral) => {
-    transientState.selectedMineral = mineral
+export const setLastLocationRaided = (locationName) => {
+    transientState.lastLocationRaided = locationName
+    document.dispatchEvent(new CustomEvent("stateChanged"))
+}
+
+export const setSelectedRecruit = (govId) => {
+    transientState.selectedRecruit = govId;
+    document.dispatchEvent(new CustomEvent("stateChanged"))
+}
+
+export const setSelectedRecruitColony = (colId) => {
+    transientState.selectedRecruitColony = colId;
+    document.dispatchEvent(new CustomEvent("stateChanged"))
+}
+
+export const setLastGovernorKilled = (govName) => {
+    transientState.lastGovernorKilled = govName
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
@@ -364,6 +382,36 @@ export const putPirate_Inventory = (obj, id) => {
         })
 }
 
+//delete requests
+
+export const deleteColonyInventory = (id) => {
+    return fetch(`${API}/colony_inventory/${id}`, { method: "DELETE" })
+        .then(
+            () => {
+                document.dispatchEvent(new CustomEvent("stateChanged"))
+            }
+        )
+}
+
+export const deleteGovernor = (id) => {
+    return fetch(`${API}/governors/${id}`, { method: "DELETE" })
+        .then(
+            () => {
+                document.dispatchEvent(new CustomEvent("stateChanged"))
+            }
+        )
+}
+
+export const deletePirateInventory = (id) => {
+    return fetch(`${API}/pirate_inventory/${id}`, { method: "DELETE" })
+        .then(
+            () => {
+                document.dispatchEvent(new CustomEvent("stateChanged"))
+            }
+        )
+}
+
+
 //old put methods
 
 // export const setFacility_Inventory = (facInv) => {
@@ -390,5 +438,3 @@ export const putPirate_Inventory = (obj, id) => {
 //     }
 //     document.dispatchEvent(new CustomEvent("stateChanged"))
 // }
-
-

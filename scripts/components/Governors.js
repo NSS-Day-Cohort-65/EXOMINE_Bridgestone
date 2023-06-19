@@ -1,5 +1,4 @@
 import { getGovernors, getState, setColonies, setGovernor } from '../api/dataaccess.js'
-import { renderHtml } from '../main.js';
 
 
 let governors = null
@@ -7,7 +6,7 @@ let governors = null
 export const Governors = () => {
 
     governors = getGovernors();
-    
+
     const state = getState()
 
     let html = `<p>Choose a Governor</p><select id="governor-selector" class="selector">
@@ -31,7 +30,7 @@ export const Governors = () => {
 }
 
 document.addEventListener(
-    
+
     "change",
     e => {
         if (e.target.id.startsWith("governor")) {

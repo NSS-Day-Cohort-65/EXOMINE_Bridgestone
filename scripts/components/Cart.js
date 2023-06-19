@@ -1,13 +1,25 @@
-import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getState, setMineral,putColony_Inventory, putFacility_Inventory, postColony_Inventory } from "../api/dataaccess.js"
+import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getState, putColony_Inventory, putFacility_Inventory, postColony_Inventory } from "../api/dataaccess.js"
 
 document.addEventListener("click", (clickEvent) => {
     const itemClicked = clickEvent.target
-    
+
     //check if itemClicked is the button 
     if (itemClicked.id === "purchaseButton") {
         purchaseMineral()
     }
 })
+
+document.addEventListener(
+    "change",
+    e => {
+        if (e.target.id === "facility") {
+            const state = getState();
+
+            state.cart_minerals = [];
+            document.dispatchEvent(new CustomEvent("stateChanged"))
+        }
+    }
+)
 
 let purchaseMineral
 
@@ -17,7 +29,7 @@ export const Cart = () => {
     const coloniesInventory = getColoniesInventory();
     const minerals = getMinerals()
     const facilities = getFacilities()
-    
+
     purchaseMineral = () => {
         // increment colony stock 
         // spaceCart.facility_inventory++
@@ -28,52 +40,55 @@ export const Cart = () => {
         // Broadcast custom event to entire documement so that the
         // application can re-render and update state
 
+
         if (chosenMinerals.length && chosenFacility) {
+
             for (const chosenMineral of chosenMinerals) {
 
-            let chosenFacilityInventory = facilitiesInventory.find(
-                inventory => {
-                    return inventory.facility_id === chosenFacility.id && inventory.mineral_id === chosenMineral.id
-                }
-            )
+                let chosenFacilityInventory = facilitiesInventory.find(
+                    inventory => {
+                        return inventory.facility_id === chosenFacility.id && inventory.mineral_id === chosenMineral.id
+                    }
+                )
 
-            let chosenColonyInventory = coloniesInventory.find(
-                inventory => {
-                    return inventory.colony_id === state.selectedColony && inventory.mineral_id === chosenMineral.id
-                }
-            )
+                let chosenColonyInventory = coloniesInventory.find(
+                    inventory => {
+                        return inventory.colony_id === state.selectedColony && inventory.mineral_id === chosenMineral.id
+                    }
+                )
 
-            if (!chosenColonyInventory || !chosenFacilityInventory) {
-                const newInventory = {
-                    colony_id: state.selectedColony,
-                    mineral_id: chosenMineral.id,
-                    colony_stock: 0
+                if (!chosenColonyInventory) {
+                    const newInventory = {
+                        colony_id: state.selectedColony,
+                        mineral_id: chosenMineral.id,
+                        colony_stock: 0
+                    }
+                    for (const cart_mineral of state.cart_minerals) {
+                        if (cart_mineral.mineral_id === newInventory.mineral_id) {
+                            newInventory.colony_stock = cart_mineral.amount
+                        }
+                    }
+
+                    chosenColonyInventory = newInventory;
+                    postColony_Inventory(newInventory)
+                } else {
+                    for (const cart_mineral of state.cart_minerals) {
+                        if (cart_mineral.mineral_id === chosenColonyInventory.mineral_id) {
+                            chosenColonyInventory.colony_stock += cart_mineral.amount
+                        }
+                    }
+                    putColony_Inventory(chosenColonyInventory, chosenColonyInventory.id);
                 }
+
                 for (const cart_mineral of state.cart_minerals) {
                     if (cart_mineral.mineral_id === chosenColonyInventory.mineral_id) {
-                        newInventory.colony_stock += state.cart_mineral.amount
+                        chosenFacilityInventory.facility_stock -= cart_mineral.amount
                     }
                 }
-
-                postColony_Inventory(newInventory)
-            } else {
-                for (const cart_mineral of state.cart_minerals) {
-                    if (cart_mineral.mineral_id === chosenColonyInventory.mineral_id) {
-                        chosenColonyInventory.colony_stock += state.cart_mineral.amount 
-                    }
-                }
-                putColony_Inventory(chosenColonyInventory, chosenColonyInventory.id);
+                putFacility_Inventory(chosenFacilityInventory, chosenFacilityInventory.id);
             }
-
-            for (const cart_mineral of state.cart_minerals) {
-                if (cart_mineral.mineral_id === chosenColonyInventory.mineral_id) {
-                    chosenFacilityInventory.facility_stock -= state.cart_mineral.amount
-                }
-            }
-            putFacility_Inventory(chosenFacilityInventory, chosenFacilityInventory.id);
-            setMineral(null)
-        }
-        
+            state.cart_minerals = []
+            document.dispatchEvent(new CustomEvent("stateChanged"))
         }
     }
 
@@ -91,8 +106,9 @@ export const Cart = () => {
             }
         }
         return chosenMinerals
-    }    
+    }
     const chosenMinerals = chosenMineralsArr()
+
 
     const chosenFacility = facilities.find(
         (facility) => {
