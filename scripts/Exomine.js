@@ -6,7 +6,7 @@ import { GovernorRecruiter } from './components/GovernorRecruiter.js'
 import { Governors } from './components/Governors.js'
 import { TurnCounter } from './components/TurnCounter.js'
 import { Pirates } from './components/Pirates.js'
-import { SecurityRecruiter } from './components/Security.js'
+import { Security } from './components/Security.js'
 import { getState } from './api/dataaccess.js'
 // import { raidAlertHTMLGen } from './components/RaidAlert.js'
 import { generateResetButtonHTML } from './components/ResetButton.js'
@@ -52,7 +52,7 @@ export const Exomine = () => {
         ${Pirates()}
     </section>
     <section id="security-section" class="flex-container">
-        ${SecurityRecruiter()}
+        ${Security()}
     <section id="reset-button-section">
         ${generateResetButtonHTML()}
     </section>`
