@@ -64,9 +64,15 @@ export const GovernorRecruiter = () => {
 
     html += "</select>"
 
-    html += `<p>Choose a Colony</p>
+    if (state.selectedRecruit) {
+        html += `<p>Choose a Colony</p>
     <select id="colony-selector" class="selector">
     <option value="">Select a colony...</option>`
+    } else {
+        html += `<p>Choose a Colony</p>
+    <select disabled id="colony-selector" class="selector">
+    <option value="">Select a colony...</option>`
+    }
 
     html += colonies.map(colony => {
         if (state.selectedRecruitColony === colony.id) {
@@ -76,7 +82,15 @@ export const GovernorRecruiter = () => {
         }
     }).join("")
 
-    html += `</select><button id="button-recruit">recruit</button></div>`
+    html += `</select>`
+
+    if (state.selectedRecruit && state.selectedRecruitColony) {
+
+        html += `<button id="button-recruit">Recruit</button></div>`
+    } else {
+        html += `<button id="button-recruit" disabled>Recruit</button></div>`
+
+    }
 
     return html
 }
