@@ -6,9 +6,11 @@ import { GovernorRecruiter } from './components/GovernorRecruiter.js'
 import { Governors } from './components/Governors.js'
 import { TurnCounter } from './components/TurnCounter.js'
 import { Pirates } from './components/Pirates.js'
+import { SecurityRecruiter } from './components/Security.js'
 import { getState } from './api/dataaccess.js'
 // import { raidAlertHTMLGen } from './components/RaidAlert.js'
 import { generateResetButtonHTML } from './components/ResetButton.js'
+
 
 document.addEventListener("startRaid", CustomEvent => {
     const state = getState()
@@ -27,7 +29,6 @@ document.addEventListener("startRaid", CustomEvent => {
 });
 
 export const Exomine = () => {
-
 
     return `<h1 id="heading__main">Solar System Mining Marketplace</h1>
     ${TurnCounter()}
@@ -50,6 +51,8 @@ export const Exomine = () => {
     <section id="pirate-section" class="flex-container">
         ${Pirates()}
     </section>
+    <section id="security-section" class="flex-container">
+        ${SecurityRecruiter()}
     <section id="reset-button-section">
         ${generateResetButtonHTML()}
     </section>`

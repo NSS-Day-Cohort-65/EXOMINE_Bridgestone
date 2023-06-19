@@ -38,10 +38,23 @@ h1 {
     justify-content: space-around;
 }
 
-#selectors-container {
+#security-section {
+    align-items: center;
     flex-direction: column;
+    border: rgb(228, 228, 228) dotted 2px;
+    width: 400px;
+    height: 250px;
 }
 
+#purchase-security {
+    display: flex;
+    flex-direction: row;
+    padding-top: 75px;
+}
+
+#selectors-container {
+    display: inline;
+}
 
 #colonies-container {
     flex-direction: column;

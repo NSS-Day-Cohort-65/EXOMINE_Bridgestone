@@ -188,12 +188,14 @@
     {
       "id": 1,
       "name": "Warforge Alpha",
-      "is_active": true
+      "is_active": true,
+      "security": 170
     },
     {
       "id": 2,
       "name": "Starhold Delta",
-      "is_active": true
+      "is_active": true,
+      "security": 80
     },
     {
       "id": 3,
@@ -209,11 +211,13 @@
   "colonies": [
     {
       "id": 1,
-      "name": "Terra Nova"
+      "name": "Terra Nova",
+      "security": 80
     },
     {
       "id": 2,
-      "name": "Nexus Prime"
+      "name": "Nexus Prime",
+      "security": 110
     },
     {
       "id": 3,
@@ -234,6 +238,7 @@
       "colony_id": 3,
       "mineral_id": 6,
       "colony_stock": 200
+
     },
     {
       "id": 2,
@@ -245,7 +250,7 @@
       "id": 3,
       "colony_id": 1,
       "mineral_id": 1,
-      "colony_stock": 200
+      "colony_stock": 1
     },
     {
       "id": 4,
@@ -257,19 +262,20 @@
       "id": 5,
       "colony_id": 5,
       "mineral_id": 2,
-      "colony_stock": 200
+      "colony_stock": -21
     },
     {
       "id": 6,
       "colony_id": 3,
       "mineral_id": 8,
       "colony_stock": 200
+
     },
     {
       "id": 7,
       "colony_id": 1,
       "mineral_id": 3,
-      "colony_stock": 200
+      "colony_stock": 100
     },
     {
       "id": 8,
@@ -287,12 +293,13 @@
       "id": 10,
       "colony_id": 5,
       "mineral_id": 7,
-      "colony_stock": 200
+      "colony_stock": 25
     },
     {
       "id": 11,
       "colony_id": 3,
       "mineral_id": 5,
+      "colony_stock": 171
       "colony_stock": 200
     },
     {
@@ -305,7 +312,7 @@
       "id": 13,
       "colony_id": 1,
       "mineral_id": 14,
-      "colony_stock": 200
+      "colony_stock": 100
     },
     {
       "id": 14,
@@ -317,13 +324,13 @@
       "id": 15,
       "colony_id": 5,
       "mineral_id": 15,
-      "colony_stock": 200
+      "colony_stock": 25
     },
     {
       "id": 16,
       "colony_id": 3,
       "mineral_id": 2,
-      "colony_stock": 200
+      "colony_stock": 73
     },
     {
       "id": 17,
@@ -335,19 +342,19 @@
       "id": 18,
       "colony_id": 1,
       "mineral_id": 10,
-      "colony_stock": 200
+      "colony_stock": 100
     },
     {
       "id": 19,
       "colony_id": 4,
       "mineral_id": 1,
-      "colony_stock": 200
+      "colony_stock": 48
     },
     {
       "id": 20,
       "colony_id": 5,
       "mineral_id": 9,
-      "colony_stock": 200
+      "colony_stock": 25
     }
   ],
   "facility_inventory": [
@@ -367,13 +374,13 @@
       "id": 3,
       "facility_id": 3,
       "mineral_id": 5,
-      "facility_stock": 300
+      "facility_stock": 16
     },
     {
       "id": 4,
       "facility_id": 2,
       "mineral_id": 11,
-      "facility_stock": 300
+      "facility_stock": 145
     },
     {
       "id": 5,
@@ -391,13 +398,13 @@
       "id": 7,
       "facility_id": 3,
       "mineral_id": 12,
-      "facility_stock": 300
+      "facility_stock": 18
     },
     {
       "id": 8,
       "facility_id": 2,
       "mineral_id": 7,
-      "facility_stock": 300
+      "facility_stock": 150
     },
     {
       "id": 9,
@@ -415,13 +422,13 @@
       "id": 11,
       "facility_id": 3,
       "mineral_id": 3,
-      "facility_stock": 300
+      "facility_stock": 18
     },
     {
       "id": 12,
       "facility_id": 2,
       "mineral_id": 6,
-      "facility_stock": 300
+      "facility_stock": 150
     },
     {
       "id": 13,
@@ -439,20 +446,22 @@
       "id": 15,
       "facility_id": 3,
       "mineral_id": 1,
-      "facility_stock": 300
+      "facility_stock": 37
     },
     {
       "id": 16,
       "facility_id": 2,
       "mineral_id": 10,
-      "facility_stock": 300
+      "facility_stock": 150
     }
   ],
   "pirates": [
     {
       "id": 1,
-      "raider_stock": 0
+      "raider_stock": 40
     }
   ],
-  "pirate_inventory": []
+  "pirate_inventory": [
+   
+  ]
 }
