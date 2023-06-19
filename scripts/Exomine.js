@@ -7,15 +7,28 @@ import { Governors } from './components/Governors.js'
 import { TurnCounter } from './components/TurnCounter.js'
 import { Pirates } from './components/Pirates.js'
 import { SecurityRecruiter } from './components/Security.js'
+import { getState } from './api/dataaccess.js'
+// import { raidAlertHTMLGen } from './components/RaidAlert.js'
+import { generateResetButtonHTML } from './components/ResetButton.js'
 
 
+document.addEventListener("startRaid", CustomEvent => {
+    const state = getState()
 
+    if (state.lastLocationRaided.length > 1 && state.lastGovernorKilled.length > 1) {
+        const placeRaided = state.lastLocationRaided
+        const govKilled = state.lastGovernorKilled
 
+        window.alert(`WARNING: ${placeRaided.toUpperCase()} WAS RAIDED! GOVERNOR ${govKilled.toUpperCase()} HAS BEEN KILLED!`)
+    } else if (state.lastLocationRaided.length > 1) {
+
+        const placeRaided = state.lastLocationRaided
+
+        window.alert(`WARNING: ${placeRaided.toUpperCase()} WAS RAIDED!`)
+    }
+});
 
 export const Exomine = () => {
-
-    let cart = Cart() //delete these?
-    let x
 
     return `<h1 id="heading__main">Solar System Mining Marketplace</h1>
     ${TurnCounter()}
@@ -40,6 +53,11 @@ export const Exomine = () => {
     </section>
     <section id="security-section" class="flex-container">
         ${SecurityRecruiter()}
+    <section id="reset-button-section">
+        ${generateResetButtonHTML()}
     </section>`
 }
+
+//if adding in none windwo based alert, place this back above last article tag (like 41 as of time of writing) ${raidAlertHTMLGen()} and uncomment the import statment on like 9.
+
 

@@ -33,7 +33,7 @@ document.addEventListener(
                 name: foundGovernor.name,
                 colony_id: state.selectedRecruitColony,
                 is_active: true,
-                is_alive: foundGovernor.id_alive,
+                is_alive: foundGovernor.is_alive,
             }
             putGovernor(recruit, recruit.id);
         }
