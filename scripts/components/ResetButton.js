@@ -1,4 +1,4 @@
-import { deleteColonyInventory, deleteGovernor, deletePirateInventory, getColoniesInventory, getFacilitiesInventory, getGovernors, getPirateInventory, getPirates, putColony_Inventory, putFacility_Inventory, putGovernor, putPirates } from "../api/dataaccess.js"
+import { deleteColonyInventory, deletePirateInventory, getColoniesInventory, getFacilitiesInventory, getGovernors, getPirateInventory, getPirates, putColony_Inventory, putFacility_Inventory, putGovernor, putPirates } from "../api/dataaccess.js"
 
 
 /* write a function that will send a put request to everything in the database to reset to default values. This should be broken  down into smaller functions. Must:

@@ -1,5 +1,4 @@
-import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, getPirateInventory, postPirate_Inventory, putColony_Inventory, putFacility_Inventory, putPirate_Inventory, setLastLocationRaided, getPirates, getGovernors, putGovernor, setLastGovernorKilled } from '../api/dataaccess.js'
-
+import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, getPirateInventory, postPirate_Inventory, putColony_Inventory, putFacility_Inventory, putPirate_Inventory, setLastLocationRaided, getPirates, getGovernors, putGovernor, setLastGovernorKilled, putPirates } from '../api/dataaccess.js'
 
 // increase this number to decrease difficulty
 const MAX = 10
@@ -142,18 +141,12 @@ const checkForRaid = (turn) => {
     };
 }
 
-//write a function that will get and update/add random amount of pirate raiders to pirate object. Will be determined by amount of turns take. Likely need to implement this functionality at a later point. Use putPirates function to do so.
-
-const addPirateRaiders = () => {
-    const pirates = getPirates()
-
-    return pirates[0].raider_stock
-}
-
 
 //write a function that makes a visual representation of the pirate ship using an image. Below that, it should pull in the pirate inventory and generates an html representation of it (total minerals combined and pirate raider count)
 
 export const Pirates = () => {
+
+    const pirates = getPirates()
 
     const pirateInventory = getPirateInventory()
 
@@ -188,7 +181,7 @@ export const Pirates = () => {
 
     //take function that generates total pirate raider count and puts it into html representation
 
-    html += `<div id="pirate-raider-container" class="flex container pirate-resource-container"><h3 class="pirate-resource-heading">Raiders</h3><p id="pirate-raider-total" class="pirate-resource-paragraph">${addPirateRaiders()}</p></div>`
+    html += `<div id="pirate-raider-container" class="flex container pirate-resource-container"><h3 class="pirate-resource-heading">Raiders</h3><p id="pirate-raider-total" class="pirate-resource-paragraph">${pirates[0].raider_stock}</p></div>`
 
     //set up end of pirate-text-container div
 
@@ -204,4 +197,30 @@ export const Pirates = () => {
 
     return html
 }
+
+
+//write a click even that increments turnCount by 1 everytime purchaseButton is clicked. Write function that fires after 3 turns (turncount hits 3) and adds 5 raiders to the pirate object, then returns the new value.
+
+let turnCount = 0
+
+document.addEventListener("click", e => {
+    if (e.target.id === "purchaseButton") {
+        turnCount++
+        if (turnCount === 3) {
+            addPirateRaiders()
+            turnCount = 0
+        }
+    }
+})
+
+const addPirateRaiders = () => {
+    const pirates = getPirates()
+    let newPirateObj = {
+        id: pirates[0].id,
+        raider_stock: pirates[0].raider_stock + 5
+    }
+    
+    putPirates(newPirateObj, pirates[0].id)
+}
+
 
