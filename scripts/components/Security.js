@@ -236,9 +236,14 @@ export const Security = () => {
     }
     //Purchase section with number field and purchase button 
     html += `<div id="purchase-security">
-            <p>Number to Recruit:${securityTotal}</p>
-            <button id="securityButton">Purchase</button>
+            <p>Number to Recruit:${securityTotal}</p>`
+    if (facilitySelected || colonySelected) {
+        html += `<button id="securityButton">Purchase</button>
         </div>`
+    } else {
+        html += `<button disabled id="securityButton">Purchase</button>
+        </div>`
+    }
     // disable security button if nothing is selected!!!!
     return html
 }
