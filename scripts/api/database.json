@@ -95,63 +95,93 @@
   "minerals": [
     {
       "id": 1,
-      "name": "Xenite"
+      "name": "Xenite",
+      "value": 30,
+      "yield": 2
     },
     {
       "id": 2,
-      "name": "Luminarite"
+      "name": "Luminarite",
+      "value": 30,
+      "yield": 2
     },
     {
       "id": 3,
-      "name": "Stellacite"
+      "name": "Stellacite",
+      "value": 1,
+      "yield": 10
     },
     {
       "id": 4,
-      "name": "Nebulite"
+      "name": "Nebulite",
+      "value": 1,
+      "yield": 10
     },
     {
       "id": 5,
-      "name": "Astroquartz"
+      "name": "Astroquartz",
+      "value": 1,
+      "yield": 10
     },
     {
       "id": 6,
-      "name": "Galaxium"
+      "name": "Galaxium",
+      "value": 2,
+      "yield": 5
     },
     {
       "id": 7,
-      "name": "Celestite"
+      "name": "Celestite",
+      "value": 2,
+      "yield": 5
     },
     {
       "id": 8,
-      "name": "Meteorium"
+      "name": "Meteorium",
+      "value": 5,
+      "yield": 2
     },
     {
       "id": 9,
-      "name": "Stargem"
+      "name": "Stargem",
+      "value": 5,
+      "yield": 2
     },
     {
       "id": 10,
-      "name": "Cosmolite"
+      "name": "Cosmolite",
+      "value": 10,
+      "yield": 1
     },
     {
       "id": 11,
-      "name": "Aetherite"
+      "name": "Aetherite",
+      "value": 10,
+      "yield": 1
     },
     {
       "id": 12,
-      "name": "Orbithyst"
+      "name": "Orbithyst",
+      "value": 15,
+      "yield": 1
     },
     {
       "id": 13,
-      "name": "Nebulium"
+      "name": "Nebulium",
+      "value": 15,
+      "yield": 1
     },
     {
       "id": 14,
-      "name": "Quasarite"
+      "name": "Quasarite",
+      "value": 20,
+      "yield": 1
     },
     {
       "id": 15,
-      "name": "Stellite"
+      "name": "Stellite",
+      "value": 50,
+      "yield": 1
     }
   ],
   "facilities": [
