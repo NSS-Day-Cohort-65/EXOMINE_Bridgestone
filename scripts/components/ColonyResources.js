@@ -84,17 +84,19 @@ const coloniesUseMinerals = () => {
 
     for (const colInv of colInventory) {
 
-        let randomAmount = Math.ceil(Math.random() * 10);
+        if (colInv.mineral_id === 1 || colInv.mineral_id === 2) {
 
-        let newObj = {
-            id: colInv.id,
-            colony_id: colInv.colony_id,
-            mineral_id: colInv.mineral_id,
-            colony_stock: colInv.colony_stock - randomAmount
+            let randomAmount = Math.ceil(Math.random() * 10);
+
+            let newObj = {
+                id: colInv.id,
+                colony_id: colInv.colony_id,
+                mineral_id: colInv.mineral_id,
+                colony_stock: colInv.colony_stock - randomAmount
+            }
+
+            putColony_Inventory(newObj, colInv.id)
         }
-
-        putColony_Inventory(newObj, colInv.id)
-
     }
 }
 
