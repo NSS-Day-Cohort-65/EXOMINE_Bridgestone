@@ -6,14 +6,28 @@ import { GovernorRecruiter } from './components/GovernorRecruiter.js'
 import { Governors } from './components/Governors.js'
 import { TurnCounter } from './components/TurnCounter.js'
 import { Pirates } from './components/Pirates.js'
+import { getState } from './api/dataaccess.js'
+// import { raidAlertHTMLGen } from './components/RaidAlert.js'
 
+document.addEventListener("startRaid", CustomEvent => {
+    const state = getState()
 
+    if (state.lastLocationRaided.length > 1 && state.lastGovernorKilled.length > 1) {
+        const placeRaided = state.lastLocationRaided
+        const govKilled = state.lastGovernorKilled
 
+        window.alert(`WARNING: ${placeRaided.toUpperCase()} WAS RAIDED! GOVERNOR ${govKilled.toUpperCase()} HAS BEEN KILLED!`)
+    } else if (state.lastLocationRaided.length > 1) {
+
+        const placeRaided = state.lastLocationRaided
+
+        window.alert(`WARNING: ${placeRaided.toUpperCase()} WAS RAIDED!`)
+    }
+    raidAlert()
+});
 
 export const Exomine = () => {
 
-    let cart = Cart()
-    let x
 
     return `<h1 id="heading__main">Solar System Mining Marketplace</h1>
     ${TurnCounter()}
@@ -35,6 +49,11 @@ export const Exomine = () => {
     </section>
     <section id="pirate-section" class="flex-container">
         ${Pirates()}
-    </section>`
+    </section>
+    <article id="raid-alert-container">
+    </article>`
 }
+
+//if adding in none windwo based alert, place this back above last article tag (like 41 as of time of writing) ${raidAlertHTMLGen()} and uncomment the import statment on like 9.
+
 
