@@ -6,6 +6,8 @@ document.addEventListener("click", (clickEvent) => {
     //check if itemClicked is the button 
     if (itemClicked.id === "purchaseButton") {
         purchaseMineral()
+        document.dispatchEvent(new CustomEvent("stateChanged"))
+        document.dispatchEvent(new CustomEvent("addAndUseMinerals"))
     }
 })
 
