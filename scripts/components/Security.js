@@ -1,9 +1,10 @@
-import { getColonies, getColoniesInventory, getFacilities, getMinerals, putColony, putFacility } from "../api/dataaccess.js"
+import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, putColony, putFacility } from "../api/dataaccess.js"
 
 let facilitySelected = null
 let colonySelected = null
 let numberSelected = 0
 let mineralsToSpend = {};
+let securityTotal = 0;
 
 //event listener to check if facility or colony is selected
 document.addEventListener("change",
@@ -51,10 +52,11 @@ document.addEventListener("click",
                         id: facilitySelected.id,
                         name: facilitySelected.name,
                         is_active: facilitySelected.is_active,
-                        security: facilitySelected.security + numberSelected
+                        security: facilitySelected.security + securityTotal
                     }
                     putFacility(newFacObj, newFacObj.id)
-                    numberSelected = 0
+                    securityTotal = 0
+                    mineralsToSpend = {};
                     facilitySelected = null
 
                 } else {
@@ -63,10 +65,11 @@ document.addEventListener("click",
                         id: facilitySelected.id,
                         name: facilitySelected.name,
                         is_active: facilitySelected.is_active,
-                        security: numberSelected
+                        security: securityTotal
                     }
                     putFacility(newFacObj, newFacObj.id)
-                    numberSelected = 0
+                    securityTotal = 0
+                    mineralsToSpend = {};
                     facilitySelected = null
                 }
 
@@ -76,20 +79,22 @@ document.addEventListener("click",
                     const newColObj = {
                         id: colonySelected.id,
                         name: colonySelected.name,
-                        security: colonySelected.security + numberSelected
+                        security: colonySelected.security + securityTotal
                     }
                     putColony(newColObj, newColObj.id)
-                    numberSelected = 0
+                    securityTotal = 0
+                    mineralsToSpend = {};
                     colonySelected = null
 
                 } else {
                     const newColObj = {
                         id: colonySelected.id,
                         name: colonySelected.name,
-                        security: numberSelected
+                        security: securityTotal
                     }
                     putColony(newColObj, newColObj.id)
-                    numberSelected = 0
+                    securityTotal = 0
+                    mineralsToSpend = {};
                     colonySelected = null
 
                 }
@@ -161,16 +166,17 @@ const facilitiesSecuritySelector = () => {
     return html
 }
 
-const showSecurityTotal = () => {
-    let securityTotal = 0
+const calculateSecurityTotal = () => {
+    let total = 0
     for (const key in mineralsToSpend) {
-        securityTotal += mineralsToSpend[key].amount * mineralsToSpend[key].value;
+        total += mineralsToSpend[key].amount * mineralsToSpend[key].value;
     }
-    return securityTotal;
+    securityTotal = total;
 }
 
 //display entire Security container-----------------------------------------------
 export const Security = () => {
+    calculateSecurityTotal();
 
     let html = `<h2>Security Recruiter</h2>
     <div id="security_prompt">
@@ -207,10 +213,30 @@ export const Security = () => {
                     <input data-mineralValue=${foundMineral.value} name="${inputName}" id="securityMineralInput--${inventory.id}" type="number" min="0" max="${inventory.colony_stock}" value="${mineralsToSpend[inputName] ? mineralsToSpend[inputName].amount : 0}">`
             }
         ).join("")
+    } else if (facilitySelected) {
+        const facilitiesInventory = getFacilitiesInventory();
+        let foundFacilityInventory = []
+        for (const inventory of facilitiesInventory) {
+            if (inventory.facility_id === facilitySelected.id) {
+                foundFacilityInventory.push(inventory)
+            }
+        }
+
+        html += foundFacilityInventory.map(
+            inventory => {
+                const minerals = getMinerals();
+                let foundMineral = minerals.find(mineral => mineral.id === inventory.mineral_id)
+                let inputName = `${foundMineral.name}--${inventory.mineral_id}`
+                return `<label for="${inputName}" >${foundMineral.name}</label>
+                    <p>Value: ${foundMineral.value}</p>
+                    <p>Available: ${inventory.facility_stock}</p>
+                    <input data-mineralValue=${foundMineral.value} name="${inputName}" id="securityMineralInput--${inventory.id}" type="number" min="0" max="${inventory.facility_stock}" value="${mineralsToSpend[inputName] ? mineralsToSpend[inputName].amount : 0}">`
+            }
+        ).join("")
     }
     //Purchase section with number field and purchase button 
     html += `<div id="purchase-security">
-            <p>Number to Recruit:${showSecurityTotal()}</p>
+            <p>Number to Recruit:${securityTotal}</p>
             <button id="securityButton">Purchase</button>
         </div>`
     // disable security button if nothing is selected!!!!
