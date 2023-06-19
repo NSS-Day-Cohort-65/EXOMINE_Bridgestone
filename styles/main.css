@@ -201,7 +201,7 @@ button:active {
     }
 }
 
-#raid-alert-container {
+/* #raid-alert-container {
     z-index: 100;
     display: none;
     background: none;
@@ -235,4 +235,4 @@ button:active {
     100% {
         -webkit-transform: scale(0)
     }
-}
+} */
