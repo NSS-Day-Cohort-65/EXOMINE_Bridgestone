@@ -123,10 +123,18 @@ export const Cart = () => {
         }
     }
 
-    html += `<div>
+    if (chosenMinerals.length && chosenFacility) {
+        html += `<div>
                 <button id="purchaseButton">Purchase Mineral</button>
             </div>
         </div>`
+    } else {
+        html += `<div>
+                <button disabled id="purchaseButton">Purchase Mineral</button>
+            </div>
+        </div>`
+    }
+
 
     return html
 }
