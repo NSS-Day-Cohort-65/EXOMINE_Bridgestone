@@ -158,12 +158,14 @@
     {
       "id": 1,
       "name": "Warforge Alpha",
-      "is_active": true
+      "is_active": true,
+      "security": 170
     },
     {
       "id": 2,
       "name": "Starhold Delta",
-      "is_active": true
+      "is_active": true,
+      "security": 80
     },
     {
       "id": 3,
@@ -179,11 +181,13 @@
   "colonies": [
     {
       "id": 1,
-      "name": "Terra Nova"
+      "name": "Terra Nova",
+      "security": 80
     },
     {
       "id": 2,
-      "name": "Nexus Prime"
+      "name": "Nexus Prime",
+      "security": 110
     },
     {
       "id": 3,
@@ -203,7 +207,7 @@
       "id": 1,
       "colony_id": 3,
       "mineral_id": 6,
-      "colony_stock": 284
+      "colony_stock": 142
     },
     {
       "id": 2,
@@ -233,7 +237,7 @@
       "id": 6,
       "colony_id": 3,
       "mineral_id": 8,
-      "colony_stock": 217
+      "colony_stock": 108
     },
     {
       "id": 7,
@@ -263,7 +267,7 @@
       "id": 11,
       "colony_id": 3,
       "mineral_id": 5,
-      "colony_stock": 312
+      "colony_stock": 171
     },
     {
       "id": 12,
@@ -281,7 +285,7 @@
       "id": 14,
       "colony_id": 4,
       "mineral_id": 13,
-      "colony_stock": 227
+      "colony_stock": 237
     },
     {
       "id": 15,
@@ -293,7 +297,7 @@
       "id": 16,
       "colony_id": 3,
       "mineral_id": 2,
-      "colony_stock": 215
+      "colony_stock": 107
     },
     {
       "id": 17,
@@ -328,14 +332,38 @@
     {
       "colony_id": 4,
       "mineral_id": 7,
-      "colony_stock": 40,
+      "colony_stock": 50,
       "id": 22
     },
     {
       "colony_id": 4,
       "mineral_id": 4,
-      "colony_stock": 20,
+      "colony_stock": 120,
       "id": 23
+    },
+    {
+      "colony_id": 3,
+      "mineral_id": 12,
+      "colony_stock": 10,
+      "id": 24
+    },
+    {
+      "colony_id": 3,
+      "mineral_id": 9,
+      "colony_stock": 100,
+      "id": 25
+    },
+    {
+      "colony_id": 3,
+      "mineral_id": 13,
+      "colony_stock": 0,
+      "id": 26
+    },
+    {
+      "colony_id": 3,
+      "mineral_id": 11,
+      "colony_stock": 10,
+      "id": 27
     }
   ],
   "facility_inventory": [
@@ -343,7 +371,7 @@
       "id": 1,
       "facility_id": 1,
       "mineral_id": 7,
-      "facility_stock": 350
+      "facility_stock": 175
     },
     {
       "id": 2,
@@ -355,19 +383,19 @@
       "id": 3,
       "facility_id": 3,
       "mineral_id": 5,
-      "facility_stock": 390
+      "facility_stock": 90
     },
     {
       "id": 4,
       "facility_id": 2,
       "mineral_id": 11,
-      "facility_stock": 403
+      "facility_stock": 201
     },
     {
       "id": 5,
       "facility_id": 1,
       "mineral_id": 4,
-      "facility_stock": 320
+      "facility_stock": 60
     },
     {
       "id": 6,
@@ -379,19 +407,19 @@
       "id": 7,
       "facility_id": 3,
       "mineral_id": 12,
-      "facility_stock": 215
+      "facility_stock": 53
     },
     {
       "id": 8,
       "facility_id": 2,
       "mineral_id": 7,
-      "facility_stock": 290
+      "facility_stock": 140
     },
     {
       "id": 9,
       "facility_id": 1,
       "mineral_id": 13,
-      "facility_stock": 277
+      "facility_stock": 128
     },
     {
       "id": 10,
@@ -403,19 +431,19 @@
       "id": 11,
       "facility_id": 3,
       "mineral_id": 3,
-      "facility_stock": 227
+      "facility_stock": 56
     },
     {
       "id": 12,
       "facility_id": 2,
       "mineral_id": 6,
-      "facility_stock": 400
+      "facility_stock": 200
     },
     {
       "id": 13,
       "facility_id": 1,
       "mineral_id": 9,
-      "facility_stock": 375
+      "facility_stock": 137
     },
     {
       "id": 14,
@@ -427,13 +455,13 @@
       "id": 15,
       "facility_id": 3,
       "mineral_id": 1,
-      "facility_stock": 400
+      "facility_stock": 200
     },
     {
       "id": 16,
       "facility_id": 2,
       "mineral_id": 10,
-      "facility_stock": 275
+      "facility_stock": 137
     }
   ],
   "pirates": [
@@ -447,6 +475,61 @@
       "id": 1,
       "mineral_id": 3,
       "pirate_stock": 104
+    },
+    {
+      "mineral_id": 7,
+      "pirate_stock": 315,
+      "id": 2
+    },
+    {
+      "mineral_id": 4,
+      "pirate_stock": 160,
+      "id": 3
+    },
+    {
+      "mineral_id": 13,
+      "pirate_stock": 138,
+      "id": 4
+    },
+    {
+      "mineral_id": 9,
+      "pirate_stock": 187,
+      "id": 5
+    },
+    {
+      "mineral_id": 6,
+      "pirate_stock": 342,
+      "id": 6
+    },
+    {
+      "mineral_id": 8,
+      "pirate_stock": 108,
+      "id": 7
+    },
+    {
+      "mineral_id": 5,
+      "pirate_stock": 441,
+      "id": 8
+    },
+    {
+      "mineral_id": 2,
+      "pirate_stock": 107,
+      "id": 9
+    },
+    {
+      "mineral_id": 11,
+      "pirate_stock": 201,
+      "id": 10
+    },
+    {
+      "mineral_id": 10,
+      "pirate_stock": 137,
+      "id": 11
+    },
+    {
+      "mineral_id": 12,
+      "pirate_stock": 53,
+      "id": 12
     }
   ]
 }

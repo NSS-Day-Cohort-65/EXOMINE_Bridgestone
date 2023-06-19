@@ -6,13 +6,15 @@ import { GovernorRecruiter } from './components/GovernorRecruiter.js'
 import { Governors } from './components/Governors.js'
 import { TurnCounter } from './components/TurnCounter.js'
 import { Pirates } from './components/Pirates.js'
+import { SecurityRecruiter } from './components/Security.js'
+
 
 
 
 
 export const Exomine = () => {
 
-    let cart = Cart()
+    let cart = Cart() //delete these?
     let x
 
     return `<h1 id="heading__main">Solar System Mining Marketplace</h1>
@@ -31,10 +33,13 @@ export const Exomine = () => {
     <div id="facilities-container" class="flex-container">
         ${FacilityInventory()}
     </div>
-
+        ${Cart()}
     </section>
     <section id="pirate-section" class="flex-container">
         ${Pirates()}
+    </section>
+    <section id="security-section" class="flex-container">
+        ${SecurityRecruiter()}
     </section>`
 }
 
