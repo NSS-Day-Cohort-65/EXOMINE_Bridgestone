@@ -188,7 +188,8 @@
       "id": 1,
       "name": "Warforge Alpha",
       "is_active": true,
-      "security": 0
+      "security": 0,
+      "is_facility": true
     },
     {
       "id": 2,

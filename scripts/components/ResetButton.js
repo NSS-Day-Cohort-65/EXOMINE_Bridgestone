@@ -1,4 +1,4 @@
-import { deleteColonyInventory, deletePirateInventory, getColoniesInventory, getFacilitiesInventory, getGovernors, getPirateInventory, getPirates, putColony_Inventory, putFacility_Inventory, putGovernor, putPirates, resetState } from "../api/dataaccess.js"
+import { deleteColonyInventory, deletePirateInventory, getColoniesInventory, getFacilitiesInventory, getGovernors, getPirateInventory, getPirates, putColony_Inventory, putFacility_Inventory, putGovernor, putPirates, resetState, putColony, putFacility, getColonies, getFacilities } from "../api/dataaccess.js"
 
 
 /* write a function that will send a put request to everything in the database to reset to default values. This should be broken  down into smaller functions. Must:
@@ -10,6 +10,7 @@ import { deleteColonyInventory, deletePirateInventory, getColoniesInventory, get
 -reset colony mineral counts to fixed values
 -revive any dead governors by reseting is_alive value to true
 -reset pirate raider count to 0
+-reset security counts across the board
 
 */
 
@@ -101,6 +102,33 @@ const resetRaiderCount = () => {
     }
 }
 
+const resetColonies = () => {
+    const colonies = getColonies()
+    for (const col of colonies) {
+        let newObj = {
+            id: col.id,
+            name: col.name,
+            security: 0,
+            is_colony: true
+        }
+        putColony(newObj, col.id)
+    }
+}
+
+const resetFacilites = () => {
+    const facilities = getFacilities()
+    for (const fac of facilities) {
+        let newObj = {
+            id: fac.id,
+            name: fac.name,
+            is_active: true,
+            security: 0,
+            is_facility: true
+        }
+        putFacility(newObj, fac.id)
+    }
+}
+
 const resetAll = () => {
     resetColonyMinerals()
     resetFacilityMinerals()
@@ -108,6 +136,8 @@ const resetAll = () => {
     resetRaiderCount()
     deleteExtraColonyInventory()
     deleteAllPirateInventory()
+    resetColonies()
+    resetFacilites()
     resetState()
 }
 
