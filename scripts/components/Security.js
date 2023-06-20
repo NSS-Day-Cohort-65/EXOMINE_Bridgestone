@@ -81,7 +81,8 @@ document.addEventListener("click",
                     const newColObj = {
                         id: colonySelected.id,
                         name: colonySelected.name,
-                        security: colonySelected.security + securityTotal
+                        security: colonySelected.security + securityTotal,
+                        is_colony: true
                     }
                     putColony(newColObj, newColObj.id)
                     securityTotal = 0
@@ -92,7 +93,8 @@ document.addEventListener("click",
                     const newColObj = {
                         id: colonySelected.id,
                         name: colonySelected.name,
-                        security: securityTotal
+                        security: securityTotal,
+                        is_colony: true
                     }
                     putColony(newColObj, newColObj.id)
                     securityTotal = 0
