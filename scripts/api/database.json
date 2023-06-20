@@ -186,30 +186,27 @@
   "facilities": [
     {
       "id": 1,
-      "name": "Warforge Alpha",
+      "name": "Terra Nova",
       "is_active": true,
       "security": 0
     },
     {
       "id": 2,
-      "name": "Starhold Delta",
+      "name": "Nexus Prime",
       "is_active": true,
-      "security": 0,
-      "is_facility": true
+      "security": 0
     },
     {
       "id": 3,
-      "name": "Battlespire Gamma",
+      "name": "Astraia",
       "is_active": true,
-      "security": 0,
-      "is_facility": true
+      "security": 0
     },
     {
       "id": 4,
-      "name": "Ravenspire Omega",
+      "name": "Elysium",
       "is_active": true,
-      "security": 0,
-      "is_facility": true
+      "security": 0
     }
   ],
   "colonies": [
@@ -217,31 +214,31 @@
       "id": 1,
       "name": "Terra Nova",
       "security": 0,
-      "is_colony": true
+      "is_facility": true
     },
     {
       "id": 2,
       "name": "Nexus Prime",
       "security": 0,
-      "is_colony": true
+      "is_facility": true
     },
     {
       "id": 3,
       "name": "Astraia",
       "security": 0,
-      "is_colony": true
+      "is_facility": true
     },
     {
       "id": 4,
       "name": "Elysium",
       "security": 0,
-      "is_colony": true
+      "is_facility": true
     },
     {
       "id": 5,
       "name": "Stellara",
       "security": 0,
-      "is_colony": true
+      "is_facility": true
     }
   ],
   "colony_inventory": [
@@ -443,7 +440,7 @@
       "id": 13,
       "facility_id": 1,
       "mineral_id": 9,
-      "facility_stock": 300
+      "facility_stock": 302
     },
     {
       "id": 14,
