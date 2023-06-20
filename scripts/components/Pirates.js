@@ -1,8 +1,57 @@
 import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, getPirateInventory, postPirate_Inventory, putColony_Inventory, putFacility_Inventory, putPirate_Inventory, setLastLocationRaided, getPirates, getGovernors, putGovernor, setLastGovernorKilled, putPirates } from '../api/dataaccess.js'
 import { isRaidSuccessful, reduceSecurityAfterRaid } from './Defense.js'
 
+
+//write a click even that increments turnCount by 1 everytime purchaseButton is clicked. Write function that fires after 3 turns (turncount hits 3) and adds 5 raiders to the pirate object, then returns the new value.
+
+let turnCount = 0
+
+document.addEventListener("click", e => {
+    if (e.target.id === "purchaseButton") {
+        turnCount++
+        if (turnCount === 3) {
+            addPirateRaiders()
+            turnCount = 0
+        }
+    }
+})
+
+const addPirateRaiders = () => {
+    const pirates = getPirates()
+    let newPirateObj = {
+        id: pirates[0].id,
+        raider_stock: pirates[0].raider_stock + 5
+    }
+
+    putPirates(newPirateObj, pirates[0].id)
+    console.log("added 5 raiders")
+}
+
+const reduceRaidersAfterRaid = () => {
+    const pirates = getPirates()
+    //checking if turn is 0 because when it hits 3, it goes through the above function and click even first which then resets it back to 0. Since this check here always happens afterwards, the onlytime turn count will get here and be equal to 0 is right after it was equal to three and reset by the above function/click event, which is what would signal the if condition should occur.
+    if (turnCount === 0) {
+        let newObj = {
+            id: pirates[0].id,
+            raider_stock: Math.ceil(pirates[0].raider_stock * 0.75) + 5
+        }
+        putPirates(newObj, pirates[0].id)
+        console.log("reduced raiders by 3/4 and then added 5")
+    } else {
+        let newObj = {
+            id: pirates[0].id,
+            raider_stock: Math.ceil(pirates[0].raider_stock * 0.75)
+        }
+        putPirates(newObj, pirates[0].id)
+        console.log("reduced raiders by 3/4")
+    }
+}
+
+
+
+
 // increase this number to decrease difficulty
-const MAX = 1
+const MAX = 2
 const GRACE_PERIOD = 3
 
 let raidCounter = 1
@@ -95,9 +144,11 @@ const raid = () => {
                 putGovernor(newGovObj, newGovObj.id)
             }
             reduceSecurityAfterRaid()
+            reduceRaidersAfterRaid()
         } else {
             console.log("Colony was defended successfully!")
             reduceSecurityAfterRaid()
+            reduceRaidersAfterRaid()
         }
     } else {
         const facilities = getFacilities();
@@ -115,33 +166,35 @@ const raid = () => {
 
         if (successCheck === true) {
 
-        let targetFacilityInventory = [];
-        for (const inventory of facilitiesInventory) {
-            if (inventory.facility_id === targetFacility.id) {
-                targetFacilityInventory.push(inventory);
-            }
-        }
-
-        for (const inventory of targetFacilityInventory) {
-            piratePlunder.push(
-                {
-                    mineral_id: inventory.mineral_id,
-                    pirate_stock: Math.floor(inventory.facility_stock / 2)
+            let targetFacilityInventory = [];
+            for (const inventory of facilitiesInventory) {
+                if (inventory.facility_id === targetFacility.id) {
+                    targetFacilityInventory.push(inventory);
                 }
-            )
+            }
 
-            inventory.facility_stock = Math.floor(inventory.facility_stock / 2);
-        }
+            for (const inventory of targetFacilityInventory) {
+                piratePlunder.push(
+                    {
+                        mineral_id: inventory.mineral_id,
+                        pirate_stock: Math.floor(inventory.facility_stock / 2)
+                    }
+                )
 
-        for (const inventory of targetFacilityInventory) {
-            putFacility_Inventory(inventory, inventory.id);
+                inventory.facility_stock = Math.floor(inventory.facility_stock / 2);
+            }
+
+            for (const inventory of targetFacilityInventory) {
+                putFacility_Inventory(inventory, inventory.id);
+            }
+            reduceSecurityAfterRaid()
+            reduceRaidersAfterRaid()
+        } else {
+            console.log("Facility was defended successfully!")
+            reduceSecurityAfterRaid()
+            reduceRaidersAfterRaid()
         }
-        reduceSecurityAfterRaid()
-    } else {
-        console.log("Facility was defended successfully!")
-        reduceSecurityAfterRaid()
     }
-}
     for (const plunder of piratePlunder) {
         let foundInventory = pirateInventory.find(inventory => inventory.mineral_id === plunder.mineral_id)
         if (foundInventory) {
@@ -222,27 +275,3 @@ export const Pirates = () => {
     return html
 }
 
-
-//write a click even that increments turnCount by 1 everytime purchaseButton is clicked. Write function that fires after 3 turns (turncount hits 3) and adds 5 raiders to the pirate object, then returns the new value.
-
-let turnCount = 0
-
-document.addEventListener("click", e => {
-    if (e.target.id === "purchaseButton") {
-        turnCount++
-        if (turnCount === 3) {
-            addPirateRaiders()
-            turnCount = 0
-        }
-    }
-})
-
-const addPirateRaiders = () => {
-    const pirates = getPirates()
-    let newPirateObj = {
-        id: pirates[0].id,
-        raider_stock: pirates[0].raider_stock + 5
-    }
-
-    putPirates(newPirateObj, pirates[0].id)
-}

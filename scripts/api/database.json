@@ -80,13 +80,14 @@
     {
       "id": 12,
       "name": "Pierce Valen",
-      "colony_id": 1,
+      "colony_id": 3,
       "is_active": false,
       "is_alive": true
     },
     {
       "id": 13,
       "name": "Draavo Satomi",
+      "colony_id": 3,
       "is_active": false,
       "is_alive": true
     }
@@ -186,30 +187,29 @@
   "facilities": [
     {
       "id": 1,
-      "name": "Warforge Alpha",
+      "name": "Terra Nova",
       "is_active": true,
       "security": 0
     },
     {
       "id": 2,
-      "name": "Starhold Delta",
+      "name": "Nexus Prime",
       "is_active": true,
       "security": 0,
       "is_facility": true
     },
     {
       "id": 3,
-      "name": "Battlespire Gamma",
+      "name": "Astraia",
       "is_active": true,
       "security": 0,
       "is_facility": true
     },
     {
       "id": 4,
-      "name": "Ravenspire Omega",
+      "name": "Elysium",
       "is_active": true,
-      "security": 0,
-      "is_facility": true
+      "security": 0
     }
   ],
   "colonies": [
@@ -241,7 +241,7 @@
       "id": 5,
       "name": "Stellara",
       "security": 0,
-      "is_colony": true
+      "is_facility": true
     }
   ],
   "colony_inventory": [

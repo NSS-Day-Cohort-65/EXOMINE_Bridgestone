@@ -1,5 +1,5 @@
 
-import { getColonies, getFacilities, getPirates, getState, putColony, putFacility } from "../api/dataaccess.js";
+import { getColonies, getFacilities, getPirates, getState, putColony, putFacility, putPirates } from "../api/dataaccess.js";
 
 //component to implement the ability for a facility or colony to defend themselves against a raid if the have the proper amount of security forces to do so. 
 
