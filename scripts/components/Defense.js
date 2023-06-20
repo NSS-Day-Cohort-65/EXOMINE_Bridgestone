@@ -89,7 +89,7 @@ export const reduceSecurityAfterRaid = () => {
                 id: matchedLocation.id,
                 name: matchedLocation.name,
                 security: 0,
-                is_facility: true
+                is_colony: true
               }
               putColony(newObj, matchedLocation.id)
 
@@ -100,7 +100,8 @@ export const reduceSecurityAfterRaid = () => {
                 id: matchedLocation.id,
                 name: matchedLocation.name,
                 is_active: matchedLocation.is_active,
-                security: matchedLocation.security - pirates[0].raider_stock
+                security: matchedLocation.security - pirates[0].raider_stock,
+                is_facility: true
               }
               putFacility(newObj, matchedLocation.id)
         } else {
@@ -108,7 +109,8 @@ export const reduceSecurityAfterRaid = () => {
                 id: matchedLocation.id,
                 name: matchedLocation.name,
                 is_active: matchedLocation.is_active,
-                security: 0
+                security: 0,
+                is_facility: true
               }
               putFacility(newObj, matchedLocation.id)
 
