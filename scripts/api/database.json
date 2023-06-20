@@ -80,14 +80,13 @@
     {
       "id": 12,
       "name": "Pierce Valen",
-      "colony_id": 3,
+      "colony_id": 1,
       "is_active": false,
       "is_alive": true
     },
     {
       "id": 13,
       "name": "Draavo Satomi",
-      "colony_id": 3,
       "is_active": false,
       "is_alive": true
     }
@@ -187,29 +186,31 @@
   "facilities": [
     {
       "id": 1,
-      "name": "Terra Nova",
+      "name": "Warforge Alpha",
       "is_active": true,
-      "security": 0
+      "security": 0,
+      "is_facility": true
     },
     {
       "id": 2,
-      "name": "Nexus Prime",
+      "name": "Starhold Delta",
       "is_active": true,
       "security": 0,
       "is_facility": true
     },
     {
       "id": 3,
-      "name": "Astraia",
+      "name": "Battlespire Gamma",
       "is_active": true,
       "security": 0,
       "is_facility": true
     },
     {
       "id": 4,
-      "name": "Elysium",
+      "name": "Ravenspire Omega",
       "is_active": true,
-      "security": 0
+      "security": 0,
+      "is_facility": true
     }
   ],
   "colonies": [
@@ -241,7 +242,7 @@
       "id": 5,
       "name": "Stellara",
       "security": 0,
-      "is_facility": true
+      "is_colony": true
     }
   ],
   "colony_inventory": [
@@ -261,7 +262,7 @@
       "id": 3,
       "colony_id": 1,
       "mineral_id": 1,
-      "colony_stock": 200
+      "colony_stock": 182
     },
     {
       "id": 4,
@@ -273,7 +274,7 @@
       "id": 5,
       "colony_id": 5,
       "mineral_id": 2,
-      "colony_stock": 200
+      "colony_stock": 181
     },
     {
       "id": 6,
@@ -303,7 +304,7 @@
       "id": 10,
       "colony_id": 5,
       "mineral_id": 7,
-      "colony_stock": 200
+      "colony_stock": 230
     },
     {
       "id": 11,
@@ -339,7 +340,7 @@
       "id": 16,
       "colony_id": 3,
       "mineral_id": 2,
-      "colony_stock": 200
+      "colony_stock": 192
     },
     {
       "id": 17,
@@ -357,7 +358,7 @@
       "id": 19,
       "colony_id": 4,
       "mineral_id": 1,
-      "colony_stock": 200
+      "colony_stock": 176
     },
     {
       "id": 20,
@@ -371,103 +372,103 @@
       "id": 1,
       "facility_id": 1,
       "mineral_id": 7,
-      "facility_stock": 300
+      "facility_stock": 315
     },
     {
       "id": 2,
       "facility_id": 4,
       "mineral_id": 15,
-      "facility_stock": 300
+      "facility_stock": 303
     },
     {
       "id": 3,
       "facility_id": 3,
       "mineral_id": 5,
-      "facility_stock": 300
+      "facility_stock": 330
     },
     {
       "id": 4,
       "facility_id": 2,
       "mineral_id": 11,
-      "facility_stock": 300
+      "facility_stock": 302
     },
     {
       "id": 5,
       "facility_id": 1,
       "mineral_id": 4,
-      "facility_stock": 300
+      "facility_stock": 320
     },
     {
       "id": 6,
       "facility_id": 4,
       "mineral_id": 8,
-      "facility_stock": 300
+      "facility_stock": 304
     },
     {
       "id": 7,
       "facility_id": 3,
       "mineral_id": 12,
-      "facility_stock": 300
+      "facility_stock": 303
     },
     {
       "id": 8,
       "facility_id": 2,
       "mineral_id": 7,
-      "facility_stock": 300
+      "facility_stock": 315
     },
     {
       "id": 9,
       "facility_id": 1,
       "mineral_id": 13,
-      "facility_stock": 300
+      "facility_stock": 303
     },
     {
       "id": 10,
       "facility_id": 4,
       "mineral_id": 2,
-      "facility_stock": 300
+      "facility_stock": 306
     },
     {
       "id": 11,
       "facility_id": 3,
       "mineral_id": 3,
-      "facility_stock": 300
+      "facility_stock": 330
     },
     {
       "id": 12,
       "facility_id": 2,
       "mineral_id": 6,
-      "facility_stock": 300
+      "facility_stock": 315
     },
     {
       "id": 13,
       "facility_id": 1,
       "mineral_id": 9,
-      "facility_stock": 300
+      "facility_stock": 306
     },
     {
       "id": 14,
       "facility_id": 4,
       "mineral_id": 14,
-      "facility_stock": 300
+      "facility_stock": 303
     },
     {
       "id": 15,
       "facility_id": 3,
       "mineral_id": 1,
-      "facility_stock": 300
+      "facility_stock": 306
     },
     {
       "id": 16,
       "facility_id": 2,
       "mineral_id": 10,
-      "facility_stock": 300
+      "facility_stock": 303
     }
   ],
   "pirates": [
     {
       "id": 1,
-      "raider_stock": 0
+      "raider_stock": 5
     }
   ],
   "pirate_inventory": []
