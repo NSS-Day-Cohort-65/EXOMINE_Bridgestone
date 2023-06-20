@@ -14,17 +14,22 @@ import { generateResetButtonHTML } from './components/ResetButton.js'
 
 document.addEventListener("startRaid", CustomEvent => {
     const state = getState()
+    if (state.wasRaidSuccessful) {
+        if (state.lastLocationRaided.length > 1 && state.lastGovernorKilled.length > 1) {
+            const placeRaided = state.lastLocationRaided
+            const govKilled = state.lastGovernorKilled
 
-    if (state.lastLocationRaided.length > 1 && state.lastGovernorKilled.length > 1) {
+            window.alert(`WARNING: ${placeRaided.toUpperCase()} WAS RAIDED! GOVERNOR ${govKilled.toUpperCase()} HAS BEEN KILLED!`)
+        } else if (state.lastLocationRaided.length > 1) {
+
+            const placeRaided = state.lastLocationRaided
+
+            window.alert(`WARNING: ${placeRaided.toUpperCase()} WAS RAIDED!`)
+        }
+    } else {
         const placeRaided = state.lastLocationRaided
-        const govKilled = state.lastGovernorKilled
 
-        window.alert(`WARNING: ${placeRaided.toUpperCase()} WAS RAIDED! GOVERNOR ${govKilled.toUpperCase()} HAS BEEN KILLED!`)
-    } else if (state.lastLocationRaided.length > 1) {
-
-        const placeRaided = state.lastLocationRaided
-
-        window.alert(`WARNING: ${placeRaided.toUpperCase()} WAS RAIDED!`)
+            window.alert(`WARNING: ${placeRaided.toUpperCase()} WAS RAIDED BUT SUCCESSFULLY DEFENDED!`)
     }
 });
 
