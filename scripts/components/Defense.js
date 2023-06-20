@@ -87,7 +87,7 @@ export const reduceSecurityAfterRaid = () => {
                 id: matchedLocation.id,
                 name: matchedLocation.name,
                 security: 0,
-                is_facility: true
+                is_colony: true
               }
               putColony(newObj, matchedLocation.id)
 
