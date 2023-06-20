@@ -40,8 +40,10 @@ export const isRaidSuccessful = () => {
     const matchedLocation = allLocations.find( location => location.name === raidedLocationName)
 
     if (matchedLocation.security < pirates[0].raider_stock) {
+        state.wasRaidSuccessful = true;
         return true
     } else {
+        state.wasRaidSuccessful = false;
         return false
     }
 }
