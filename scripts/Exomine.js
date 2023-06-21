@@ -53,11 +53,12 @@ export const Exomine = () => {
     </div>
         ${Cart()}
     </section>
+    <section id="security-section" class="flex-container">
+        ${Security()}
+    </section>
     <section id="pirate-section" class="flex-container">
         ${Pirates()}
     </section>
-    <section id="security-section" class="flex-container">
-        ${Security()}
     <section id="reset-button-section">
         ${generateResetButtonHTML()}
     </section>`
