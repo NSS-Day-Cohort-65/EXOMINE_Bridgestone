@@ -1,5 +1,5 @@
 
-import { getColonies, getFacilities, getPirates, getState, putColony, putFacility } from "../api/dataaccess.js";
+import { getColonies, getFacilities, getPirates, getState, putColony, putFacility, putPirates } from "../api/dataaccess.js";
 
 //component to implement the ability for a facility or colony to defend themselves against a raid if the have the proper amount of security forces to do so. 
 
@@ -27,7 +27,7 @@ const pirates = getPirates()
 //is successful check function. Returns a boolean.
 
 export const isRaidSuccessful = () => {
-    
+
     const state = getState()
     const pirates = getPirates()
     const facilities = getFacilities()
@@ -36,20 +36,22 @@ export const isRaidSuccessful = () => {
     const allLocations = facilities.concat(colonies)
 
     const raidedLocationName = state.lastLocationRaided
-    
-    const matchedLocation = allLocations.find( location => location.name === raidedLocationName)
+
+    const matchedLocation = allLocations.find(location => location.name === raidedLocationName)
 
     if (matchedLocation.security < pirates[0].raider_stock) {
+        state.wasRaidSuccessful = true;
         return true
     } else {
+        state.wasRaidSuccessful = false;
         return false
     }
 }
 
 
 // write a function that will reduce security of colony/facility by amount of raiders when a raid occurs.
-export const reduceSecurityAfterRaid = () => {
-    
+export const reduceSecurityAfterRaid = async () => {
+
     const state = getState()
     const pirates = getPirates()
     const facilities = getFacilities()
@@ -58,8 +60,8 @@ export const reduceSecurityAfterRaid = () => {
     const allLocations = facilities.concat(colonies)
 
     const raidedLocationName = state.lastLocationRaided
-    
-    const matchedLocation = allLocations.find( location => location.name === raidedLocationName)
+
+    const matchedLocation = allLocations.find(location => location.name === raidedLocationName)
 
     //write a function to return whether if the matched location is a colony or facility
 
@@ -80,16 +82,16 @@ export const reduceSecurityAfterRaid = () => {
                 name: matchedLocation.name,
                 security: matchedLocation.security - pirates[0].raider_stock,
                 is_colony: true
-              }
-              putColony(newObj, matchedLocation.id)
+            }
+            await putColony(newObj, matchedLocation.id)
         } else {
             let newObj = {
                 id: matchedLocation.id,
                 name: matchedLocation.name,
                 security: 0,
-                is_facility: true
-              }
-              putColony(newObj, matchedLocation.id)
+                is_colony: true
+            }
+            await putColony(newObj, matchedLocation.id)
 
         }
     } else {
@@ -98,17 +100,19 @@ export const reduceSecurityAfterRaid = () => {
                 id: matchedLocation.id,
                 name: matchedLocation.name,
                 is_active: matchedLocation.is_active,
-                security: matchedLocation.security - pirates[0].raider_stock
-              }
-              putFacility(newObj, matchedLocation.id)
+                security: matchedLocation.security - pirates[0].raider_stock,
+                is_facility: true
+            }
+            await putFacility(newObj, matchedLocation.id)
         } else {
             let newObj = {
                 id: matchedLocation.id,
                 name: matchedLocation.name,
                 is_active: matchedLocation.is_active,
-                security: 0
-              }
-              putFacility(newObj, matchedLocation.id)
+                security: 0,
+                is_facility: true
+            }
+            await putFacility(newObj, matchedLocation.id)
 
         }
     }

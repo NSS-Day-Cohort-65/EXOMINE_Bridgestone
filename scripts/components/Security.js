@@ -52,7 +52,8 @@ document.addEventListener("click",
                         id: facilitySelected.id,
                         name: facilitySelected.name,
                         is_active: facilitySelected.is_active,
-                        security: facilitySelected.security + securityTotal
+                        security: facilitySelected.security + securityTotal,
+                        is_facility: true
                     }
                     putFacility(newFacObj, newFacObj.id)
                     securityTotal = 0
@@ -65,7 +66,8 @@ document.addEventListener("click",
                         id: facilitySelected.id,
                         name: facilitySelected.name,
                         is_active: facilitySelected.is_active,
-                        security: securityTotal
+                        security: securityTotal,
+                        is_facility: true
                     }
                     putFacility(newFacObj, newFacObj.id)
                     securityTotal = 0
@@ -79,7 +81,8 @@ document.addEventListener("click",
                     const newColObj = {
                         id: colonySelected.id,
                         name: colonySelected.name,
-                        security: colonySelected.security + securityTotal
+                        security: colonySelected.security + securityTotal,
+                        is_colony: true
                     }
                     putColony(newColObj, newColObj.id)
                     securityTotal = 0
@@ -90,7 +93,8 @@ document.addEventListener("click",
                     const newColObj = {
                         id: colonySelected.id,
                         name: colonySelected.name,
-                        security: securityTotal
+                        security: securityTotal,
+                        is_colony: true
                     }
                     putColony(newColObj, newColObj.id)
                     securityTotal = 0

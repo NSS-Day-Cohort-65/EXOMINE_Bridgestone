@@ -32,7 +32,7 @@ export const Cart = () => {
     const minerals = getMinerals()
     const facilities = getFacilities()
 
-    purchaseMineral = () => {
+    purchaseMineral = async () => {
         // increment colony stock 
         // spaceCart.facility_inventory++
 
@@ -72,14 +72,14 @@ export const Cart = () => {
                     }
 
                     chosenColonyInventory = newInventory;
-                    postColony_Inventory(newInventory)
+                    await postColony_Inventory(newInventory)
                 } else {
                     for (const cart_mineral of state.cart_minerals) {
                         if (cart_mineral.mineral_id === chosenColonyInventory.mineral_id) {
                             chosenColonyInventory.colony_stock += cart_mineral.amount
                         }
                     }
-                    putColony_Inventory(chosenColonyInventory, chosenColonyInventory.id);
+                    await putColony_Inventory(chosenColonyInventory, chosenColonyInventory.id);
                 }
 
                 for (const cart_mineral of state.cart_minerals) {
@@ -87,7 +87,7 @@ export const Cart = () => {
                         chosenFacilityInventory.facility_stock -= cart_mineral.amount
                     }
                 }
-                putFacility_Inventory(chosenFacilityInventory, chosenFacilityInventory.id);
+                await putFacility_Inventory(chosenFacilityInventory, chosenFacilityInventory.id);
             }
             state.cart_minerals = []
             document.dispatchEvent(new CustomEvent("stateChanged"))
