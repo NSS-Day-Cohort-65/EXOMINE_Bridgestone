@@ -48,6 +48,11 @@ document.addEventListener("click", event => {
         })
     }
 })
+
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 let amountSelector;
 export const FacilityInventory = () => {
     const facilities = getFacilities();
@@ -108,12 +113,12 @@ export const FacilityInventory = () => {
 }
 
 //write function that adds a random amount of minerals to a facility every turn. Trigger it off of click event from purchaseButton
-
 const facilitiesGainMinerals = async () => {
     const facInventory = getFacilitiesInventory();
     const minerals = getMinerals();
     for (const facInv of facInventory) {
         const foundMineral = minerals.find(mineral => mineral.id === facInv.mineral_id);
+
         let newObj = {
             id: facInv.id,
             facility_id: facInv.facility_id,
@@ -134,11 +139,7 @@ const facilitiesGainMinerals = async () => {
                 console.error('Error', error)
             }
         }
-    }
-};
-function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+
 
 document.addEventListener(
     "addAndUseMinerals",
