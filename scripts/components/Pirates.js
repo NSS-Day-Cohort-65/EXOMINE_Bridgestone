@@ -245,15 +245,15 @@ export const Pirates = () => {
 
     let html = ''
 
-    //set up pirate container and pirate ship image html
-
-    html += `<div id="pirate-container" class="flex-container">`
-
-    html += `<img id="pirate-ship-image" class="image" src="/images/pirate-ship.png" alt="EVIL SPACE PIRATES">`
+    //set up pirate container
 
     //add pirates border container and heading
 
     html += `<div id="pirate-text-container"> <h1 id="pirate-header">Pirates</h1>`
+
+    // pirate ship image html
+
+    html += `<img id="pirate-ship-image" class="image" src="/images/pirate-ship.png" alt="EVIL SPACE PIRATES">`
 
     //set up pirate resource container and pirate resource html representation. Will container total minerals and raider count, along with function to add raiders to count
 
@@ -281,10 +281,6 @@ export const Pirates = () => {
     html += `</div>`
 
     //set up end of pirate-resource-container div
-
-    html += `</div>`
-
-    //set up end of pirate-container div
 
     html += `</div>`
 

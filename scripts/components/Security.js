@@ -190,7 +190,7 @@ const calculateSecurityTotal = () => {
 export const Security = () => {
     calculateSecurityTotal();
 
-    let html = `<h2 class="headings-containers">Security Recruiter</h2>
+    let html = `<h1 class="headings-containers">Security Recruiter</h1>
     <div id="security_prompt">
     <p>Choose a Facility or Colony:</p>`
 

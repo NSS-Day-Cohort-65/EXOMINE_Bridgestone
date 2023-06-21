@@ -60,18 +60,18 @@ export const Exomine = () => {
     </div>
     </section>
     <section id="middle-section" class="primary-section">
-    <div id="security-container" class="flex-container">
-        ${Security()}
-    </div>
-    <div id="governor-recruiter-container" class="flex-container">
-        ${GovernorRecruiter()}
-    </div>
-    <div id="status-container" class="flex-container">
-        ${StatusWindow()}
-    </div>
-    <div id="pirate-container" class="flex-container">
-        ${Pirates()}
-    </div>
+        <div id="security-container" class="flex-container">
+            ${Security()}
+        </div>
+        <div id="governor-recruiter-container" class="flex-container">
+            ${GovernorRecruiter()}
+        </div>
+        <div id="status-container" class="flex-container">
+            ${StatusWindow()}
+        </div>
+        <div id="pirate-container" class="flex-container">
+            ${Pirates()}
+        </div>
     </section>
     </div>
     </div>`

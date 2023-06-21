@@ -7,11 +7,6 @@
     font-family: "Fox on the run";
 }
 
-/* remove this later */
-img {
-    width: 200px;
-}
-
 
 
 /* high level positioning and general big tweaks and setup */
@@ -45,6 +40,7 @@ body {
     border: 1px dotted white;
     padding: 20px;
     background-color: #35383a;
+    text-align: center;
 }
 
 h1 {
@@ -242,8 +238,60 @@ button:disabled {
 
 /* status */
 
+#resources_list {
+    padding: 20px 0px;
+}
+
 
 
 /* pirates */
 
+img {
+    margin: 30px 0px 20px 0px;
+}
+
+#pirate-resources-container-all {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border: none;
+    margin-top: 0px;
+}
+
+.pirate-resource-container {
+    color: rgb(255, 255, 255);
+    text-shadow: rgb(174, 204, 247) 1px 1px 7px;
+    --darkreader-inline-color: #e8e6e3;
+    --darkreader-inline-bgimage: initial;
+    --darkreader-inline-bgcolor: #74231b;
+}
+
+#pirate-ship-image {
+    width: 250px;
+    animation: wobble 4s infinite linear;
+    /* Adjust the duration as needed */
+}
+
+@keyframes wobble {
+
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    25% {
+        -webkit-transform: rotate(3deg);
+    }
+
+    50% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    75% {
+        -webkit-transform: rotate(-3deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(0deg);
+    }
+}
 

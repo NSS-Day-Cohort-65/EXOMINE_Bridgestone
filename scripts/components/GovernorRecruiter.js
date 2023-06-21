@@ -47,7 +47,7 @@ export const GovernorRecruiter = () => {
 
     // the event listener looks for the selector id to start with recruit
     let html = `
-        <h2 class="headings-containers">Governor Recruiter</h2>
+        <h1 class="headings-containers">Governor Recruiter</h1>
         <p>Choose a Governor</p>
         <select id="recruit-selector" class="selector">
         <option value="">Select a recruit...</option>`
