@@ -87,6 +87,7 @@
     {
       "id": 13,
       "name": "Draavo Satomi",
+      "colony_id": 3,
       "is_active": false,
       "is_alive": true
     }

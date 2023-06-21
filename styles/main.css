@@ -37,10 +37,15 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px dotted white;
-    padding: 20px;
+    border: 2px solid rgb(212, 227, 255);
+    padding: 25px;
     background-color: #35383a;
     text-align: center;
+    border-radius: 5%;
+    width: 280px;
+    min-height: 280px;
+    overflow:auto;
+
 }
 
 h1 {
@@ -63,11 +68,23 @@ h1 {
 }
 
 
-/* selectors and lists */
+/* selectors, inputs and lists */
 
 .selector {
     margin: 5px 0px 30px 0px;
-    padding: 5px;
+    padding: 2px;
+    background-color: #e4e6f1;
+    color: black;
+    font-size: 13px;
+    text-shadow: 0px 0.3px 0px #313131;
+
+}
+
+input {
+    padding: 2px;
+    background-color: #e4e6f1;
+    color: black;
+    text-shadow: 0px 0.3px 0px #313131;
 }
 
 .list {
@@ -126,7 +143,9 @@ button:disabled {
     margin-right: 10px;
     position: absolute;
     right: 40px;
-    top: 20px
+    top: 20px;
+    box-shadow: 2px 3px 8px 3px #390a0a;
+
 }
 
 
@@ -137,6 +156,21 @@ button:disabled {
     font-size: 50px;
     text-align: center;
     margin-top: 15px;
+    /* animation: alert 5s infinite; */
+}
+
+@keyframes alert {
+    0% {
+        -webkit-transform: scale(1);
+    }
+
+    50% {
+        -webkit-transform: scale(1.09)
+    }
+
+    100% {
+        -webkit-transform: scale(1)
+    }
 }
 
 
@@ -147,6 +181,15 @@ button:disabled {
     text-align: center;
     margin: 30px 0px 10px 0px;
     font-size: 30px;
+    animation: alert linear 2.5s infinite;
+}
+
+/* selectors container Gov and Fac */
+
+#selectors-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -161,7 +204,6 @@ button:disabled {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    align-items: center;
     height: 150%;
 }
 
@@ -173,9 +215,6 @@ button:disabled {
 
 }
 
-#facility__header {
-
-}
 
 
 /* cart */
@@ -219,11 +258,11 @@ button:disabled {
 }
 
 .security-mineral-input {
-    margin-left: 10px;
+    margin-left: 8px;
 }
 
 .security-mineral-value {
-    margin-right: 10px;
+    margin-right: 8px;
 }
 
 .security-number-to-recruit {
@@ -254,8 +293,11 @@ img {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    border: none;
     margin-top: 0px;
+    border-top: none;
+    border-bottom: none;
+    border-radius: 0px;
+    min-height: none;
 }
 
 .pirate-resource-container {
@@ -266,8 +308,10 @@ img {
     --darkreader-inline-bgcolor: #74231b;
 }
 
+
+
 #pirate-ship-image {
-    width: 250px;
+    width: 200px;
     animation: wobble 4s infinite linear;
     /* Adjust the duration as needed */
 }

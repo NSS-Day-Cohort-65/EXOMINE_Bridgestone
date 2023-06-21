@@ -219,10 +219,10 @@ export const Security = () => {
                 const minerals = getMinerals();
                 let foundMineral = minerals.find(mineral => mineral.id === inventory.mineral_id)
                 let inputName = `${foundMineral.name}--${inventory.mineral_id}`
-                return `<label for="${inputName}" >${foundMineral.name}</label>
-                    <p>Value: ${foundMineral.value}</p>
-                    <p>Available: ${inventory.colony_stock}</p>
-                    <input data-mineralValue=${foundMineral.value} name="${inputName}" id="securityMineralInput--${inventory.id}" type="number" min="0" max="${inventory.colony_stock}" value="${mineralsToSpend[inputName] ? mineralsToSpend[inputName].amount : 0}">`
+                return `<label class="security-mineral-heading" for="${inputName}" >${foundMineral.name}</label><div id="security-items-line">
+                    <p class="security-mineral-value">Value: ${foundMineral.value}</p>
+                    <p class="security-mineral-available">Available: ${inventory.colony_stock}</p>
+                    <input data-mineralValue=${foundMineral.value} class="security-mineral-input" name="${inputName}" id="securityMineralInput--${inventory.id}" type="number" min="0" max="${inventory.colony_stock}" value="${mineralsToSpend[inputName] ? mineralsToSpend[inputName].amount : 0}"></div>`
             }
         ).join("")
     } else if (facilitySelected) {

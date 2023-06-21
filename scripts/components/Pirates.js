@@ -257,7 +257,7 @@ export const Pirates = () => {
 
     //set up pirate resource container and pirate resource html representation. Will container total minerals and raider count, along with function to add raiders to count
 
-    html += `<div id="pirate-resources-container-all" class="flex-container">`
+    html += `<div id="pirate-resources-container-all" class="flex-container-pirate">`
 
     //write function to get all pirate-inventory objects, total the stock, and return that number
     const totalPirateInventoryStock = () => {
@@ -270,11 +270,11 @@ export const Pirates = () => {
 
     //put above function into html representation
 
-    html += `<div id="pirate-mineral-container" class="flex container pirate-resource-container"><h3 class="pirate-resource-heading">Minerals</h3><p id="pirate-mineral-total" class="pirate-resource-paragraph">${totalPirateInventoryStock()}</p></div>`
+    html += `<div id="pirate-mineral-container" class="pirate-resource-container"><h3 class="pirate-resource-heading">Minerals</h3><p id="pirate-mineral-total" class="pirate-resource-paragraph">${totalPirateInventoryStock()}</p></div>`
 
     //take function that generates total pirate raider count and puts it into html representation
 
-    html += `<div id="pirate-raider-container" class="flex container pirate-resource-container"><h3 class="pirate-resource-heading">Raiders</h3><p id="pirate-raider-total" class="pirate-resource-paragraph">${pirates[0].raider_stock}</p></div>`
+    html += `<div id="pirate-raider-container" class=" pirate-resource-container"><h3 class="pirate-resource-heading">Raiders</h3><p id="pirate-raider-total" class="pirate-resource-paragraph">${pirates[0].raider_stock}</p></div>`
 
     //set up end of pirate-text-container div
 

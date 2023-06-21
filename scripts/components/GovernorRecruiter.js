@@ -86,7 +86,7 @@ export const GovernorRecruiter = () => {
 
     if (state.selectedRecruit && state.selectedRecruitColony) {
 
-        html += `<button id="button-recruit">Recruit</button></div>`
+        html += `<button id="button-recruit">Recruit</button>`
     } else {
         html += `<button id="button-recruit" disabled>Recruit</button>`
 
