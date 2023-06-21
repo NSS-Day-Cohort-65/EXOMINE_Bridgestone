@@ -27,7 +27,7 @@ const pirates = getPirates()
 //is successful check function. Returns a boolean.
 
 export const isRaidSuccessful = () => {
-    
+
     const state = getState()
     const pirates = getPirates()
     const facilities = getFacilities()
@@ -36,8 +36,8 @@ export const isRaidSuccessful = () => {
     const allLocations = facilities.concat(colonies)
 
     const raidedLocationName = state.lastLocationRaided
-    
-    const matchedLocation = allLocations.find( location => location.name === raidedLocationName)
+
+    const matchedLocation = allLocations.find(location => location.name === raidedLocationName)
 
     if (matchedLocation.security < pirates[0].raider_stock) {
         state.wasRaidSuccessful = true;
@@ -50,8 +50,8 @@ export const isRaidSuccessful = () => {
 
 
 // write a function that will reduce security of colony/facility by amount of raiders when a raid occurs.
-export const reduceSecurityAfterRaid = () => {
-    
+export const reduceSecurityAfterRaid = async () => {
+
     const state = getState()
     const pirates = getPirates()
     const facilities = getFacilities()
@@ -60,8 +60,8 @@ export const reduceSecurityAfterRaid = () => {
     const allLocations = facilities.concat(colonies)
 
     const raidedLocationName = state.lastLocationRaided
-    
-    const matchedLocation = allLocations.find( location => location.name === raidedLocationName)
+
+    const matchedLocation = allLocations.find(location => location.name === raidedLocationName)
 
     //write a function to return whether if the matched location is a colony or facility
 
@@ -82,16 +82,16 @@ export const reduceSecurityAfterRaid = () => {
                 name: matchedLocation.name,
                 security: matchedLocation.security - pirates[0].raider_stock,
                 is_colony: true
-              }
-              putColony(newObj, matchedLocation.id)
+            }
+            await putColony(newObj, matchedLocation.id)
         } else {
             let newObj = {
                 id: matchedLocation.id,
                 name: matchedLocation.name,
                 security: 0,
                 is_colony: true
-              }
-              putColony(newObj, matchedLocation.id)
+            }
+            await putColony(newObj, matchedLocation.id)
 
         }
     } else {
@@ -102,8 +102,8 @@ export const reduceSecurityAfterRaid = () => {
                 is_active: matchedLocation.is_active,
                 security: matchedLocation.security - pirates[0].raider_stock,
                 is_facility: true
-              }
-              putFacility(newObj, matchedLocation.id)
+            }
+            await putFacility(newObj, matchedLocation.id)
         } else {
             let newObj = {
                 id: matchedLocation.id,
@@ -111,8 +111,8 @@ export const reduceSecurityAfterRaid = () => {
                 is_active: matchedLocation.is_active,
                 security: 0,
                 is_facility: true
-              }
-              putFacility(newObj, matchedLocation.id)
+            }
+            await putFacility(newObj, matchedLocation.id)
 
         }
     }

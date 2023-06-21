@@ -27,7 +27,7 @@ const addPirateRaiders = () => {
     console.log("added 5 raiders")
 }
 
-const reduceRaidersAfterRaid = () => {
+const reduceRaidersAfterRaid = async () => {
     const pirates = getPirates()
     //checking if turn is 0 because when it hits 3, it goes through the above function and click even first which then resets it back to 0. Since this check here always happens afterwards, the onlytime turn count will get here and be equal to 0 is right after it was equal to three and reset by the above function/click event, which is what would signal the if condition should occur.
     if (turnCount === 0) {
@@ -35,14 +35,14 @@ const reduceRaidersAfterRaid = () => {
             id: pirates[0].id,
             raider_stock: Math.ceil(pirates[0].raider_stock * 0.75) + 5
         }
-        putPirates(newObj, pirates[0].id)
+        await putPirates(newObj, pirates[0].id)
         console.log("reduced raiders by 3/4 and then added 5")
     } else {
         let newObj = {
             id: pirates[0].id,
             raider_stock: Math.ceil(pirates[0].raider_stock * 0.75)
         }
-        putPirates(newObj, pirates[0].id)
+        await putPirates(newObj, pirates[0].id)
         console.log("reduced raiders by 3/4")
     }
 }
@@ -83,7 +83,7 @@ const coinFlip = () => {
     }
 }
 
-const raid = () => {
+const raid = async () => {
     let pirateInventory = getPirateInventory();
     let piratePlunder = []
     //import in whether or not a raid was successful from defense.js
@@ -122,7 +122,7 @@ const raid = () => {
             }
 
             for (const inventory of targetColonyInventory) {
-                putColony_Inventory(inventory, inventory.id);
+                await putColony_Inventory(inventory, inventory.id);
             }
 
             const randomRoll = Math.ceil(Math.random * 10)
@@ -141,14 +141,14 @@ const raid = () => {
                 }
                 setLastGovernorKilled(newGovObj.name);
                 console.log(`${foundGovernor.name} was killed!`)
-                putGovernor(newGovObj, newGovObj.id)
+                await putGovernor(newGovObj, newGovObj.id)
             }
-            reduceSecurityAfterRaid()
-            reduceRaidersAfterRaid()
+            await reduceSecurityAfterRaid()
+            await reduceRaidersAfterRaid()
         } else {
             console.log("Colony was defended successfully!")
-            reduceSecurityAfterRaid()
-            reduceRaidersAfterRaid()
+            await reduceSecurityAfterRaid()
+            await reduceRaidersAfterRaid()
         }
     } else {
         const facilities = getFacilities();
@@ -185,23 +185,23 @@ const raid = () => {
             }
 
             for (const inventory of targetFacilityInventory) {
-                putFacility_Inventory(inventory, inventory.id);
+                await putFacility_Inventory(inventory, inventory.id);
             }
-            reduceSecurityAfterRaid()
-            reduceRaidersAfterRaid()
+            await reduceSecurityAfterRaid()
+            await reduceRaidersAfterRaid()
         } else {
             console.log("Facility was defended successfully!")
-            reduceSecurityAfterRaid()
-            reduceRaidersAfterRaid()
+            await reduceSecurityAfterRaid()
+            await reduceRaidersAfterRaid()
         }
     }
     for (const plunder of piratePlunder) {
         let foundInventory = pirateInventory.find(inventory => inventory.mineral_id === plunder.mineral_id)
         if (foundInventory) {
             plunder.pirate_stock += foundInventory.pirate_stock
-            putPirate_Inventory(plunder, foundInventory.id)
+            await putPirate_Inventory(plunder, foundInventory.id)
         } else {
-            postPirate_Inventory(plunder);
+            await postPirate_Inventory(plunder);
         }
     }
 

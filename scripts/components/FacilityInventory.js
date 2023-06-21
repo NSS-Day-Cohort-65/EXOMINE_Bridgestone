@@ -109,11 +109,12 @@ export const FacilityInventory = () => {
 
 //write function that adds a random amount of minerals to a facility every turn. Trigger it off of click event from purchaseButton
 
-const facilitiesGainMinerals = () => {
+const facilitiesGainMinerals = async () => {
     const facInventory = getFacilitiesInventory()
     const minerals = getMinerals();
 
     for (const facInv of facInventory) {
+
         const foundMineral = minerals.find(mineral => mineral.id === facInv.mineral_id)
 
         let newObj = {
@@ -123,15 +124,15 @@ const facilitiesGainMinerals = () => {
             facility_stock: facInv.facility_stock + foundMineral.yield
         }
 
-        putFacility_Inventory(newObj, facInv.id)
+        await putFacility_Inventory(newObj, facInv.id), 2000
 
     }
 }
 
 document.addEventListener(
     "addAndUseMinerals",
-    customEvent => {
-        facilitiesGainMinerals();
+    async customEvent => {
+        await facilitiesGainMinerals();
         document.dispatchEvent(new CustomEvent("stateChanged"))
     }
 )
