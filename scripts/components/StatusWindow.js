@@ -168,7 +168,7 @@ const ResourcesDisplay = () => {
 //display entire status window
 export const StatusWindow = () => {
 
-    let html =`<h2>Status</h2>
+    let html =`<h2 class="headings-containers">Status</h2>
     <div id="status prompt">
     <p>Choose a Facility or Colony:</p>`
 

@@ -12,5 +12,5 @@ document.addEventListener(
 export const TurnCounter = () => {
     let turn = getState().turnCounter
 
-    return `<h2>Turn ${turn}</h2>`
+    return `<h2 id="turncounter">Turn ${turn}</h2>`
 }
