@@ -1,11 +1,11 @@
 import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getState, putColony_Inventory, putFacility_Inventory, postColony_Inventory } from "../api/dataaccess.js"
 
-document.addEventListener("click", (clickEvent) => {
+document.addEventListener("click", async (clickEvent) => {
     const itemClicked = clickEvent.target
 
     //check if itemClicked is the button 
     if (itemClicked.id === "purchaseButton") {
-        purchaseMineral()
+        await purchaseMineral()
         document.dispatchEvent(new CustomEvent("stateChanged"))
         document.dispatchEvent(new CustomEvent("addAndUseMinerals"))
     }
@@ -23,6 +23,10 @@ document.addEventListener(
     }
 )
 
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 let purchaseMineral
 
 export const Cart = () => {
@@ -32,7 +36,7 @@ export const Cart = () => {
     const minerals = getMinerals()
     const facilities = getFacilities()
 
-    purchaseMineral = () => {
+    purchaseMineral = async () => {
         // increment colony stock 
         // spaceCart.facility_inventory++
 
@@ -72,14 +76,14 @@ export const Cart = () => {
                     }
 
                     chosenColonyInventory = newInventory;
-                    postColony_Inventory(newInventory)
+                    await postColony_Inventory(newInventory)
                 } else {
                     for (const cart_mineral of state.cart_minerals) {
                         if (cart_mineral.mineral_id === chosenColonyInventory.mineral_id) {
                             chosenColonyInventory.colony_stock += cart_mineral.amount
                         }
                     }
-                    putColony_Inventory(chosenColonyInventory, chosenColonyInventory.id);
+                    await putColony_Inventory(chosenColonyInventory, chosenColonyInventory.id);
                 }
 
                 for (const cart_mineral of state.cart_minerals) {
@@ -87,10 +91,22 @@ export const Cart = () => {
                         chosenFacilityInventory.facility_stock -= cart_mineral.amount
                     }
                 }
-                putFacility_Inventory(chosenFacilityInventory, chosenFacilityInventory.id);
+                try {
+                    await putFacility_Inventory(chosenFacilityInventory, chosenFacilityInventory.id);
+                } catch (error) {
+                    console.error('PUT request failed for facility inventory ID:', chosenFacilityInventory.id);
+                    console.error('Error:', error);
+                    delay(1000);
+                    try {
+                        console.log('Retrying PUT request for facility inventory ID:', chosenFacilityInventory.id)
+                        await putFacility_Inventory(chosenFacilityInventory, chosenFacilityInventory.id);
+                    } catch (error) {
+                        console.error('Error', error)
+                    }
+                }
+                state.cart_minerals = []
+                document.dispatchEvent(new CustomEvent("stateChanged"))
             }
-            state.cart_minerals = []
-            document.dispatchEvent(new CustomEvent("stateChanged"))
         }
     }
 

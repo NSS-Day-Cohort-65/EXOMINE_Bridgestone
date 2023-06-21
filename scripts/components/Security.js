@@ -6,6 +6,14 @@ let numberSelected = 0
 let mineralsToSpend = {};
 let securityTotal = 0;
 
+//reset selectors upon reset
+document.addEventListener("click", event => {
+    if (event.target.id === "resetButton") {
+        colonySelected = null
+        facilitySelected = null
+    }
+})
+
 //event listener to check if facility or colony is selected
 document.addEventListener("change",
     (event) => {
@@ -52,7 +60,8 @@ document.addEventListener("click",
                         id: facilitySelected.id,
                         name: facilitySelected.name,
                         is_active: facilitySelected.is_active,
-                        security: facilitySelected.security + securityTotal
+                        security: facilitySelected.security + securityTotal,
+                        is_facility: true
                     }
                     putFacility(newFacObj, newFacObj.id)
                     securityTotal = 0
@@ -65,7 +74,8 @@ document.addEventListener("click",
                         id: facilitySelected.id,
                         name: facilitySelected.name,
                         is_active: facilitySelected.is_active,
-                        security: securityTotal
+                        security: securityTotal,
+                        is_facility: true
                     }
                     putFacility(newFacObj, newFacObj.id)
                     securityTotal = 0
@@ -79,7 +89,8 @@ document.addEventListener("click",
                     const newColObj = {
                         id: colonySelected.id,
                         name: colonySelected.name,
-                        security: colonySelected.security + securityTotal
+                        security: colonySelected.security + securityTotal,
+                        is_colony: true
                     }
                     putColony(newColObj, newColObj.id)
                     securityTotal = 0
@@ -90,7 +101,8 @@ document.addEventListener("click",
                     const newColObj = {
                         id: colonySelected.id,
                         name: colonySelected.name,
-                        security: securityTotal
+                        security: securityTotal,
+                        is_colony: true
                     }
                     putColony(newColObj, newColObj.id)
                     securityTotal = 0

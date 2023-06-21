@@ -10,21 +10,27 @@ import { Security } from './components/Security.js'
 import { getState } from './api/dataaccess.js'
 // import { raidAlertHTMLGen } from './components/RaidAlert.js'
 import { generateResetButtonHTML } from './components/ResetButton.js'
+import { StatusWindow } from './components/StatusWindow.js'
 
 
 document.addEventListener("startRaid", CustomEvent => {
     const state = getState()
+    if (state.wasRaidSuccessful) {
+        if (state.lastLocationRaided.length > 1 && state.lastGovernorKilled.length > 1) {
+            const placeRaided = state.lastLocationRaided
+            const govKilled = state.lastGovernorKilled
 
-    if (state.lastLocationRaided.length > 1 && state.lastGovernorKilled.length > 1) {
+            window.alert(`WARNING: ${placeRaided.toUpperCase()} WAS RAIDED! GOVERNOR ${govKilled.toUpperCase()} HAS BEEN KILLED!`)
+        } else if (state.lastLocationRaided.length > 1) {
+
+            const placeRaided = state.lastLocationRaided
+
+            window.alert(`WARNING: ${placeRaided.toUpperCase()} WAS RAIDED!`)
+        }
+    } else {
         const placeRaided = state.lastLocationRaided
-        const govKilled = state.lastGovernorKilled
 
-        window.alert(`WARNING: ${placeRaided.toUpperCase()} WAS RAIDED! GOVERNOR ${govKilled.toUpperCase()} HAS BEEN KILLED!`)
-    } else if (state.lastLocationRaided.length > 1) {
-
-        const placeRaided = state.lastLocationRaided
-
-        window.alert(`WARNING: ${placeRaided.toUpperCase()} WAS RAIDED!`)
+            window.alert(`WARNING: ${placeRaided.toUpperCase()} WAS RAIDED BUT SUCCESSFULLY DEFENDED!`)
     }
 });
 
@@ -48,16 +54,18 @@ export const Exomine = () => {
     </div>
         ${Cart()}
     </section>
+    <section id="security-section" class="flex-container">
+        ${Security()}
+    </section>
+    <section id="status-section" class="flex-container">
+        ${StatusWindow()}
+    </section>
     <section id="pirate-section" class="flex-container">
         ${Pirates()}
     </section>
-    <section id="security-section" class="flex-container">
-        ${Security()}
     <section id="reset-button-section">
         ${generateResetButtonHTML()}
     </section>`
 }
 
 //if adding in none windwo based alert, place this back above last article tag (like 41 as of time of writing) ${raidAlertHTMLGen()} and uncomment the import statment on like 9.
-
-

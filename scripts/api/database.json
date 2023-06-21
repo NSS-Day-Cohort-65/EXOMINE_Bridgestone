@@ -80,7 +80,7 @@
     {
       "id": 12,
       "name": "Pierce Valen",
-      "colony_id": 1,
+      "colony_id": 2,
       "is_active": false,
       "is_alive": true
     },
@@ -187,45 +187,62 @@
     {
       "id": 1,
       "name": "Warforge Alpha",
-      "is_active": true
+      "is_active": true,
+      "security": 0,
+      "is_facility": true
     },
     {
       "id": 2,
       "name": "Starhold Delta",
       "is_active": true,
-      "security": 20
+      "security": 0,
+      "is_facility": true
     },
     {
       "id": 3,
       "name": "Battlespire Gamma",
-      "is_active": true
+      "is_active": true,
+      "security": 0,
+      "is_facility": true
     },
     {
       "id": 4,
       "name": "Ravenspire Omega",
-      "is_active": true
+      "is_active": true,
+      "security": 0,
+      "is_facility": true
     }
   ],
   "colonies": [
     {
       "id": 1,
-      "name": "Terra Nova"
+      "name": "Terra Nova",
+      "security": 0,
+      "is_colony": true
     },
     {
       "id": 2,
-      "name": "Nexus Prime"
+      "name": "Nexus Prime",
+      "security": 0,
+      "is_colony": true
     },
     {
       "id": 3,
-      "name": "Astraia"
+      "name": "Astraia",
+      "security": 0,
+      "is_colony": true
     },
     {
       "id": 4,
-      "name": "Elysium"
+      "name": "Elysium",
+      "security": 0,
+      "is_colony": true
     },
     {
       "id": 5,
-      "name": "Stellara"
+      "name": "Stellara",
+      "security": 0,
+      "is_colony": true
     }
   ],
   "colony_inventory": [
