@@ -139,7 +139,8 @@ const facilitiesGainMinerals = async () => {
                 console.error('Error', error)
             }
         }
-
+    }
+}
 
 document.addEventListener(
     "addAndUseMinerals",
