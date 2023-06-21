@@ -16,6 +16,10 @@ document.addEventListener("click", e => {
     }
 })
 
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 const addPirateRaiders = () => {
     const pirates = getPirates()
     let newPirateObj = {
@@ -185,7 +189,19 @@ const raid = async () => {
             }
 
             for (const inventory of targetFacilityInventory) {
-                await putFacility_Inventory(inventory, inventory.id);
+                try {
+                    await putFacility_Inventory(inventory, inventory.id);
+                } catch (error) {
+                    console.error('PUT request failed for facility inventory ID:', inventory.id);
+                    console.error('Error:', error);
+                    delay(1000);
+                    try {
+                        console.log('Retrying PUT request for facility inventory ID:', inventory.id)
+                        await putFacility_Inventory(inventory, inventory.id);
+                    } catch (error) {
+                        console.error('Error', error)
+                    }
+                }
             }
             await reduceSecurityAfterRaid()
             await reduceRaidersAfterRaid()

@@ -6,6 +6,14 @@ import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventor
 let colonySelected = null 
 let facilitySelected = null 
 
+//reset selectors upon reset 
+document.addEventListener("click", event => {
+    if (event.target.id === "resetButton") {
+        colonySelected = null 
+        facilitySelected = null
+    }
+})
+
 //event listener to check if facility or colony is selected
 document.addEventListener(
     "change",
