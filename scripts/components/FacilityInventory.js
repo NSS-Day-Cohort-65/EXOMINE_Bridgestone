@@ -124,7 +124,7 @@ const facilitiesGainMinerals = async () => {
             facility_stock: facInv.facility_stock + foundMineral.yield
         }
 
-        await putFacility_Inventory(newObj, facInv.id), 2000
+        await putFacility_Inventory(newObj, facInv.id)
 
     }
 }
