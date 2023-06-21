@@ -47,6 +47,10 @@ const colonyInvHTMLGen = colonyInvArr => {
     return html
 }
 
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 
 export const ColonyResources = () => {
     const governors = getGovernors()
@@ -95,7 +99,20 @@ const coloniesUseMinerals = async () => {
                 colony_stock: colInv.colony_stock - randomAmount
             }
 
-            await putColony_Inventory(newObj, colInv.id)
+            try {
+                await putColony_Inventory(newObj, colInv.id)
+            } catch (error) {
+                console.error('PUT request failed for facility inventory ID:', colInv.id);
+                console.error('Error:', error);
+                delay(1000);
+                try {
+                    console.log('Retrying PUT request for facility inventory ID:', colInv.id)
+                    await putColony_Inventory(newObj, colInv.id)
+                } catch (error) {
+                    console.error('Error', error)
+                }
+            }
+
         }
     }
 }

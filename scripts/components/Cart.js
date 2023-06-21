@@ -23,6 +23,10 @@ document.addEventListener(
     }
 )
 
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 let purchaseMineral
 
 export const Cart = () => {
@@ -87,10 +91,22 @@ export const Cart = () => {
                         chosenFacilityInventory.facility_stock -= cart_mineral.amount
                     }
                 }
-                await putFacility_Inventory(chosenFacilityInventory, chosenFacilityInventory.id);
+                try {
+                    await putFacility_Inventory(chosenFacilityInventory, chosenFacilityInventory.id);
+                } catch (error) {
+                    console.error('PUT request failed for facility inventory ID:', chosenFacilityInventory.id);
+                    console.error('Error:', error);
+                    delay(1000);
+                    try {
+                        console.log('Retrying PUT request for facility inventory ID:', chosenFacilityInventory.id)
+                        await putFacility_Inventory(chosenFacilityInventory, chosenFacilityInventory.id);
+                    } catch (error) {
+                        console.error('Error', error)
+                    }
+                }
+                state.cart_minerals = []
+                document.dispatchEvent(new CustomEvent("stateChanged"))
             }
-            state.cart_minerals = []
-            document.dispatchEvent(new CustomEvent("stateChanged"))
         }
     }
 

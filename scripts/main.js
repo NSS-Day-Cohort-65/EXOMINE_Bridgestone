@@ -10,30 +10,36 @@ document.addEventListener(
     }
 )
 
-// export const renderHtml = () => {
-//     fetchMinerals()
-//         .then(() => fetchGovernors())
-//         .then(() => fetchColonies())
-//         .then(() => fetchFacilities())
-//         .then(() => fetchPirates())
-//         .then(() => fetchPirate_Inventory())
-//         .then(() => fetchColonies_Inventory())
-//         .then(() => fetchFacility_Inventory())
-//         .then(
-//             () => {
-//                 mainContainer.innerHTML = Exomine();
-//             }
-//         )
-// }
+const tryAndRetry = async (func) => {
+    try {
+        await func()
+    } catch (Error) {
+        console.error("Error:", Error)
+        delay(1000)
+        try {
+
+            console.log("Retrying:", func.name)
+            await func()
+        } catch (Error) {
+            console.error(`Failed ${func.name} again`)
+            console.error("Error:", Error)
+        }
+    }
+}
+
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export const renderHtml = async () => {
-    await fetchMinerals()
-    await fetchGovernors()
-    await fetchColonies()
-    await fetchFacilities()
-    await fetchPirates()
-    await fetchPirate_Inventory()
-    await fetchColonies_Inventory()
-    await fetchFacility_Inventory()
+    await tryAndRetry(fetchMinerals)
+    await tryAndRetry(fetchGovernors)
+    await tryAndRetry(fetchColonies)
+    await tryAndRetry(fetchFacilities)
+    await tryAndRetry(fetchPirates)
+    await tryAndRetry(fetchPirate_Inventory)
+    await tryAndRetry(fetchColonies_Inventory)
+    await tryAndRetry(fetchFacility_Inventory)
     mainContainer.innerHTML = Exomine();
 
 }
