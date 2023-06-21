@@ -192,24 +192,18 @@
     },
     {
       "id": 2,
-      "name": "Starhold Delta",
-      "is_active": true,
-      "security": 0,
-      "is_facility": true
+      "name": "Nexus Prime",
+      "security": 0
     },
     {
       "id": 3,
-      "name": "Battlespire Gamma",
-      "is_active": true,
-      "security": 0,
-      "is_facility": true
+      "name": "Astraia",
+      "security": 0
     },
     {
       "id": 4,
-      "name": "Ravenspire Omega",
-      "is_active": true,
-      "security": 0,
-      "is_facility": true
+      "name": "Elysium",
+      "security": 0
     }
   ],
   "colonies": [
@@ -217,31 +211,30 @@
       "id": 1,
       "name": "Terra Nova",
       "security": 0,
-      "is_colony": true
+      "is_facility": true
     },
     {
       "id": 2,
       "name": "Nexus Prime",
       "security": 0,
-      "is_colony": true
+      "is_facility": true
     },
     {
       "id": 3,
       "name": "Astraia",
       "security": 0,
-      "is_colony": true
+      "is_facility": true
     },
     {
       "id": 4,
       "name": "Elysium",
-      "security": 0,
-      "is_colony": true
+      "security": 50
     },
     {
       "id": 5,
       "name": "Stellara",
       "security": 0,
-      "is_colony": true
+      "is_facility": true
     }
   ],
   "colony_inventory": [
@@ -255,13 +248,13 @@
       "id": 2,
       "colony_id": 2,
       "mineral_id": 10,
-      "colony_stock": 200
+      "colony_stock": 100
     },
     {
       "id": 3,
       "colony_id": 1,
       "mineral_id": 1,
-      "colony_stock": 200
+      "colony_stock": 87
     },
     {
       "id": 4,
@@ -273,7 +266,7 @@
       "id": 5,
       "colony_id": 5,
       "mineral_id": 2,
-      "colony_stock": 200
+      "colony_stock": 104
     },
     {
       "id": 6,
@@ -291,13 +284,13 @@
       "id": 8,
       "colony_id": 2,
       "mineral_id": 12,
-      "colony_stock": 200
+      "colony_stock": 100
     },
     {
       "id": 9,
       "colony_id": 4,
       "mineral_id": 11,
-      "colony_stock": 200
+      "colony_stock": 230
     },
     {
       "id": 10,
@@ -315,7 +308,7 @@
       "id": 12,
       "colony_id": 2,
       "mineral_id": 4,
-      "colony_stock": 200
+      "colony_stock": 100
     },
     {
       "id": 13,
@@ -339,13 +332,13 @@
       "id": 16,
       "colony_id": 3,
       "mineral_id": 2,
-      "colony_stock": 200
+      "colony_stock": 101
     },
     {
       "id": 17,
       "colony_id": 2,
       "mineral_id": 6,
-      "colony_stock": 200
+      "colony_stock": 100
     },
     {
       "id": 18,
@@ -357,13 +350,31 @@
       "id": 19,
       "colony_id": 4,
       "mineral_id": 1,
-      "colony_stock": 200
+      "colony_stock": 144
     },
     {
       "id": 20,
       "colony_id": 5,
       "mineral_id": 9,
       "colony_stock": 200
+    },
+    {
+      "colony_id": 1,
+      "mineral_id": 7,
+      "colony_stock": 240,
+      "id": 21
+    },
+    {
+      "colony_id": 1,
+      "mineral_id": 4,
+      "colony_stock": 260,
+      "id": 22
+    },
+    {
+      "colony_id": 1,
+      "mineral_id": 13,
+      "colony_stock": 30,
+      "id": 23
     }
   ],
   "facility_inventory": [
@@ -371,104 +382,205 @@
       "id": 1,
       "facility_id": 1,
       "mineral_id": 7,
-      "facility_stock": 300
+      "facility_stock": 115
     },
     {
       "id": 2,
       "facility_id": 4,
       "mineral_id": 15,
-      "facility_stock": 300
+      "facility_stock": 315
     },
     {
       "id": 3,
       "facility_id": 3,
       "mineral_id": 5,
-      "facility_stock": 300
+      "facility_stock": 450
     },
     {
       "id": 4,
       "facility_id": 2,
       "mineral_id": 11,
-      "facility_stock": 300
+      "facility_stock": 315
     },
     {
       "id": 5,
       "facility_id": 1,
       "mineral_id": 4,
-      "facility_stock": 300
+      "facility_stock": 225
     },
     {
       "id": 6,
       "facility_id": 4,
       "mineral_id": 8,
-      "facility_stock": 300
+      "facility_stock": 330
     },
     {
       "id": 7,
       "facility_id": 3,
       "mineral_id": 12,
-      "facility_stock": 300
+      "facility_stock": 315
     },
     {
       "id": 8,
       "facility_id": 2,
       "mineral_id": 7,
-      "facility_stock": 300
+      "facility_stock": 375
     },
     {
       "id": 9,
       "facility_id": 1,
       "mineral_id": 13,
-      "facility_stock": 300
+      "facility_stock": 157
     },
     {
       "id": 10,
       "facility_id": 4,
       "mineral_id": 2,
-      "facility_stock": 300
+      "facility_stock": 330
     },
     {
       "id": 11,
       "facility_id": 3,
       "mineral_id": 3,
-      "facility_stock": 300
+      "facility_stock": 450
     },
     {
       "id": 12,
       "facility_id": 2,
       "mineral_id": 6,
-      "facility_stock": 300
+      "facility_stock": 375
     },
     {
       "id": 13,
       "facility_id": 1,
       "mineral_id": 9,
-      "facility_stock": 300
+      "facility_stock": 165
     },
     {
       "id": 14,
       "facility_id": 4,
       "mineral_id": 14,
-      "facility_stock": 300
+      "facility_stock": 315
     },
     {
       "id": 15,
       "facility_id": 3,
       "mineral_id": 1,
-      "facility_stock": 300
+      "facility_stock": 330
     },
     {
       "id": 16,
       "facility_id": 2,
       "mineral_id": 10,
-      "facility_stock": 300
+      "facility_stock": 315
     }
   ],
   "pirates": [
     {
       "id": 1,
-      "raider_stock": 0
+      "raider_stock": 25
     }
   ],
-  "pirate_inventory": []
+  "pirate_inventory": [
+    {
+      "mineral_id": 10,
+      "pirate_stock": 100,
+      "id": 1
+    },
+    {
+      "mineral_id": 12,
+      "pirate_stock": 255,
+      "id": 2
+    },
+    {
+      "mineral_id": 6,
+      "pirate_stock": 100,
+      "id": 3
+    },
+    {
+      "mineral_id": 12,
+      "pirate_stock": 100,
+      "id": 4
+    },
+    {
+      "mineral_id": 10,
+      "pirate_stock": 100,
+      "id": 5
+    },
+    {
+      "mineral_id": 4,
+      "pirate_stock": 325,
+      "id": 6
+    },
+    {
+      "mineral_id": 4,
+      "pirate_stock": 100,
+      "id": 7
+    },
+    {
+      "mineral_id": 10,
+      "pirate_stock": 100,
+      "id": 8
+    },
+    {
+      "mineral_id": 15,
+      "pirate_stock": 310,
+      "id": 9
+    },
+    {
+      "mineral_id": 8,
+      "pirate_stock": 322,
+      "id": 10
+    },
+    {
+      "mineral_id": 2,
+      "pirate_stock": 322,
+      "id": 11
+    },
+    {
+      "mineral_id": 14,
+      "pirate_stock": 310,
+      "id": 12
+    },
+    {
+      "mineral_id": 5,
+      "pirate_stock": 205,
+      "id": 13
+    },
+    {
+      "mineral_id": 1,
+      "pirate_stock": 161,
+      "id": 14
+    },
+    {
+      "mineral_id": 5,
+      "pirate_stock": 205,
+      "id": 15
+    },
+    {
+      "mineral_id": 3,
+      "pirate_stock": 205,
+      "id": 16
+    },
+    {
+      "mineral_id": 3,
+      "pirate_stock": 205,
+      "id": 17
+    },
+    {
+      "mineral_id": 13,
+      "pirate_stock": 157,
+      "id": 18
+    },
+    {
+      "mineral_id": 9,
+      "pirate_stock": 165,
+      "id": 19
+    },
+    {
+      "mineral_id": 7,
+      "pirate_stock": 127,
+      "id": 20
+    }
+  ]
 }

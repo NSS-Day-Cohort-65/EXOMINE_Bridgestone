@@ -94,10 +94,6 @@ const ResourcesDisplay = () => {
         const matchingFacInventories = facilitiesInventory.filter(facilityInventory => facilityInventory.facility_id === facilitySelected.id)
         
         for (const inventory of matchingFacInventories) {
-            // if (inventory.facility_stock === null) {
-            //     inventory.facility_stock = 0
-            // }
-
             for (const mineral of minerals) {
                 if (mineral.id === inventory.mineral_id) {
                     matchingMineral = {
@@ -112,10 +108,6 @@ const ResourcesDisplay = () => {
 
         resourcesToDisplay.facilityName = matchingFacility.name
         resourcesToDisplay.mineralsArr = matchingMineralsArr
-
-        if (matchingFacility.security === undefined) {
-            matchingFacility.security = 0
-        } 
         resourcesToDisplay.security = matchingFacility.security
         
         html += `<h2>${resourcesToDisplay.facilityName}</h2>
@@ -138,10 +130,6 @@ const ResourcesDisplay = () => {
         const matchingColInventories = coloniesInventory.filter(colonyInventory => colonyInventory.colony_id === colonySelected.id)
 
         for (const inventory of matchingColInventories) {
-            if (inventory.colony_stock === null) {
-                inventory.colony_stock = 0
-            }
-
             for (const mineral of minerals) {
                 if (mineral.id === inventory.mineral_id) {
                     matchingMineral = {
@@ -156,10 +144,6 @@ const ResourcesDisplay = () => {
 
         resourcesToDisplay.colonyName = matchingColony.name
         resourcesToDisplay.mineralsArr = matchingMineralsArr
-        
-        if (matchingColony.security === undefined) {
-            matchingColony.security = 0
-        } 
         resourcesToDisplay.security = matchingColony.security
 
         html += `<h2>${resourcesToDisplay.colonyName}</h2>
@@ -180,9 +164,6 @@ const ResourcesDisplay = () => {
         return html
     }
 }
-
-
-
 
 //display entire status window
 export const StatusWindow = () => {

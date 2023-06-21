@@ -46,6 +46,14 @@ h1 {
     height: 250px;
 }
 
+#status-section {
+    align-items: center;
+    flex-direction: column;
+    border: rgb(228, 228, 228) dotted 2px;
+    width: 400px;
+    height: 250px;
+}
+
 #purchase-security {
     display: flex;
     flex-direction: row;
