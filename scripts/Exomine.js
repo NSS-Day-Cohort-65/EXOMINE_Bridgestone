@@ -39,6 +39,7 @@ export const Exomine = () => {
     return `
     <div id="all-container">
     <h1 id="heading__main">Solar System Mining Marketplace</h1>
+        ${generateResetButtonHTML()}
     <section id="turncounter-section"> 
     ${TurnCounter()}
     </section>
@@ -48,12 +49,15 @@ export const Exomine = () => {
             ${Governors()}
             ${Facilities()}
         </div>
-        <div id="facilities-container" class="flex-container">
-            ${FacilityInventory()}
-        </div>
         <div id="colonies-container" class="flex-container">
         ${ColonyResources()}
         </div>
+        <div id="facilities-container" class="flex-container">
+            ${FacilityInventory()}
+        </div>
+        <div id="cart-container" class="flex-container">
+        ${Cart()}
+    </div>
     </section>
     <section id="middle-section" class="primary-section">
     <div id="security-container" class="flex-container">
@@ -65,17 +69,9 @@ export const Exomine = () => {
     <div id="status-container" class="flex-container">
         ${StatusWindow()}
     </div>
-    </section>
-    <section id="bottom-section" class="primary-section">
     <div id="pirate-container" class="flex-container">
         ${Pirates()}
     </div>
-    <div id="cart-container" class="flex-container">
-        ${Cart()}
-    </div>
-    </section>
-    <section id="reset-button-section" class="primary-section">
-        ${generateResetButtonHTML()}
     </section>
     </div>
     </div>`
