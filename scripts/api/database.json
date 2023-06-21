@@ -73,14 +73,14 @@
     {
       "id": 11,
       "name": "Zion Remnar",
-      "colony_id": 3,
+      "colony_id": 4,
       "is_active": false,
       "is_alive": true
     },
     {
       "id": 12,
       "name": "Pierce Valen",
-      "colony_id": 1,
+      "colony_id": 4,
       "is_active": false,
       "is_alive": true
     },
