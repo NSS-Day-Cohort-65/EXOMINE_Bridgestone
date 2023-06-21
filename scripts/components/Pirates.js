@@ -55,7 +55,7 @@ const reduceRaidersAfterRaid = async () => {
 
 
 // increase this number to decrease difficulty
-const MAX = 2
+const MAX = 10
 const GRACE_PERIOD = 3
 
 let raidCounter = 1

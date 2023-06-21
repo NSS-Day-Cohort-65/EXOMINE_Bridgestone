@@ -1,6 +1,6 @@
 import { fetchFacility_Inventory, getFacilities, getFacilitiesInventory, getMinerals, getState, putFacility_Inventory } from '../api/dataaccess.js'
 
-let selectedAmount = 10
+let selectedAmount = 0
 
 document.addEventListener("change", event => {
     if (event.target.id.startsWith("quantity--")) {
@@ -83,19 +83,43 @@ export const FacilityInventory = () => {
             return chosenFacilityInventory.map(inventory => {
                 if (mineralSelected) {
                     if (mineralSelected.id === inventory.mineral_id) {
-                        amountSelector =
-                            `<form>
+                        amountSelector = `<form>
                             <label for="quantity--${inventory.mineral_id}"></label>
-                            <input type="number" id="quantity--${inventory.mineral_id}" name="quantity" min="0" max="${inventory.facility_stock}" value="${selectedAmount}">
+                            <input type="number" 
+                                id="quantity--${inventory.mineral_id}" 
+                                name="quantity" 
+                                min="0" 
+                                max="${inventory.facility_stock}" 
+                                value="${selectedAmount}">
                         </form>`
                         let addToCartButton = `<button id=${inventory.mineral_id} class="addToCartButton">Add to Cart</button>`
-                        return `<div class="facilityInventory__items"><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}" checked><div>${amountSelector}</div> ${inventory.facility_stock} tonnes of ${inventory.mineralName}</input> ${addToCartButton}</div>`
+                        return `<div class="facilityInventory__items">
+                            <input id="mineral-radio--${inventory.mineral_id}" 
+                                type="radio" name="minerals" 
+                                value="${inventory.mineral_id}" 
+                                checked>
+                                <div>${amountSelector}</div> 
+                                ${inventory.facility_stock} tonnes of ${inventory.mineralName}
+                            </input><p>Value: ${mineralSelected.value}</p> ${addToCartButton}</div>`
                     } else {
-                        return `<div><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}">${inventory.facility_stock} tonnes of ${inventory.mineralName}</input></div>`
+                        return `<div>
+                                <input id="mineral-radio--${inventory.mineral_id}" 
+                                    type="radio" name="minerals" 
+                                    value="${inventory.mineral_id}">
+                                    ${inventory.facility_stock} tonnes of ${inventory.mineralName}
+                                </input>
+                            </div>`
                     }
 
                 } else {
-                    return `<div><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}">${inventory.facility_stock} tonnes of ${inventory.mineralName}</input></div>`
+                    return `<div>
+                            <input id="mineral-radio--${inventory.mineral_id}" 
+                                type="radio" 
+                                name="minerals" 
+                                value="${inventory.mineral_id}">
+                                    ${inventory.facility_stock} tonnes of ${inventory.mineralName}
+                            </input>
+                        </div>`
                 }
             }).join("")
         } else {

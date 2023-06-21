@@ -6,6 +6,8 @@ import { getColonies, getGovernors, getState, getColoniesInventory, getMinerals,
 
 //Function that takes a governor object, iterates through the colonies, matches the colony_id on the governor object with the id on the colony object and returns that colony.
 
+const MAX_MINERAL_TO_USE_EACH_TURN = 8
+
 const findColonyWithGovObj = (govObj) => {
     const colonies = getColonies()
 
@@ -88,9 +90,9 @@ const coloniesUseMinerals = async () => {
 
     for (const colInv of colInventory) {
 
-        if (colInv.mineral_id === 1 || colInv.mineral_id === 2) {
+        if (colInv.mineral_id === 1) {
 
-            let randomAmount = Math.ceil(Math.random() * 10);
+            let randomAmount = Math.ceil(Math.random() * MAX_MINERAL_TO_USE_EACH_TURN);
 
             let newObj = {
                 id: colInv.id,
