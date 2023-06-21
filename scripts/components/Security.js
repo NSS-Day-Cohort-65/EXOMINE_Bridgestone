@@ -9,7 +9,7 @@ let securityTotal = 0;
 //reset selectors upon reset
 document.addEventListener("click", event => {
     if (event.target.id === "resetButton") {
-        colonySelected = null 
+        colonySelected = null
         facilitySelected = null
     }
 })

@@ -129,12 +129,12 @@ const raid = async () => {
                 await putColony_Inventory(inventory, inventory.id);
             }
 
-            const randomRoll = Math.ceil(Math.random * 10)
+            const randomRoll = Math.ceil(Math.random() * 10)
 
             if (randomRoll > 7) {
                 const governors = getGovernors();
 
-                let foundGovernor = governors.find(governor => governor.colony_id === targetColony.id)
+                let foundGovernor = governors.find(governor => governor.colony_id === targetColony.id && governor.is_alive)
 
                 let newGovObj = {
                     id: foundGovernor.id,
