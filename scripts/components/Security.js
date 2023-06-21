@@ -190,7 +190,7 @@ const calculateSecurityTotal = () => {
 export const Security = () => {
     calculateSecurityTotal();
 
-    let html = `<h2>Security Recruiter</h2>
+    let html = `<h1 class="headings-containers">Security Recruiter</h1>
     <div id="security_prompt">
     <p>Choose a Facility or Colony:</p>`
 
@@ -239,16 +239,16 @@ export const Security = () => {
                 const minerals = getMinerals();
                 let foundMineral = minerals.find(mineral => mineral.id === inventory.mineral_id)
                 let inputName = `${foundMineral.name}--${inventory.mineral_id}`
-                return `<label for="${inputName}" >${foundMineral.name}</label>
-                    <p>Value: ${foundMineral.value}</p>
-                    <p>Available: ${inventory.facility_stock}</p>
-                    <input data-mineralValue=${foundMineral.value} name="${inputName}" id="securityMineralInput--${inventory.id}" type="number" min="0" max="${inventory.facility_stock}" value="${mineralsToSpend[inputName] ? mineralsToSpend[inputName].amount : 0}">`
+                return `<label class="security-mineral-heading" for="${inputName}" >${foundMineral.name}</label><div id="security-items-line">
+                    <p class="security-mineral-value">Value: ${foundMineral.value}</p>
+                    <p class="security-mineral-available">Available: ${inventory.facility_stock}</p>
+                    <input data-mineralValue=${foundMineral.value} class="security-mineral-input" name="${inputName}" id="securityMineralInput--${inventory.id}" type="number" min="0" max="${inventory.facility_stock}" value="${mineralsToSpend[inputName] ? mineralsToSpend[inputName].amount : 0}"></div>`
             }
         ).join("")
     }
     //Purchase section with number field and purchase button 
     html += `<div id="purchase-security">
-            <p>Number to Recruit:${securityTotal}</p>
+            <p class="security-number-to-recruit">Number to Recruit:${securityTotal}</p>
             <button id="securityButton">Purchase</button>
         </div>`
     // disable security button if nothing is selected!!!!

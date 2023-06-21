@@ -84,10 +84,8 @@ export const FacilityInventory = () => {
                 if (mineralSelected) {
                     if (mineralSelected.id === inventory.mineral_id) {
                         amountSelector =
-                            `<form>
-                            <label for="quantity--${inventory.mineral_id}"></label>
-                            <input type="number" id="quantity--${inventory.mineral_id}" name="quantity" min="10" max="500" step="10" value="${selectedAmount}">
-                        </form>`
+                           `<label for="quantity--${inventory.mineral_id}"></label>
+                            <input type="number" id="quantity--${inventory.mineral_id}" name="quantity" min="10" max="500" step="10" value="${selectedAmount}">`
                         let addToCartButton = `<button id=${inventory.mineral_id} class="addToCartButton">Add to Cart</button>`
                         return `<div class="facilityInventory__items"><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}" checked>${amountSelector} tonnes of ${inventory.mineralName}</input> ${addToCartButton}</div>`
                     } else {
@@ -103,9 +101,11 @@ export const FacilityInventory = () => {
         }
     }
 
-    let html = `<div class="flex-container" id="minerals-selector">
+    let html = `<div id="minerals-selector">
     <h1 id="facility__header">Facility Minerals ${state.selectedFacility ? `for ${facility.name}` : ""}</h1>
+    <div id="facility-inventory-flex-list">
             ${mineralRadioSelectors()}
+            </div>
         </div>`
 
     return html

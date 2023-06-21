@@ -7,12 +7,40 @@
     font-family: "Fox on the run";
 }
 
+
+
+/* high level positioning and general big tweaks and setup */
+
 body {
     width: 100%;
     background-image: url("../images/kai-pilger-Ef6iL87-vOA-unsplash.jpg");
     background-position: center;
     background-size: cover;
     color: rgb(228, 228, 228);
+    /* display: flex;
+    justify-content: center; */
+}
+
+#all-container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+#content-container {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px dotted white;
+    padding: 20px;
+    background-color: #35383a;
+    text-align: center;
 }
 
 h1 {
@@ -23,89 +51,19 @@ h1 {
     --darkreader-inline-bgcolor: #74231b;
 }
 
-.flex-container {
+.headings-containers {
+    margin-bottom: 15px;
+}
+
+/* primary section covers all large sections of page like top, middle, cart, pirates*/
+.primary-section {
     display: flex;
-}
-
-#top-section {
-    flex-direction: row;
     justify-content: space-around;
-    margin: 20px;
-}
-
-#bottom-section {
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-#security-section {
-    align-items: center;
-    flex-direction: column;
-    border: rgb(228, 228, 228) dotted 2px;
-    width: 400px;
-    height: 250px;
-}
-
-#status-section {
-    align-items: center;
-    flex-direction: column;
-    border: rgb(228, 228, 228) dotted 2px;
-    width: 400px;
-    height: 250px;
-}
-
-#purchase-security {
-    display: flex;
-    flex-direction: row;
-    padding-top: 75px;
-}
-
-#selectors-container {
-    display: inline;
-}
-
-#colonies-container {
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    border: rgb(228, 228, 228) dotted 2px;
-    padding: 20px;
-    width: 300px;
-}
-
-#pirate-section {
-    flex-direction: row;
-    justify-content: center;
+    margin: 30px 0px 30px 0px;
 }
 
 
-#heading__main {
-    margin: 30px;
-}
-
-#minerals-selector {
-    flex-direction: column;
-    justify-content: space-around;
-    border: rgb(228, 228, 228) dotted 2px;
-    padding: 20px;
-    width: 300px;
-    margin-right: 50px;
-
-}
-
-#facility__header {
-    text-align: center;
-    margin: 10px 0px 10px 0;
-
-}
-
-#section-governor-recruiter {
-    flex-direction: column;
-}
-
-.facilityInventory__items {
-    margin: 3px;
-}
+/* selectors and lists */
 
 .selector {
     margin: 5px 0px 30px 0px;
@@ -116,21 +74,17 @@ h1 {
     list-style-type: disc;
 }
 
-.cart {
+.flex-list {
+    display: flex;
+    justify-content: space-evenly;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: rgb(228, 228, 228) dotted 2px;
-    padding: 50px;
-    margin: 50px 90px 50px 0px;
-    text-align: center;
-    width: 300px;
-    height: 200px;
+    height: 100%;
 }
 
-.cart__item {
-    margin: 20px 0px 10px 0px;
-}
+
+
+
+/* button styles */
 
 button {
     box-shadow: 3px 4px 0px 0px #899599;
@@ -167,29 +121,142 @@ button:disabled {
 
 }
 
-#pirate-container {
-    flex-direction: column;
-    justify-content: center;
+#resetButton {
+    color: rgb(207, 36, 36);
+    margin-right: 10px;
+    position: absolute;
+    right: 40px;
+    top: 20px
 }
 
-#pirate-resources-container-all {
-    flex-direction: row;
-    justify-content: center;
-}
 
-.pirate-resource-container {
-    margin: 0px 30px;
-}
 
-#pirate-header {
+/* main heading */
+
+#heading__main {
+    font-size: 50px;
     text-align: center;
+    margin-top: 15px;
+}
+
+
+
+/* turn counter */
+
+#turncounter {
+    text-align: center;
+    margin: 30px 0px 10px 0px;
+    font-size: 30px;
+}
+
+
+
+/* colony resources */
+
+
+
+/* facility minerals */
+
+#facility-inventory-flex-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 150%;
+}
+
+.addToCartButton {
+    margin-top: 0px;
+    font-size: 12px;
+    padding: 1px 7px;
+    margin-left: 5px;
+
+}
+
+#facility__header {
+
+}
+
+
+/* cart */
+
+.cart {
+    text-align: center;
+}
+
+#heading-cart {
     margin-bottom: 10px;
 }
 
-/* #pirate-text-container {
-    border: rgb(228, 228, 228) dotted 2px;
-    padding: 20px;
-} */
+#purchaseButton {
+    margin-top: 5px;
+}
+
+
+
+/* security */
+
+#security_prompt {
+    text-align: center;
+}
+
+#purchase-security {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#security-items-line {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+}
+
+.security-mineral-heading {
+    margin: 5px 0px;
+    font-size: 18px;
+
+}
+
+.security-mineral-input {
+    margin-left: 10px;
+}
+
+.security-mineral-value {
+    margin-right: 10px;
+}
+
+.security-number-to-recruit {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+
+/* governor recruiter */
+
+
+
+/* status */
+
+#resources_list {
+    padding: 20px 0px;
+}
+
+
+
+/* pirates */
+
+img {
+    margin: 30px 0px 20px 0px;
+}
+
+#pirate-resources-container-all {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border: none;
+    margin-top: 0px;
+}
 
 .pirate-resource-container {
     color: rgb(255, 255, 255);
@@ -200,9 +267,7 @@ button:disabled {
 }
 
 #pirate-ship-image {
-    width: 300px;
-    margin: 100px 0px 20px 0px;
-
+    width: 250px;
     animation: wobble 4s infinite linear;
     /* Adjust the duration as needed */
 }
@@ -230,49 +295,3 @@ button:disabled {
     }
 }
 
-/* #raid-alert-container {
-    z-index: 100;
-    display: none;
-    background: none;
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    text-align: center;
-    max-width: 30%;
-}
-
-#raid-alert-text {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    color: #90271d;
-    font-weight: 900;
-    background: none;
-    text-shadow: 3px 2px 2px #561711c0;
-    animation: alert 2s infinite;
-}
-
-@keyframes alert {
-    0% {
-        -webkit-transform: scale(0);
-    }
-
-    50% {
-        -webkit-transform: scale(3)
-    }
-
-    100% {
-        -webkit-transform: scale(0)
-    }
-} */
-
-#reset-button-section {
-    display: flex;
-    justify-content: end;
-    padding: 20px;
-}
-
-#resetButton {
-    color: rgb(207, 36, 36);
-    margin-right: 10px;
-}

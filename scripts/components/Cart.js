@@ -111,7 +111,7 @@ export const Cart = () => {
     }
 
     let html = `<div class="cart">
-        <h1>Space Cart</h1>`
+        <h1 id="heading-cart">Space Cart</h1>`
 
     const chosenMineralsArr = () => {
         let chosenMinerals = []
@@ -132,16 +132,20 @@ export const Cart = () => {
         (facility) => {
             return facility.id === state.selectedFacility
         }
+
+    
     )
+
+    html += `<div class="flex-list">`
     if (chosenMinerals.length && chosenFacility) {
         for (const mineral of chosenMinerals) {
-            html += `<p class="cart__item">${mineral.amount} tonnes of ${mineral.name} from ${chosenFacility.name}</p>`
+            html += `<p class="cart__item">${mineral.amount} tonnes of ${mineral.name} from ${chosenFacility.name}<p>`
         }
     }
 
     if (chosenMinerals.length && chosenFacility) {
         html += `<div>
-                <button id="purchaseButton">Purchase Mineral</button>
+                <button id="purchaseButton">Purchase Minerals</button>
             </div>
         </div>`
     } else {
@@ -150,6 +154,8 @@ export const Cart = () => {
             </div>
         </div>`
     }
+
+    html += `</div>`
 
 
     return html
