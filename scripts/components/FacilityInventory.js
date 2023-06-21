@@ -48,6 +48,11 @@ document.addEventListener("click", event => {
         })
     }
 })
+
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 let amountSelector;
 export const FacilityInventory = () => {
     const facilities = getFacilities();
@@ -109,21 +114,32 @@ export const FacilityInventory = () => {
 
 //write function that adds a random amount of minerals to a facility every turn. Trigger it off of click event from purchaseButton
 const facilitiesGainMinerals = async () => {
-    const facInventory = getFacilitiesInventory()
+    const facInventory = getFacilitiesInventory();
     const minerals = getMinerals();
-  
     for (const facInv of facInventory) {
-        const foundMineral = minerals.find(mineral => mineral.id === facInv.mineral_id)
+        const foundMineral = minerals.find(mineral => mineral.id === facInv.mineral_id);
 
         let newObj = {
             id: facInv.id,
             facility_id: facInv.facility_id,
             mineral_id: facInv.mineral_id,
             facility_stock: facInv.facility_stock + foundMineral.yield
+        };
+        // Delay between each PUT request
+        try {
+            await putFacility_Inventory(newObj, facInv.id);
+        } catch (error) {
+            console.error('PUT request failed for facility inventory ID:', facInv.id);
+            console.error('Error:', error);
+            delay(1000);
+            try {
+                console.log('Retrying PUT request for facility inventory ID:', facInv.id)
+                await putFacility_Inventory(newObj, facInv.id);
+            } catch (error) {
+                console.error('Error', error)
+            }
         }
-        await putFacility_Inventory(newObj, facInv.id)
-    }
-};
+
 
 document.addEventListener(
     "addAndUseMinerals",
