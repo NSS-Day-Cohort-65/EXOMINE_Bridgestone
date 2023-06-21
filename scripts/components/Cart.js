@@ -1,11 +1,11 @@
 import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getState, putColony_Inventory, putFacility_Inventory, postColony_Inventory } from "../api/dataaccess.js"
 
-document.addEventListener("click", (clickEvent) => {
+document.addEventListener("click", async (clickEvent) => {
     const itemClicked = clickEvent.target
 
     //check if itemClicked is the button 
     if (itemClicked.id === "purchaseButton") {
-        purchaseMineral()
+        await purchaseMineral()
         document.dispatchEvent(new CustomEvent("stateChanged"))
         document.dispatchEvent(new CustomEvent("addAndUseMinerals"))
     }

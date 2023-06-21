@@ -79,7 +79,7 @@ export const ColonyResources = () => {
 
 // write function to reduce colony minerals by a random amount every turn. Will trigger this function using a click event off of the purchase button
 
-const coloniesUseMinerals = () => {
+const coloniesUseMinerals = async () => {
     const colInventory = getColoniesInventory()
 
     for (const colInv of colInventory) {
@@ -95,15 +95,15 @@ const coloniesUseMinerals = () => {
                 colony_stock: colInv.colony_stock - randomAmount
             }
 
-            putColony_Inventory(newObj, colInv.id)
+            await putColony_Inventory(newObj, colInv.id)
         }
     }
 }
 
 document.addEventListener(
     "addAndUseMinerals",
-    e => {
-            coloniesUseMinerals()
+    async e => {
+        await coloniesUseMinerals()
     }
 )
 
