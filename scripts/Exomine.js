@@ -10,6 +10,7 @@ import { Security } from './components/Security.js'
 import { getState } from './api/dataaccess.js'
 // import { raidAlertHTMLGen } from './components/RaidAlert.js'
 import { generateResetButtonHTML } from './components/ResetButton.js'
+import { StatusWindow } from './components/StatusWindow.js'
 
 
 document.addEventListener("startRaid", CustomEvent => {
@@ -58,11 +59,13 @@ export const Exomine = () => {
     </section>
     <section id="security-section" class="flex-container">
         ${Security()}
+    </section>
+    <section id="status-section" class="flex-container">
+        ${StatusWindow()}
+    </section>
     <section id="reset-button-section">
         ${generateResetButtonHTML()}
     </section>`
 }
 
 //if adding in none windwo based alert, place this back above last article tag (like 41 as of time of writing) ${raidAlertHTMLGen()} and uncomment the import statment on like 9.
-
-
