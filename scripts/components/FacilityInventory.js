@@ -84,10 +84,10 @@ export const FacilityInventory = () => {
                 if (mineralSelected) {
                     if (mineralSelected.id === inventory.mineral_id) {
                         amountSelector =
-                           `<label for="quantity--${inventory.mineral_id}"></label>
-                            <input type="number" id="quantity--${inventory.mineral_id}" name="quantity" min="10" max="500" step="10" value="${selectedAmount}">`
+                            `<label for="quantity--${inventory.mineral_id}"></label>
+                            <input type="number" id="quantity--${inventory.mineral_id}" name="quantity" min="10" max="${inventory.facility_stock}" step="10" value="${selectedAmount}">`
                         let addToCartButton = `<button id=${inventory.mineral_id} class="addToCartButton">Add to Cart</button>`
-                        return `<div class="facilityInventory__items"><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}" checked>${amountSelector} tons of ${inventory.mineralName}</input> ${addToCartButton}</div>`
+                        return `<div class="facilityInventory__items"><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}" checked>${inventory.facility_stock} - ${amountSelector} tons of ${inventory.mineralName}</input> ${addToCartButton}</div>`
                     } else {
                         return `<div><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}">${inventory.facility_stock} tons of ${inventory.mineralName}</input></div>`
                     }
@@ -114,6 +114,7 @@ export const FacilityInventory = () => {
 
 //write function that adds a random amount of minerals to a facility every turn. Trigger it off of click event from purchaseButton
 const facilitiesGainMinerals = async () => {
+    fetchFacility_Inventory()
     const facInventory = getFacilitiesInventory();
     const minerals = getMinerals();
     for (const facInv of facInventory) {
