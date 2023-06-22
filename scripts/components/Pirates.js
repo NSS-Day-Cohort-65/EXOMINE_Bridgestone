@@ -70,13 +70,19 @@ document.addEventListener(
         if (e.target.id === "purchaseButton") {
             let startRaid = false
             raidCounter++
+            const pirates = getPirates()
 
-            if (raidCounter >= GRACE_PERIOD) {
-                startRaid = checkForRaid(raidCounter);
-            }
-            //should change below value to start raid. True for testing only
-            if (startRaid) {
-                raid()
+            //increase or decrease raider_stock number below to control what the max number of raiders needs to be before a raid can occur
+
+            if (pirates[0].raider_stock > 0) {
+
+                if (raidCounter >= GRACE_PERIOD) {
+                    startRaid = checkForRaid(raidCounter);
+                }
+                //should change below value to start raid. True for testing only
+                if (startRaid) {
+                    raid()
+                }
             }
         }
     }

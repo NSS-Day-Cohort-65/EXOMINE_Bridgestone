@@ -1,4 +1,4 @@
-import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getState, putColony_Inventory, putFacility_Inventory, postColony_Inventory } from "../api/dataaccess.js"
+import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getState, putColony_Inventory, putFacility_Inventory, postColony_Inventory, getColonies } from "../api/dataaccess.js"
 
 document.addEventListener("click", async (clickEvent) => {
     const itemClicked = clickEvent.target
@@ -7,7 +7,7 @@ document.addEventListener("click", async (clickEvent) => {
     if (itemClicked.id === "purchaseButton") {
         await purchaseMineral()
         document.dispatchEvent(new CustomEvent("stateChanged"))
-        document.dispatchEvent(new CustomEvent("addAndUseMinerals"))
+        //document.dispatchEvent(new CustomEvent("addAndUseMinerals"))
     }
 })
 
@@ -35,6 +35,7 @@ export const Cart = () => {
     const coloniesInventory = getColoniesInventory();
     const minerals = getMinerals()
     const facilities = getFacilities()
+    const colonies = getColonies()
 
     purchaseMineral = async () => {
         // increment colony stock 
@@ -104,14 +105,47 @@ export const Cart = () => {
                         console.error('Error', error)
                     }
                 }
-                state.cart_minerals = []
-                document.dispatchEvent(new CustomEvent("stateChanged"))
+                //FacilitiesGainMinerals--------------------------------
+                for (const facInv of facilitiesInventory) {
+                    const foundMineral = minerals.find(mineral => mineral.id === facInv.mineral_id);
+
+                    let newObj = {
+                        id: facInv.id,
+                        facility_id: facInv.facility_id,
+                        mineral_id: facInv.mineral_id,
+                        facility_stock: facInv.facility_stock + foundMineral.yield
+                    };
+                    // Delay between each PUT request
+                    try {
+                        await putFacility_Inventory(newObj, facInv.id);
+                    } catch (error) {
+                        console.error('PUT request failed for facility inventory ID:', facInv.id);
+                        console.error('Error:', error);
+                        delay(1000);
+                        try {
+                            console.log('Retrying PUT request for facility inventory ID:', facInv.id)
+                            await putFacility_Inventory(newObj, facInv.id);
+                        } catch (error) {
+                            console.error('Error', error)
+                        }
+                    }
+                }
+                //-----------------------------------------------------
             }
+            state.cart_minerals = []
+            document.dispatchEvent(new CustomEvent("stateChanged"))
+
         }
+    }
+    let cartColony = null
+    if (state.selectedColony) {
+        cartColony = colonies.find((colony) => {
+            return colony.id === state.selectedColony
+        })
     }
 
     let html = `<div class="cart">
-        <h1 id="heading-cart">Space Cart 🛒</h1>`
+        <h1 id="heading-cart">${state.selectedColony ? cartColony.name : ``} Space Cart 🛒</h1>`
 
     const chosenMineralsArr = () => {
         let chosenMinerals = []
@@ -133,7 +167,7 @@ export const Cart = () => {
             return facility.id === state.selectedFacility
         }
 
-    
+
     )
 
     html += `<div class="flex-list">`

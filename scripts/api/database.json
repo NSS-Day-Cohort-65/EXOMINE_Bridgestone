@@ -281,59 +281,8 @@
   "pirates": [
     {
       "id": 1,
-      "raider_stock": 6
+      "raider_stock": 0
     }
   ],
-  "pirate_inventory": [
-    {
-      "mineral_id": 7,
-      "pirate_stock": 160,
-      "id": 1
-    },
-    {
-      "mineral_id": 4,
-      "pirate_stock": 270,
-      "id": 2
-    },
-    {
-      "mineral_id": 13,
-      "pirate_stock": 152,
-      "id": 3
-    },
-    {
-      "mineral_id": 9,
-      "pirate_stock": 154,
-      "id": 4
-    },
-    {
-      "mineral_id": 10,
-      "pirate_stock": 100,
-      "id": 5
-    },
-    {
-      "mineral_id": 12,
-      "pirate_stock": 254,
-      "id": 6
-    },
-    {
-      "mineral_id": 6,
-      "pirate_stock": 100,
-      "id": 7
-    },
-    {
-      "mineral_id": 5,
-      "pirate_stock": 190,
-      "id": 8
-    },
-    {
-      "mineral_id": 3,
-      "pirate_stock": 195,
-      "id": 9
-    },
-    {
-      "mineral_id": 1,
-      "pirate_stock": 159,
-      "id": 10
-    }
-  ]
+  "pirate_inventory": []
 }

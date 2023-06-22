@@ -1,4 +1,4 @@
-import { fetchFacility_Inventory, getFacilities, getFacilitiesInventory, getMinerals, getState, putFacility_Inventory } from '../api/dataaccess.js'
+import { getFacilities, getFacilitiesInventory, getMinerals, getState, putFacility_Inventory } from '../api/dataaccess.js'
 
 let selectedAmount = 0
 
@@ -14,12 +14,17 @@ document.addEventListener("click",
 
         if (event.target.className === "addToCartButton") {
             const state = getState()
+            const facilitiesInventory = getFacilitiesInventory();
 
             const mineralInCart = state.cart_minerals.find((cart_mineral) => {
                 return parseInt(event.target.id) === cart_mineral.mineral_id
             })
             if (mineralInCart) {
+                const foundInventory = facilitiesInventory.find(inventory => inventory.mineral_id === mineralInCart.mineral_id)
                 mineralInCart.amount += selectedAmount
+                if (mineralInCart.amount > foundInventory.facility_stock) {
+                    mineralInCart.amount = foundInventory.facility_stock;
+                }
             } else {
                 const newMineral = {
                     mineral_id: parseInt(event.target.id),
@@ -27,7 +32,7 @@ document.addEventListener("click",
                 }
                 state.cart_minerals.push(newMineral)
             }
-
+            selectedAmount = 0;
             document.dispatchEvent(new CustomEvent("stateChanged"))
         }
 
@@ -46,6 +51,7 @@ document.addEventListener("click", event => {
         mineralSelected = minerals.find((mineral) => {
             return mineral.id === mineralIdNum
         })
+        selectedAmount = 0;
     }
 })
 
@@ -105,7 +111,7 @@ export const FacilityInventory = () => {
     }
 
     let html = `<div id="minerals-selector">
-    <h1 id="facility__header">Facility Minerals ${state.selectedFacility ? `for ${facility.name}` : ""} ⛏️</h1>
+    <h1 id="facility__header">Purchase Minerals ${state.selectedFacility ? `from ${facility.name}` : ""} ⛏️</h1>
     <div id="facility-inventory-flex-list">
             ${mineralRadioSelectors()}
             </div>
@@ -116,39 +122,39 @@ export const FacilityInventory = () => {
 }
 
 //write function that adds a random amount of minerals to a facility every turn. Trigger it off of click event from purchaseButton
-const facilitiesGainMinerals = async () => {
-    const facInventory = getFacilitiesInventory();
-    const minerals = getMinerals();
-    for (const facInv of facInventory) {
-        const foundMineral = minerals.find(mineral => mineral.id === facInv.mineral_id);
+// const facilitiesGainMinerals = async () => {
+//     const facInventory = getFacilitiesInventory();
+//     const minerals = getMinerals();
+//     for (const facInv of facInventory) {
+//         const foundMineral = minerals.find(mineral => mineral.id === facInv.mineral_id);
 
-        let newObj = {
-            id: facInv.id,
-            facility_id: facInv.facility_id,
-            mineral_id: facInv.mineral_id,
-            facility_stock: facInv.facility_stock + foundMineral.yield
-        };
+//         let newObj = {
+//             id: facInv.id,
+//             facility_id: facInv.facility_id,
+//             mineral_id: facInv.mineral_id,
+//             facility_stock: facInv.facility_stock + foundMineral.yield
+//         };
         // Delay between each PUT request
-        try {
-            await putFacility_Inventory(newObj, facInv.id);
-        } catch (error) {
-            console.error('PUT request failed for facility inventory ID:', facInv.id);
-            console.error('Error:', error);
-            delay(1000);
-            try {
-                console.log('Retrying PUT request for facility inventory ID:', facInv.id)
-                await putFacility_Inventory(newObj, facInv.id);
-            } catch (error) {
-                console.error('Error', error)
-            }
-        }
-    }
-}
+//         try {
+//             await putFacility_Inventory(newObj, facInv.id);
+//         } catch (error) {
+//             console.error('PUT request failed for facility inventory ID:', facInv.id);
+//             console.error('Error:', error);
+//             delay(1000);
+//             try {
+//                 console.log('Retrying PUT request for facility inventory ID:', facInv.id)
+//                 await putFacility_Inventory(newObj, facInv.id);
+//             } catch (error) {
+//                 console.error('Error', error)
+//             }
+//         }
+//     }
+// }
 
-document.addEventListener(
-    "addAndUseMinerals",
-    async customEvent => {
-        await facilitiesGainMinerals();
-        document.dispatchEvent(new CustomEvent("stateChanged"))
-    }
-)
+// document.addEventListener(
+//     "addAndUseMinerals",
+//     async customEvent => {
+//         await facilitiesGainMinerals();
+//         document.dispatchEvent(new CustomEvent("stateChanged"))
+//     }
+// )
