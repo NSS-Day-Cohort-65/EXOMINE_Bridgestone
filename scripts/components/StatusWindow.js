@@ -174,9 +174,9 @@ const ResourcesDisplay = () => {
             }
         })
 
-        html +=`<p>Active Governors: 
-                    <ul id="governors-list">${governorsArr.length ? governorsArr.join(``) : `<p>No governors</p>`}</ul>
-                </p>`
+        html += `<b>Active Governors: </b>`
+        html += `<ul id="governors-list">${governorsArr.length ? governorsArr.join(``) : `<p>No governors</p>`}</ul>`
+                
             
 
         return html
