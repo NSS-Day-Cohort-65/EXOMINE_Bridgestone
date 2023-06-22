@@ -382,4 +382,8 @@ img {
 #tooltip-heading {
     font-size: 32px;
     font-weight: bold;
+    padding: 5px;
+    border-bottom:#282829 5px dotted;
+    text-shadow: rgb(174, 204, 247) 1px 1px 7px;
+
 }
