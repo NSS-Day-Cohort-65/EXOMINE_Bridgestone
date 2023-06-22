@@ -96,6 +96,10 @@ const removeMinerals = async () => {
     }
 }
 
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 //event listener for purchase button to change the amount of security property on the facility or colony
 document.addEventListener("click",
     async event => {
