@@ -1,4 +1,4 @@
-import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getState, putColony_Inventory, putFacility_Inventory, postColony_Inventory } from "../api/dataaccess.js"
+import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getState, putColony_Inventory, putFacility_Inventory, postColony_Inventory, getColonies } from "../api/dataaccess.js"
 
 document.addEventListener("click", async (clickEvent) => {
     const itemClicked = clickEvent.target
@@ -35,6 +35,7 @@ export const Cart = () => {
     const coloniesInventory = getColoniesInventory();
     const minerals = getMinerals()
     const facilities = getFacilities()
+    const colonies = getColonies()
 
     purchaseMineral = async () => {
         // increment colony stock 
@@ -136,9 +137,15 @@ export const Cart = () => {
 
         }
     }
+    let cartColony = null
+    if (state.selectedColony) {
+        cartColony = colonies.find((colony) => {
+            return colony.id === state.selectedColony
+        })
+    }
 
     let html = `<div class="cart">
-        <h1 id="heading-cart">Space Cart 🛒</h1>`
+        <h1 id="heading-cart">${state.selectedColony ? cartColony.name : ``} Space Cart 🛒</h1>`
 
     const chosenMineralsArr = () => {
         let chosenMinerals = []
