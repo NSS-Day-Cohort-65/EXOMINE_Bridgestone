@@ -1,15 +1,15 @@
 import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, getGovernors, getMinerals } from "../api/dataaccess.js"
 
 //window should contain a header
-    // 2 drop downs side by side - when you pick one, it displays the location with all it's minerals and security
+// 2 drop downs side by side - when you pick one, it displays the location with all it's minerals and security
 
-let colonySelected = null 
-let facilitySelected = null 
+let colonySelected = null
+let facilitySelected = null
 
 //reset selectors upon reset 
 document.addEventListener("click", event => {
     if (event.target.id === "resetButton") {
-        colonySelected = null 
+        colonySelected = null
         facilitySelected = null
     }
 })
@@ -42,15 +42,15 @@ document.addEventListener(
 export const ColoniesStatusSelector = () => {
     const colonies = getColonies()
     let html = '<option value="0">Colony</option>'
-    
+
     const dropDownArray = colonies.map((colony) => {
-        if (colonySelected) { 
+        if (colonySelected) {
             if (colonySelected.id === colony.id) {
                 return `<option selected value="${colony.id}">${colony.name}</option>`
-            } else { 
+            } else {
                 return `<option value="${colony.id}">${colony.name}</option>`
             }
-        } else { 
+        } else {
             return `<option value="${colony.id}">${colony.name}</option>`
         }
     })
@@ -59,24 +59,24 @@ export const ColoniesStatusSelector = () => {
 }
 
 //facility dropdown
-export const FacilitiesStatusSelector = () => {    
+export const FacilitiesStatusSelector = () => {
     const facilities = getFacilities()
     let html = '<option value="0">Facility</option>'
-   
+
     const dropDownArray = facilities.map((facility) => {
         if (facility.is_active) {
             if (facilitySelected) {
                 if (facilitySelected.id === facility.id) {
                     return `<option selected value="${facility.id}">${facility.name}</option>`
-                } else { 
+                } else {
                     return `<option value="${facility.id}">${facility.name}</option>`
                 }
-            } else { 
+            } else {
                 return `<option value="${facility.id}">${facility.name}</option>`
             }
-        }    
+        }
     })
-            
+
     html += dropDownArray.join("")
     return html
 }
@@ -95,12 +95,12 @@ const ResourcesDisplay = () => {
     const matchingMineralsArr = []
     let matchingMineral = {}
 
-//Display Resources at Facility
+    //Display Resources at Facility
     if (facilitySelected) {
         const matchingFacility = facilities.find(facility => facilitySelected.id === facility.id)
-        
+
         const matchingFacInventories = facilitiesInventory.filter(facilityInventory => facilityInventory.facility_id === facilitySelected.id)
-        
+
         for (const inventory of matchingFacInventories) {
             for (const mineral of minerals) {
                 if (mineral.id === inventory.mineral_id) {
@@ -118,10 +118,10 @@ const ResourcesDisplay = () => {
         resourcesToDisplay.facilityName = matchingFacility.name
         resourcesToDisplay.mineralsArr = matchingMineralsArr
         resourcesToDisplay.security = matchingFacility.security
-        
+
         html += `<h1 id="heading-status-name">${resourcesToDisplay.facilityName}</h1>
             <ul id="resources_list" class="flex-list">`
-        
+
         const mineralsListArr = resourcesToDisplay.mineralsArr.map((mineralResource) => {
             return `<li class="mineral_resource">${mineralResource.stock} tons of ${mineralResource.name} - Value: ${mineralResource.value}</li>`
         })
@@ -132,9 +132,10 @@ const ResourcesDisplay = () => {
 
         return html
 
-    //Display Resources at Colony
+        //Display Resources at Colony
     } else if (colonySelected) {
         const matchingColony = colonies.find(colony => colonySelected.id === colony.id)
+
         const governors = getGovernors()
         const matchingGovernors = governors.filter(governor => governor.colony_id === colonySelected.id)
             
@@ -161,7 +162,7 @@ const ResourcesDisplay = () => {
 
         html += `<h1 id="heading-status-name">${resourcesToDisplay.colonyName}</h1>
             <ul id="resources_list" class="flex-list">`
-        
+
         const mineralsListArr = resourcesToDisplay.mineralsArr.map((mineralResource) => {
             return `<li class="mineral_resource">${mineralResource.stock} tons of ${mineralResource.name} - Value: ${mineralResource.value}</li>`
         })
@@ -192,7 +193,7 @@ const ResourcesDisplay = () => {
 //display entire status window
 export const StatusWindow = () => {
 
-    let html =`<h1 class="headings-containers">Status ✔️</h1>
+    let html = `<h1 class="headings-containers">Status ✔️</h1>
     <div id="status prompt">
     <p>Choose a Facility or Colony:</p>`
 
@@ -204,8 +205,8 @@ export const StatusWindow = () => {
         ${ColoniesStatusSelector()}
         </select>
         </div>`
-    
-    html += ResourcesDisplay()    
-    
+
+    html += ResourcesDisplay()
+
     return html
 }

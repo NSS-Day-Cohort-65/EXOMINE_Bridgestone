@@ -6,6 +6,8 @@ import { getColonies, getGovernors, getState, getColoniesInventory, getMinerals,
 
 //Function that takes a governor object, iterates through the colonies, matches the colony_id on the governor object with the id on the colony object and returns that colony.
 
+
+
 const findColonyWithGovObj = (govObj) => {
     const colonies = getColonies()
 
@@ -83,44 +85,12 @@ export const ColonyResources = () => {
 
 // write function to reduce colony minerals by a random amount every turn. Will trigger this function using a click event off of the purchase button
 
-const coloniesUseMinerals = async () => {
-    const colInventory = getColoniesInventory()
 
-    for (const colInv of colInventory) {
 
-        if (colInv.mineral_id === 1 || colInv.mineral_id === 2) {
-
-            let randomAmount = Math.ceil(Math.random() * 10);
-
-            let newObj = {
-                id: colInv.id,
-                colony_id: colInv.colony_id,
-                mineral_id: colInv.mineral_id,
-                colony_stock: colInv.colony_stock - randomAmount
-            }
-
-            try {
-                await putColony_Inventory(newObj, colInv.id)
-            } catch (error) {
-                console.error('PUT request failed for facility inventory ID:', colInv.id);
-                console.error('Error:', error);
-                delay(1000);
-                try {
-                    console.log('Retrying PUT request for facility inventory ID:', colInv.id)
-                    await putColony_Inventory(newObj, colInv.id)
-                } catch (error) {
-                    console.error('Error', error)
-                }
-            }
-
-        }
-    }
-}
-
-document.addEventListener(
-    "addAndUseMinerals",
-    async e => {
-        await coloniesUseMinerals()
-    }
-)
+// document.addEventListener(
+//     "addAndUseMinerals",
+//     async e => {
+//         await coloniesUseMinerals()
+//     }
+// )
 

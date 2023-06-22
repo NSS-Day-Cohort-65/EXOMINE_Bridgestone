@@ -4,15 +4,16 @@ import { isRaidSuccessful, reduceSecurityAfterRaid } from './Defense.js'
 
 //write a click even that increments turnCount by 1 everytime purchaseButton is clicked. Write function that fires after 3 turns (turncount hits 3) and adds 5 raiders to the pirate object, then returns the new value.
 
+const MAX_PIRATES_TO_ADD_EACH_TURN = 20;
+const MAX = 10
+const GRACE_PERIOD = 3
+
 let turnCount = 0
 
 document.addEventListener("click", e => {
     if (e.target.id === "purchaseButton") {
         turnCount++
-        if (turnCount === 3) {
-            addPirateRaiders()
-            turnCount = 0
-        }
+        addPirateRaiders()
     }
 })
 
@@ -22,41 +23,35 @@ function delay(ms) {
 
 const addPirateRaiders = () => {
     const pirates = getPirates()
+    let randomAmount = Math.ceil(Math.random() * MAX_PIRATES_TO_ADD_EACH_TURN);
+
     let newPirateObj = {
         id: pirates[0].id,
-        raider_stock: pirates[0].raider_stock + 5
+        raider_stock: pirates[0].raider_stock + randomAmount
     }
 
     putPirates(newPirateObj, pirates[0].id)
-    console.log("added 5 raiders")
+    console.log(`added ${randomAmount} raiders`)
 }
 
 const reduceRaidersAfterRaid = async () => {
     const pirates = getPirates()
     //checking if turn is 0 because when it hits 3, it goes through the above function and click even first which then resets it back to 0. Since this check here always happens afterwards, the onlytime turn count will get here and be equal to 0 is right after it was equal to three and reset by the above function/click event, which is what would signal the if condition should occur.
-    if (turnCount === 0) {
-        let newObj = {
-            id: pirates[0].id,
-            raider_stock: Math.ceil(pirates[0].raider_stock * 0.75) + 5
-        }
-        await putPirates(newObj, pirates[0].id)
-        console.log("reduced raiders by 3/4 and then added 5")
-    } else {
-        let newObj = {
-            id: pirates[0].id,
-            raider_stock: Math.ceil(pirates[0].raider_stock * 0.75)
-        }
-        await putPirates(newObj, pirates[0].id)
-        console.log("reduced raiders by 3/4")
+    let randomAmount = Math.ceil(Math.random() * MAX_PIRATES_TO_ADD_EACH_TURN)
+    let newObj = {
+        id: pirates[0].id,
+        raider_stock: Math.ceil(pirates[0].raider_stock * 0.75) + randomAmount
     }
+    await putPirates(newObj, pirates[0].id)
+    console.log(`reduced raiders by 3/4 then added ${randomAmount} raiders.`)
+
 }
 
 
 
 
 // increase this number to decrease difficulty
-const MAX = 2
-const GRACE_PERIOD = 3
+
 
 let raidCounter = 1
 

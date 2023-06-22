@@ -1,4 +1,4 @@
-import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, putColony, putFacility } from "../api/dataaccess.js"
+import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, putColony, putFacility, putFacility_Inventory, putColony_Inventory } from "../api/dataaccess.js"
 
 let facilitySelected = null
 let colonySelected = null
@@ -46,9 +46,59 @@ document.addEventListener("change", event => {
     }
 })
 
+const removeMinerals = async () => {
+    let selectedInventory = [];
+    if (facilitySelected) {
+        const facilitiesInventory = getFacilitiesInventory();
+        for (const inventory in mineralsToSpend) {
+            let foundInventory = facilitiesInventory.find(inv => inv.id === parseInt(mineralsToSpend[inventory].inventory_id))
+            foundInventory.facility_stock -= mineralsToSpend[inventory].amount
+            selectedInventory.push(foundInventory);
+        }
+        for (const inventory of selectedInventory) {
+            try {
+                await putFacility_Inventory(inventory, inventory.id);
+            } catch (error) {
+                console.error('PUT request failed for facility inventory ID:', inventory.id);
+                console.error('Error:', error);
+                delay(1000);
+                try {
+                    console.log('Retrying PUT request for facility inventory ID:', inventory.id)
+                    await putFacility_Inventory(inventory, inventory.id);
+                } catch (error) {
+                    console.error('Error', error)
+                }
+            }
+        }
+    }
+    if (colonySelected) {
+        const coloniesInventory = getColoniesInventory();
+        for (const inventory in mineralsToSpend) {
+            let foundInventory = coloniesInventory.find(inv => inv.id === parseInt(mineralsToSpend[inventory].inventory_id))
+            foundInventory.colony_stock -= mineralsToSpend[inventory].amount
+            selectedInventory.push(foundInventory);
+        }
+        for (const inventory of selectedInventory) {
+            try {
+                await putColony_Inventory(inventory, inventory.id);
+            } catch (error) {
+                console.error('PUT request failed for colony inventory ID:', inventory.id);
+                console.error('Error:', error);
+                delay(1000);
+                try {
+                    console.log('Retrying PUT request for colony inventory ID:', inventory.id)
+                    await putColony_Inventory(inventory, inventory.id);
+                } catch (error) {
+                    console.error('Error', error)
+                }
+            }
+        }
+    }
+}
+
 //event listener for purchase button to change the amount of security property on the facility or colony
 document.addEventListener("click",
-    event => {
+    async event => {
         //if purchase button is clicked, 
         if (event.target.id === "securityButton") {
             //only run if colony or facility was selected
@@ -64,6 +114,9 @@ document.addEventListener("click",
                         is_facility: true
                     }
                     putFacility(newFacObj, newFacObj.id)
+
+                    removeMinerals();
+
                     securityTotal = 0
                     mineralsToSpend = {};
                     facilitySelected = null
@@ -78,6 +131,9 @@ document.addEventListener("click",
                         is_facility: true
                     }
                     putFacility(newFacObj, newFacObj.id)
+
+                    removeMinerals();
+
                     securityTotal = 0
                     mineralsToSpend = {};
                     facilitySelected = null
@@ -93,6 +149,9 @@ document.addEventListener("click",
                         is_colony: true
                     }
                     putColony(newColObj, newColObj.id)
+
+                    removeMinerals();
+
                     securityTotal = 0
                     mineralsToSpend = {};
                     colonySelected = null
@@ -105,6 +164,9 @@ document.addEventListener("click",
                         is_colony: true
                     }
                     putColony(newColObj, newColObj.id)
+
+                    removeMinerals();
+
                     securityTotal = 0
                     mineralsToSpend = {};
                     colonySelected = null
@@ -247,8 +309,8 @@ export const Security = () => {
         ).join("")
     }
     //Purchase section with number field and purchase button 
-    
-    if(securityTotal > 0 ){
+
+    if (securityTotal > 0) {
         html += `<div id="purchase-security">
             <p class="security-number-to-recruit">Number to Recruit: ${securityTotal}</p>
             <button id="securityButton">Purchase</button>
@@ -256,7 +318,7 @@ export const Security = () => {
         return html
     } else {
         // disable security button if nothing is selected!!!!
-      html += `<div id="purchase-security">
+        html += `<div id="purchase-security">
             <p class="security-number-to-recruit">Number to Recruit: ${securityTotal}</p>
             <button disabled id="securityButton">Purchase</button>
         </div>`
