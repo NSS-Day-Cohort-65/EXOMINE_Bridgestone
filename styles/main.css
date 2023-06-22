@@ -17,6 +17,7 @@ body {
     background-position: center;
     background-size: cover;
     color: rgb(228, 228, 228);
+    overflow: hidden;
     /* display: flex;
     justify-content: center; */
 }
@@ -42,7 +43,7 @@ body {
     background: radial-gradient(circle, rgba(44, 46, 56, 1) 0%, rgba(16, 16, 17, 1) 100%);
     text-align: center;
     border-radius: 5%;
-    width: 340px;
+    width: 320px;
     min-height: 320px;
     overflow: auto;
 
