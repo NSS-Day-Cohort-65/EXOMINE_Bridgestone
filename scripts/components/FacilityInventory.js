@@ -81,19 +81,22 @@ export const FacilityInventory = () => {
 
 
             return chosenFacilityInventory.map(inventory => {
+                let minerals = getMinerals();
+                const foundMineral = minerals.find(mineral => inventory.mineral_id === mineral.id);
                 if (mineralSelected) {
                     if (mineralSelected.id === inventory.mineral_id) {
                         amountSelector =
                             `<label for="quantity--${inventory.mineral_id}"></label>
-                            <input type="number" id="quantity--${inventory.mineral_id}" name="quantity" min="10" max="500" step="10" value="${selectedAmount}">`
+                            <input type="number" id="quantity--${inventory.mineral_id}" name="quantity" min="0" max=${inventory.facility_stock} value="${selectedAmount}">`
                         let addToCartButton = `<button id=${inventory.mineral_id} class="addToCartButton">Add to Cart</button>`
-                        return `<div class="facilityInventory__items"><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}" checked>${amountSelector} tons of ${inventory.mineralName}</input> ${addToCartButton}</div>`
+                        return `<div class="facilityInventory__items"><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}" checked>${amountSelector}<br/>${inventory.facility_stock} tons of ${inventory.mineralName} available</input><p>Value: ${foundMineral.value}</p> ${addToCartButton}</div>`
                     } else {
-                        return `<div><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}">${inventory.facility_stock} tons of ${inventory.mineralName}</input></div>`
+
+                        return `<div><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}">${inventory.facility_stock} tons of ${foundMineral.name}</input><p>Value: ${foundMineral.value}</p></div>`
                     }
 
                 } else {
-                    return `<div><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}">${inventory.facility_stock} tons of ${inventory.mineralName}</input></div>`
+                    return `<div><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}">${inventory.facility_stock} tons of ${inventory.mineralName}</input><p>Value: ${foundMineral.value}</p></div>`
                 }
             }).join("")
         } else {

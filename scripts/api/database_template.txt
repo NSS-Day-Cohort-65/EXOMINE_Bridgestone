@@ -189,12 +189,6 @@
       "colony_id": 3,
       "mineral_id": 1,
       "colony_stock": 30
-    },
-    {
-      "colony_id": 3,
-      "mineral_id": 4,
-      "colony_stock": 30,
-      "id": 4
     }
   ],
   "facility_inventory": [
@@ -202,19 +196,19 @@
       "id": 1,
       "facility_id": 1,
       "mineral_id": 1,
-      "facility_stock": 5
+      "facility_stock": 0
     },
     {
       "id": 2,
       "facility_id": 2,
       "mineral_id": 1,
-      "facility_stock": 5
+      "facility_stock": 0
     },
     {
       "id": 3,
       "facility_id": 3,
       "mineral_id": 1,
-      "facility_stock": 5
+      "facility_stock": 0
     },
     {
       "id": 4,
@@ -226,25 +220,25 @@
       "id": 5,
       "facility_id": 1,
       "mineral_id": 2,
-      "facility_stock": 10
+      "facility_stock": 0
     },
     {
       "id": 6,
       "facility_id": 1,
       "mineral_id": 3,
-      "facility_stock": 5
+      "facility_stock": 0
     },
     {
       "id": 7,
       "facility_id": 2,
       "mineral_id": 3,
-      "facility_stock": 5
+      "facility_stock": 0
     },
     {
       "id": 8,
       "facility_id": 2,
       "mineral_id": 4,
-      "facility_stock": 4
+      "facility_stock": 0
     },
     {
       "id": 9,
@@ -256,7 +250,7 @@
       "id": 10,
       "facility_id": 3,
       "mineral_id": 2,
-      "facility_stock": 10
+      "facility_stock": 0
     },
     {
       "id": 11,
@@ -268,13 +262,13 @@
       "id": 12,
       "facility_id": 4,
       "mineral_id": 4,
-      "facility_stock": 4
+      "facility_stock": 0
     },
     {
       "id": 13,
       "facility_id": 4,
       "mineral_id": 3,
-      "facility_stock": 5
+      "facility_stock": 0
     }
   ],
   "pirates": [

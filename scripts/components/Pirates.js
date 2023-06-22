@@ -4,6 +4,8 @@ import { isRaidSuccessful, reduceSecurityAfterRaid } from './Defense.js'
 
 //write a click even that increments turnCount by 1 everytime purchaseButton is clicked. Write function that fires after 3 turns (turncount hits 3) and adds 5 raiders to the pirate object, then returns the new value.
 
+const MAX_PIRATES_TO_ADD_EACH_TURN = 20;
+
 let turnCount = 0
 
 document.addEventListener("click", e => {
@@ -22,6 +24,8 @@ function delay(ms) {
 
 const addPirateRaiders = () => {
     const pirates = getPirates()
+    let randomAmount = Math.ceil(Math.random() * MAX_PIRATES_TO_ADD_EACH_TURN);
+
     let newPirateObj = {
         id: pirates[0].id,
         raider_stock: pirates[0].raider_stock + 5
