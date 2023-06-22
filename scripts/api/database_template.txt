@@ -87,7 +87,7 @@
     {
       "id": 1,
       "name": "Xenite",
-      "value": 30,
+      "value": 1,
       "yield": 3
     },
     {
@@ -196,79 +196,79 @@
       "id": 1,
       "facility_id": 1,
       "mineral_id": 1,
-      "facility_stock": 5
+      "facility_stock": 10
     },
     {
       "id": 2,
       "facility_id": 2,
       "mineral_id": 1,
-      "facility_stock": 5
+      "facility_stock": 10
     },
     {
       "id": 3,
       "facility_id": 3,
       "mineral_id": 1,
-      "facility_stock": 5
+      "facility_stock": 10
     },
     {
       "id": 4,
       "facility_id": 4,
       "mineral_id": 6,
-      "facility_stock": 5
+      "facility_stock": 1
     },
     {
       "id": 5,
       "facility_id": 1,
       "mineral_id": 2,
-      "facility_stock": 5
+      "facility_stock": 10
     },
     {
       "id": 6,
       "facility_id": 1,
       "mineral_id": 3,
-      "facility_stock": 5
+      "facility_stock": 0
     },
     {
       "id": 7,
       "facility_id": 2,
       "mineral_id": 3,
-      "facility_stock": 5
+      "facility_stock": 0
     },
     {
       "id": 8,
       "facility_id": 2,
       "mineral_id": 4,
-      "facility_stock": 5
+      "facility_stock": 0
     },
     {
       "id": 9,
       "facility_id": 3,
       "mineral_id": 5,
-      "facility_stock": 5
+      "facility_stock": 0
     },
     {
       "id": 10,
       "facility_id": 3,
       "mineral_id": 2,
-      "facility_stock": 5
+      "facility_stock": 0
     },
     {
       "id": 11,
       "facility_id": 4,
       "mineral_id": 5,
-      "facility_stock": 5
+      "facility_stock": 0
     },
     {
       "id": 12,
       "facility_id": 4,
       "mineral_id": 4,
-      "facility_stock": 5
+      "facility_stock": 0
     },
     {
       "id": 13,
       "facility_id": 4,
       "mineral_id": 3,
-      "facility_stock": 5
+      "facility_stock": 0
     }
   ],
   "pirates": [

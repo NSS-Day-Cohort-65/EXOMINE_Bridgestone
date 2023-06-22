@@ -1,11 +1,15 @@
 import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getState, putColony_Inventory, putFacility_Inventory, postColony_Inventory, getColonies } from "../api/dataaccess.js"
 
+const MAX_MINERAL_TO_USE_EACH_TURN = 8
+
+
 document.addEventListener("click", async (clickEvent) => {
     const itemClicked = clickEvent.target
 
     //check if itemClicked is the button 
     if (itemClicked.id === "purchaseButton") {
         await purchaseMineral()
+        await coloniesUseMinerals()
         document.dispatchEvent(new CustomEvent("stateChanged"))
         //document.dispatchEvent(new CustomEvent("addAndUseMinerals"))
     }
@@ -28,6 +32,40 @@ function delay(ms) {
 }
 
 let purchaseMineral
+
+const coloniesUseMinerals = async () => {
+    const colInventory = getColoniesInventory()
+
+    for (const colInv of colInventory) {
+
+        if (colInv.mineral_id === 1) {
+
+            let randomAmount = Math.ceil(Math.random() * MAX_MINERAL_TO_USE_EACH_TURN);
+
+            let newObj = {
+                id: colInv.id,
+                colony_id: colInv.colony_id,
+                mineral_id: colInv.mineral_id,
+                colony_stock: colInv.colony_stock - randomAmount
+            }
+
+            try {
+                await putColony_Inventory(newObj, colInv.id)
+            } catch (error) {
+                console.error('PUT request failed for facility inventory ID:', colInv.id);
+                console.error('Error:', error);
+                delay(1000);
+                try {
+                    console.log('Retrying PUT request for facility inventory ID:', colInv.id)
+                    await putColony_Inventory(newObj, colInv.id)
+                } catch (error) {
+                    console.error('Error', error)
+                }
+            }
+
+        }
+    }
+}
 
 export const Cart = () => {
     const state = getState()
