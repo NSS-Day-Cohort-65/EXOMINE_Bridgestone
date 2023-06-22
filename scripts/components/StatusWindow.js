@@ -118,8 +118,8 @@ const ResourcesDisplay = () => {
         resourcesToDisplay.mineralsArr = matchingMineralsArr
         resourcesToDisplay.security = matchingFacility.security
         
-        html += `<h2>${resourcesToDisplay.facilityName}</h2>
-            <ul id="resources_list">`
+        html += `<h1 id="heading-status-name">${resourcesToDisplay.facilityName}</h1>
+            <ul id="resources_list" class="flex-list">`
         
         const mineralsListArr = resourcesToDisplay.mineralsArr.map((mineralResource) => {
             return `<li class="mineral_resource">${mineralResource.stock} tons of ${mineralResource.name}</li>`
@@ -154,8 +154,8 @@ const ResourcesDisplay = () => {
         resourcesToDisplay.mineralsArr = matchingMineralsArr
         resourcesToDisplay.security = matchingColony.security
 
-        html += `<h2>${resourcesToDisplay.colonyName}</h2>
-            <ul id="resources_list">`
+        html += `<h1 id="heading-status-name">${resourcesToDisplay.colonyName}</h1>
+            <ul id="resources_list" class="flex-list">`
         
         const mineralsListArr = resourcesToDisplay.mineralsArr.map((mineralResource) => {
             return `<li class="mineral_resource">${mineralResource.stock} tons of ${mineralResource.name}</li>`
@@ -176,7 +176,7 @@ const ResourcesDisplay = () => {
 //display entire status window
 export const StatusWindow = () => {
 
-    let html =`<h2>Status</h2>
+    let html =`<h1 class="headings-containers">Status ✔️</h1>
     <div id="status prompt">
     <p>Choose a Facility or Colony:</p>`
 

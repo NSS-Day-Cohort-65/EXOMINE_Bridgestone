@@ -83,43 +83,17 @@ export const FacilityInventory = () => {
             return chosenFacilityInventory.map(inventory => {
                 if (mineralSelected) {
                     if (mineralSelected.id === inventory.mineral_id) {
-                        amountSelector = `<form>
-                            <label for="quantity--${inventory.mineral_id}"></label>
-                            <input type="number" 
-                                id="quantity--${inventory.mineral_id}" 
-                                name="quantity" 
-                                min="0" 
-                                max="${inventory.facility_stock}" 
-                                value="${selectedAmount}">
-                        </form>`
+                        amountSelector =
+                            `<label for="quantity--${inventory.mineral_id}"></label>
+                            <input type="number" id="quantity--${inventory.mineral_id}" name="quantity" min="10" max="500" step="10" value="${selectedAmount}">`
                         let addToCartButton = `<button id=${inventory.mineral_id} class="addToCartButton">Add to Cart</button>`
-                        return `<div class="facilityInventory__items">
-                            <input id="mineral-radio--${inventory.mineral_id}" 
-                                type="radio" name="minerals" 
-                                value="${inventory.mineral_id}" 
-                                checked>
-                                <div>${amountSelector}</div> 
-                                ${inventory.facility_stock} tonnes of ${inventory.mineralName}
-                            </input><p>Value: ${mineralSelected.value}</p> ${addToCartButton}</div>`
+                        return `<div class="facilityInventory__items"><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}" checked>${amountSelector} tons of ${inventory.mineralName}</input> ${addToCartButton}</div>`
                     } else {
-                        return `<div>
-                                <input id="mineral-radio--${inventory.mineral_id}" 
-                                    type="radio" name="minerals" 
-                                    value="${inventory.mineral_id}">
-                                    ${inventory.facility_stock} tonnes of ${inventory.mineralName}
-                                </input>
-                            </div>`
+                        return `<div><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}">${inventory.facility_stock} tons of ${inventory.mineralName}</input></div>`
                     }
 
                 } else {
-                    return `<div>
-                            <input id="mineral-radio--${inventory.mineral_id}" 
-                                type="radio" 
-                                name="minerals" 
-                                value="${inventory.mineral_id}">
-                                    ${inventory.facility_stock} tonnes of ${inventory.mineralName}
-                            </input>
-                        </div>`
+                    return `<div><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}">${inventory.facility_stock} tons of ${inventory.mineralName}</input></div>`
                 }
             }).join("")
         } else {
@@ -127,9 +101,11 @@ export const FacilityInventory = () => {
         }
     }
 
-    let html = `<div class="flex-container" id="minerals-selector">
-    <h1 id="facility__header">Facility Minerals ${state.selectedFacility ? `for ${facility.name}` : ""}</h1>
+    let html = `<div id="minerals-selector">
+    <h1 id="facility__header">Facility Minerals ${state.selectedFacility ? `for ${facility.name}` : ""} ⛏️</h1>
+    <div id="facility-inventory-flex-list">
             ${mineralRadioSelectors()}
+            </div>
         </div>`
 
     return html

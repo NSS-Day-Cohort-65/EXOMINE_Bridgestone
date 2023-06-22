@@ -40,7 +40,7 @@ const findMineralObjwithMineralId = minId => {
 
 const colonyInvHTMLGen = colonyInvArr => {
     const colInvSpreadArr = colonyInvArr.map(colInvObj => ({ ...colInvObj }))
-    let html = `<ul id='colonyResources__list' class="list">`
+    let html = `<ul id='colonyResources__list' class="list flex-list">`
     html += colInvSpreadArr.map(colInvObj => {
         return `<li class='colonyResources__item list__item'>${colInvObj.colony_stock} tons of ${findMineralObjwithMineralId(colInvObj.mineral_id).name}</li>`
     }).join('')
@@ -69,14 +69,14 @@ export const ColonyResources = () => {
 
         const colonyInvArr = findColInvObjsWithColObj(matchedColony) //stores the arr of colony inventory objects gotten by matching the id of the colony passed to it with the colony_id's on the colony_inventory objects
 
-        html += `<h1 id='colonyName_heading'>${matchedColony.name} Minerals:</h1>
-    <ul id='colonyResources__list'>
+        html += `<h1 id='colonyName_heading'>${matchedColony.name} Minerals ⛏️</h1>
+    
     ${colonyInvHTMLGen(colonyInvArr)}
-    </ul>` // parses the colonyInvArr sent and generates the html for each resource in a list item format
+    ` // parses the colonyInvArr sent and generates the html for each resource in a list item format
 
 
     } else {
-        html += `<h1 id='colonyResources_heading'>Colony Resources</h1>`
+        html += `<h1 id='colonyResources_heading'>Colony Minerals ⛏️</h1>`
     }
 
     return html
