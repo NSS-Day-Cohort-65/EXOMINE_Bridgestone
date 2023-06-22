@@ -11,6 +11,7 @@ import { getState } from './api/dataaccess.js'
 // import { raidAlertHTMLGen } from './components/RaidAlert.js'
 import { generateResetButtonHTML } from './components/ResetButton.js'
 import { StatusWindow } from './components/StatusWindow.js'
+import { toolTipRender } from './Tooltip.js'
 
 
 document.addEventListener("startRaid", CustomEvent => {
@@ -34,11 +35,25 @@ document.addEventListener("startRaid", CustomEvent => {
     }
 });
 
+document.addEventListener("mouseover", e => {
+    if(e.target.id === "tooltip-img") {
+        document.getElementById("tooltip-text").style.visibility = "visible";
+    }
+})
+
+document.addEventListener("mouseout", e => {
+    if(e.target.id === "tooltip-img") {
+        document.getElementById("tooltip-text").style.visibility = "hidden";
+    }
+})
+
+
 export const Exomine = () => {
 
     return `
     <div id="all-container">
     <h1 id="heading__main">Solar System Mining Marketplace</h1>
+        ${toolTipRender()}
         ${generateResetButtonHTML()}
     <section id="turncounter-section"> 
     ${TurnCounter()}
@@ -77,4 +92,6 @@ export const Exomine = () => {
     </div>`
 }
 
+
 //if adding in none windwo based alert, place this back above last article tag (like 41 as of time of writing) ${raidAlertHTMLGen()} and uncomment the import statment on like 9.
+

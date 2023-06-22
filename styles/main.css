@@ -39,12 +39,12 @@ body {
     align-items: center;
     border: 2px solid rgb(212, 227, 255);
     padding: 25px;
-    background: radial-gradient(circle, rgba(44,46,56,1) 0%, rgba(16,16,17,1) 100%);
+    background: radial-gradient(circle, rgba(44, 46, 56, 1) 0%, rgba(16, 16, 17, 1) 100%);
     text-align: center;
     border-radius: 5%;
     width: 320px;
     min-height: 320px;
-    overflow:auto;
+    overflow: auto;
 
 }
 
@@ -143,7 +143,7 @@ button:disabled {
     margin-right: 10px;
     position: absolute;
     right: 40px;
-    top: 20px;
+    top: 27px;
     box-shadow: 2px 3px 8px 3px #390a0a;
 
 }
@@ -346,3 +346,40 @@ img {
     }
 }
 
+/* tooltip */
+
+
+#tooltip-img {
+    width: 50px;
+    margin-left: 10px;
+    position: absolute;
+    left: 40px;
+    top: 15px;
+}
+
+#tooltip-text {
+    color: #313131;
+    padding: 20px;
+    font-weight: 500;
+    font-size: 25px;
+    width: 700px;
+    border: #282829 solid 7px;
+    border-radius: 20px;
+    background-color: rgb(240, 243, 254);
+    box-shadow: rgb(174, 204, 247) 1px 1px 7px;
+    visibility: hidden;
+    position: absolute;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    top: 250px;
+    z-index: 100;
+}
+
+#tooltip-heading {
+    font-size: 32px;
+    font-weight: bold;
+}
