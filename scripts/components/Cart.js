@@ -52,11 +52,11 @@ const coloniesUseMinerals = async () => {
             try {
                 await putColony_Inventory(newObj, colInv.id)
             } catch (error) {
-                console.error('PUT request failed for facility inventory ID:', colInv.id);
+                console.error('PUT request failed for colony inventory ID:', colInv.id);
                 console.error('Error:', error);
                 delay(1000);
                 try {
-                    console.log('Retrying PUT request for facility inventory ID:', colInv.id)
+                    console.log('Retrying PUT request for colony inventory ID:', colInv.id)
                     await putColony_Inventory(newObj, colInv.id)
                 } catch (error) {
                     console.error('Error', error)
