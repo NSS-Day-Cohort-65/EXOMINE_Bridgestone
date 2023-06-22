@@ -196,7 +196,7 @@
       "id": 2,
       "name": "Starhold Delta",
       "is_active": true,
-      "security": 10,
+      "security": 0,
       "is_facility": true
     },
     {

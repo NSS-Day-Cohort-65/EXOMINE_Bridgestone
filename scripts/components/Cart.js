@@ -104,12 +104,10 @@ export const Cart = () => {
                         console.error('Error', error)
                     }
                 }
-                state.cart_minerals = []
-
                 //FacilitiesGainMinerals--------------------------------
                 for (const facInv of facilitiesInventory) {
                     const foundMineral = minerals.find(mineral => mineral.id === facInv.mineral_id);
-            
+
                     let newObj = {
                         id: facInv.id,
                         facility_id: facInv.facility_id,
@@ -131,9 +129,11 @@ export const Cart = () => {
                         }
                     }
                 }
-                document.dispatchEvent(new CustomEvent("stateChanged"))
                 //-----------------------------------------------------
             }
+            state.cart_minerals = []
+            document.dispatchEvent(new CustomEvent("stateChanged"))
+
         }
     }
 
@@ -160,7 +160,7 @@ export const Cart = () => {
             return facility.id === state.selectedFacility
         }
 
-    
+
     )
 
     html += `<div class="flex-list">`
