@@ -1,4 +1,4 @@
-import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals } from "../api/dataaccess.js"
+import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, getGovernors, getMinerals } from "../api/dataaccess.js"
 
 //window should contain a header
     // 2 drop downs side by side - when you pick one, it displays the location with all it's minerals and security
@@ -134,6 +134,8 @@ const ResourcesDisplay = () => {
     //Display Resources at Colony
     } else if (colonySelected) {
         const matchingColony = colonies.find(colony => colonySelected.id === colony.id)
+        const governors = getGovernors()
+        const matchingGovernors = governors.filter(governor => governor.colony_id === colonySelected.id)
             
         const matchingColInventories = coloniesInventory.filter(colonyInventory => colonyInventory.colony_id === colonySelected.id)
 
@@ -153,6 +155,7 @@ const ResourcesDisplay = () => {
         resourcesToDisplay.colonyName = matchingColony.name
         resourcesToDisplay.mineralsArr = matchingMineralsArr
         resourcesToDisplay.security = matchingColony.security
+        
 
         html += `<h1 id="heading-status-name">${resourcesToDisplay.colonyName}</h1>
             <ul id="resources_list" class="flex-list">`
@@ -164,6 +167,17 @@ const ResourcesDisplay = () => {
         html += `<li id="security-display">Security: ${resourcesToDisplay.security}
             </ul>
         </div>`
+
+        const governorsArr = matchingGovernors.map((governor) => {
+            if (governor.is_active) {
+                return `<li>${governor.name}</li>`
+            }
+        })
+
+        html +=`<p>Active Governors: 
+                    <ul id="governors-list">${governorsArr.length ? governorsArr.join(``) : `<p>No governors</p>`}</ul>
+                </p>`
+            
 
         return html
     } else {
