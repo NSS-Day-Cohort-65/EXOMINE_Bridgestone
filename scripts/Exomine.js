@@ -30,42 +30,51 @@ document.addEventListener("startRaid", CustomEvent => {
     } else {
         const placeRaided = state.lastLocationRaided
 
-            window.alert(`WARNING: ${placeRaided.toUpperCase()} WAS RAIDED BUT SUCCESSFULLY DEFENDED!`)
+        window.alert(`WARNING: ${placeRaided.toUpperCase()} WAS RAIDED BUT SUCCESSFULLY DEFENDED!`)
     }
 });
 
 export const Exomine = () => {
 
-    return `<h1 id="heading__main">Solar System Mining Marketplace</h1>
+    return `
+    <div id="all-container">
+    <h1 id="heading__main">Solar System Mining Marketplace</h1>
+        ${generateResetButtonHTML()}
+    <section id="turncounter-section"> 
     ${TurnCounter()}
-    <section id="top-section" class="flex-container">
+    </section>
+    <div id="content-container">
+    <section id="top-section" class="primary-section">
         <div class="flex-container" id="selectors-container">
             ${Governors()}
             ${Facilities()}
         </div>
-        ${GovernorRecruiter()}
         <div id="colonies-container" class="flex-container">
         ${ColonyResources()}
         </div>
-    </section>
-    <section id="bottom-section" class="flex-container">
-    <div id="facilities-container" class="flex-container">
-        ${FacilityInventory()}
-    </div>
+        <div id="facilities-container" class="flex-container">
+            ${FacilityInventory()}
+        </div>
+        <div id="cart-container" class="flex-container">
         ${Cart()}
+    </div>
     </section>
-    <section id="security-section" class="flex-container">
-        ${Security()}
+    <section id="middle-section" class="primary-section">
+        <div id="security-container" class="flex-container">
+            ${Security()}
+        </div>
+        <div id="governor-recruiter-container" class="flex-container">
+            ${GovernorRecruiter()}
+        </div>
+        <div id="status-container" class="flex-container">
+            ${StatusWindow()}
+        </div>
+        <div id="pirate-container" class="flex-container">
+            ${Pirates()}
+        </div>
     </section>
-    <section id="status-section" class="flex-container">
-        ${StatusWindow()}
-    </section>
-    <section id="pirate-section" class="flex-container">
-        ${Pirates()}
-    </section>
-    <section id="reset-button-section">
-        ${generateResetButtonHTML()}
-    </section>`
+    </div>
+    </div>`
 }
 
 //if adding in none windwo based alert, place this back above last article tag (like 41 as of time of writing) ${raidAlertHTMLGen()} and uncomment the import statment on like 9.
