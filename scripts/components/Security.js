@@ -248,7 +248,7 @@ export const Security = () => {
     }
     //Purchase section with number field and purchase button 
     html += `<div id="purchase-security">
-            <p class="security-number-to-recruit">Number to Recruit:${securityTotal}</p>
+            <p class="security-number-to-recruit">Number to Recruit: ${securityTotal}</p>
             <button id="securityButton">Purchase</button>
         </div>`
     // disable security button if nothing is selected!!!!
