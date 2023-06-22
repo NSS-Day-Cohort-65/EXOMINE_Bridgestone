@@ -1,4 +1,4 @@
-import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getState, putColony_Inventory, putFacility_Inventory, postColony_Inventory } from "../api/dataaccess.js"
+import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getState, putColony_Inventory, putFacility_Inventory, postColony_Inventory, getColonies } from "../api/dataaccess.js"
 
 document.addEventListener("click", async (clickEvent) => {
     const itemClicked = clickEvent.target
@@ -35,6 +35,7 @@ export const Cart = () => {
     const coloniesInventory = getColoniesInventory();
     const minerals = getMinerals()
     const facilities = getFacilities()
+    const colonies = getColonies()
 
     purchaseMineral = async () => {
         // increment colony stock 
@@ -104,12 +105,10 @@ export const Cart = () => {
                         console.error('Error', error)
                     }
                 }
-                state.cart_minerals = []
-
                 //FacilitiesGainMinerals--------------------------------
                 for (const facInv of facilitiesInventory) {
                     const foundMineral = minerals.find(mineral => mineral.id === facInv.mineral_id);
-            
+
                     let newObj = {
                         id: facInv.id,
                         facility_id: facInv.facility_id,
@@ -131,14 +130,22 @@ export const Cart = () => {
                         }
                     }
                 }
-                document.dispatchEvent(new CustomEvent("stateChanged"))
                 //-----------------------------------------------------
             }
+            state.cart_minerals = []
+            document.dispatchEvent(new CustomEvent("stateChanged"))
+
         }
+    }
+    let cartColony = null
+    if (state.selectedColony) {
+        cartColony = colonies.find((colony) => {
+            return colony.id === state.selectedColony
+        })
     }
 
     let html = `<div class="cart">
-        <h1 id="heading-cart">Space Cart 🛒</h1>`
+        <h1 id="heading-cart">${state.selectedColony ? cartColony.name : ``} Space Cart 🛒</h1>`
 
     const chosenMineralsArr = () => {
         let chosenMinerals = []
@@ -160,7 +167,7 @@ export const Cart = () => {
             return facility.id === state.selectedFacility
         }
 
-    
+
     )
 
     html += `<div class="flex-list">`

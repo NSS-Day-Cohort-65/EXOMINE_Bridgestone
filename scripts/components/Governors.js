@@ -10,7 +10,7 @@ export const Governors = () => {
     const state = getState()
 
     let html = `<p>Choose a Governor</p><select id="governor-selector" class="selector">
-    <option value="">Select a governor...</option>`
+    <option value="0">Select a governor...</option>`
 
     const listItems = governors.map(governor => {
         if (governor.is_active) {
@@ -40,9 +40,15 @@ document.addEventListener(
                     return gov.id === parseInt(governorId)
                 }
             )
+            if (foundGovernor) {
+                setColonies(foundGovernor.colony_id)
+                setGovernor(parseInt(governorId));
+            } else {
+                setColonies(0)
+                setGovernor(0)
+            }
 
-            setColonies(foundGovernor.colony_id)
-            setGovernor(parseInt(governorId));
+
         }
     }
 )
