@@ -42,7 +42,7 @@ body {
     background: radial-gradient(circle, rgba(44, 46, 56, 1) 0%, rgba(16, 16, 17, 1) 100%);
     text-align: center;
     border-radius: 5%;
-    width: 320px;
+    width: 340px;
     min-height: 320px;
     overflow: auto;
 
@@ -203,6 +203,9 @@ button:disabled {
 
 /* colony resources */
 
+#colonyResources__list {
+    text-align: left;
+}
 
 
 /* facility minerals */
@@ -212,13 +215,20 @@ button:disabled {
     flex-direction: column;
     justify-content: space-evenly;
     height: 150%;
+    align-items: center;
+    text-align: left;
+
+}
+
+.center-in-facilities-container{
+    text-align: center;
 }
 
 .addToCartButton {
     margin-top: 10px;
     font-size: 12px;
-    padding: 1px 7px;
-    margin-left: 5px;
+    padding: 1.5px 10px;
+    margin-left: 20px;
 
 }
 
@@ -236,11 +246,20 @@ button:disabled {
 
 #purchaseButton {
     margin-top: 5px;
+    text-align: center;
 }
 
 
 
 /* security */
+
+#facility_security {
+    width: 100px;
+}
+
+#colony_security {
+    width: 100px;
+}
 
 #security_prompt {
     text-align: center;
@@ -286,6 +305,14 @@ button:disabled {
 
 #resources_list {
     padding: 20px 0px;
+    text-align: left;
+}
+#facility_status {
+    width: 100px;
+}
+
+#colony_status {
+    width: 100px;
 }
 
 
