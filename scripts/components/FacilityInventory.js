@@ -113,40 +113,39 @@ export const FacilityInventory = () => {
 }
 
 //write function that adds a random amount of minerals to a facility every turn. Trigger it off of click event from purchaseButton
-const facilitiesGainMinerals = async () => {
-    fetchFacility_Inventory()
-    const facInventory = getFacilitiesInventory();
-    const minerals = getMinerals();
-    for (const facInv of facInventory) {
-        const foundMineral = minerals.find(mineral => mineral.id === facInv.mineral_id);
+// const facilitiesGainMinerals = async () => {
+//     const facInventory = getFacilitiesInventory();
+//     const minerals = getMinerals();
+//     for (const facInv of facInventory) {
+//         const foundMineral = minerals.find(mineral => mineral.id === facInv.mineral_id);
 
-        let newObj = {
-            id: facInv.id,
-            facility_id: facInv.facility_id,
-            mineral_id: facInv.mineral_id,
-            facility_stock: facInv.facility_stock + foundMineral.yield
-        };
+//         let newObj = {
+//             id: facInv.id,
+//             facility_id: facInv.facility_id,
+//             mineral_id: facInv.mineral_id,
+//             facility_stock: facInv.facility_stock + foundMineral.yield
+//         };
         // Delay between each PUT request
-        try {
-            await putFacility_Inventory(newObj, facInv.id);
-        } catch (error) {
-            console.error('PUT request failed for facility inventory ID:', facInv.id);
-            console.error('Error:', error);
-            delay(1000);
-            try {
-                console.log('Retrying PUT request for facility inventory ID:', facInv.id)
-                await putFacility_Inventory(newObj, facInv.id);
-            } catch (error) {
-                console.error('Error', error)
-            }
-        }
-    }
-}
+//         try {
+//             await putFacility_Inventory(newObj, facInv.id);
+//         } catch (error) {
+//             console.error('PUT request failed for facility inventory ID:', facInv.id);
+//             console.error('Error:', error);
+//             delay(1000);
+//             try {
+//                 console.log('Retrying PUT request for facility inventory ID:', facInv.id)
+//                 await putFacility_Inventory(newObj, facInv.id);
+//             } catch (error) {
+//                 console.error('Error', error)
+//             }
+//         }
+//     }
+// }
 
-document.addEventListener(
-    "addAndUseMinerals",
-    async customEvent => {
-        await facilitiesGainMinerals();
-        document.dispatchEvent(new CustomEvent("stateChanged"))
-    }
-)
+// document.addEventListener(
+//     "addAndUseMinerals",
+//     async customEvent => {
+//         await facilitiesGainMinerals();
+//         document.dispatchEvent(new CustomEvent("stateChanged"))
+//     }
+// )
