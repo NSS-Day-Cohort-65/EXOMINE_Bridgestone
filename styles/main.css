@@ -25,6 +25,7 @@ body {
 #all-container {
     width: 90%;
     margin: 0 auto;
+
 }
 
 #content-container {
@@ -32,6 +33,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    
 }
 
 .flex-container {
@@ -45,8 +47,9 @@ body {
     border-radius: 5%;
     width: 320px;
     min-height: 320px;
-    overflow: auto;
+    overflow-y: auto;
     box-shadow: rgb(174, 204, 247) 1px 1px 5px;
+
 
 }
 
@@ -301,6 +304,36 @@ button:disabled {
 
 /* governor recruiter */
 
+
+#governor-items-line {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+}
+
+.governor-mineral-heading {
+    margin: 5px 0px;
+    font-size: 18px;
+
+}
+
+.governor-mineral-input {
+    margin-left: 8px;
+}
+
+.governor-mineral-value {
+    margin-right: 8px;
+}
+
+#governor-recruitment-cost {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+#governor-current-value {
+    margin-top: 20px;
+    font-size: 18px;
+}
 
 
 /* status */

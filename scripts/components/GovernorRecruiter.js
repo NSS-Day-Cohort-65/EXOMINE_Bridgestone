@@ -173,7 +173,7 @@ export const GovernorRecruiter = () => {
             }
         ).join("")
 
-        html += `<p>Recruitment Cost:${GOVERNOR_COST}</p><p>Current Value:${mineralTotalValue}</p>`
+        html += `<p id="governor-recruitment-cost">Recruitment Cost:${GOVERNOR_COST}</p><p id="governor-current-value">Current Value:${mineralTotalValue}</p>`
         if (mineralTotalValue >= GOVERNOR_COST) {
             html += `<button id="button-recruit">Recruit</button>`
         } else {
