@@ -111,7 +111,7 @@ export const Cart = () => {
     }
 
     let html = `<div class="cart">
-        <h1 id="heading-cart">Space Cart</h1>`
+        <h1 id="heading-cart">Space Cart 🛒</h1>`
 
     const chosenMineralsArr = () => {
         let chosenMinerals = []

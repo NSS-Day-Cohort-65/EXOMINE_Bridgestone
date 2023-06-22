@@ -249,7 +249,7 @@ export const Pirates = () => {
 
     //add pirates border container and heading
 
-    html += `<div id="pirate-text-container"> <h1 id="pirate-header">Pirates</h1>`
+    html += `<div id="pirate-text-container"> <h1 id="pirate-header">Pirates 💀</h1>`
 
     // pirate ship image html
 

@@ -39,11 +39,11 @@ body {
     align-items: center;
     border: 2px solid rgb(212, 227, 255);
     padding: 25px;
-    background-color: #35383a;
+    background: radial-gradient(circle, rgba(44,46,56,1) 0%, rgba(16,16,17,1) 100%);
     text-align: center;
     border-radius: 5%;
-    width: 280px;
-    min-height: 280px;
+    width: 320px;
+    min-height: 320px;
     overflow:auto;
 
 }
@@ -192,6 +192,13 @@ button:disabled {
     justify-content: center;
 }
 
+#governor-selector {
+    padding: 7px;
+}
+
+#facility {
+    padding: 7px;
+}
 
 
 /* colony resources */
@@ -208,7 +215,7 @@ button:disabled {
 }
 
 .addToCartButton {
-    margin-top: 0px;
+    margin-top: 10px;
     font-size: 12px;
     padding: 1px 7px;
     margin-left: 5px;
