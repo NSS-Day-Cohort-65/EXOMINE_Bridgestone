@@ -47,7 +47,7 @@ export const GovernorRecruiter = () => {
 
     // the event listener looks for the selector id to start with recruit
     let html = `
-        <h1 class="headings-containers">Governor Recruiter</h1>
+        <h1 class="headings-containers">Governor Recruiter 🎖️</h1>
         <p>Choose a Governor</p>
         <select id="recruit-selector" class="selector">
         <option value="">Select a recruit...</option>`
@@ -86,7 +86,7 @@ export const GovernorRecruiter = () => {
 
     if (state.selectedRecruit && state.selectedRecruitColony) {
 
-        html += `<button id="button-recruit">Recruit</button></div>`
+        html += `<button id="button-recruit">Recruit</button>`
     } else {
         html += `<button id="button-recruit" disabled>Recruit</button>`
 
