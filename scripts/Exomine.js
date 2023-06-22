@@ -11,7 +11,7 @@ import { getState } from './api/dataaccess.js'
 // import { raidAlertHTMLGen } from './components/RaidAlert.js'
 import { generateResetButtonHTML } from './components/ResetButton.js'
 import { StatusWindow } from './components/StatusWindow.js'
-import { toolTipRender } from './Tooltip.js'
+import { toolTipRender } from './components/Tooltip.js'
 
 
 document.addEventListener("startRaid", CustomEvent => {
@@ -36,13 +36,13 @@ document.addEventListener("startRaid", CustomEvent => {
 });
 
 document.addEventListener("mouseover", e => {
-    if(e.target.id === "tooltip-img") {
+    if (e.target.id === "tooltip-img") {
         document.getElementById("tooltip-text").style.visibility = "visible";
     }
 })
 
 document.addEventListener("mouseout", e => {
-    if(e.target.id === "tooltip-img") {
+    if (e.target.id === "tooltip-img") {
         document.getElementById("tooltip-text").style.visibility = "hidden";
     }
 })
@@ -52,7 +52,7 @@ export const Exomine = () => {
 
     return `
     <div id="all-container">
-    <h1 id="heading__main">Solar System Mining Marketplace</h1>
+    <h1 id="heading__main">SUPER EXOMINE</h1>
         ${toolTipRender()}
         ${generateResetButtonHTML()}
     <section id="turncounter-section"> 
@@ -65,13 +65,13 @@ export const Exomine = () => {
             ${Facilities()}
         </div>
         <div id="colonies-container" class="flex-container">
-        ${ColonyResources()}
+           ${ColonyResources()}
         </div>
         <div id="facilities-container" class="flex-container">
-            ${FacilityInventory()}
+           ${FacilityInventory()}
         </div>
         <div id="cart-container" class="flex-container">
-        ${Cart()}
+           ${Cart()}
     </div>
     </section>
     <section id="middle-section" class="primary-section">

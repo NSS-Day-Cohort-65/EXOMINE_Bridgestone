@@ -93,7 +93,7 @@ export const FacilityInventory = () => {
                             `<label for="quantity--${inventory.mineral_id}"></label>
                             <input type="number" id="quantity--${inventory.mineral_id}" name="quantity" min="0" max="${inventory.facility_stock}" value="${selectedAmount}">`
                         let addToCartButton = `<button id=${inventory.mineral_id} class="addToCartButton">Add to Cart</button>`
-                        return `<div class="facilityInventory__items"><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}" checked>${inventory.facility_stock} - ${amountSelector} tons of ${inventory.mineralName}</input> ${addToCartButton}</div>`
+                        return `<div class="facilityInventory__items"><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}" checked>${inventory.facility_stock} tons of ${inventory.mineralName}</input><br>${amountSelector} ${addToCartButton}</div>`
                     } else {
                         return `<div><input id="mineral-radio--${inventory.mineral_id}" type="radio" name="minerals" value="${inventory.mineral_id}">${inventory.facility_stock} tons of ${inventory.mineralName}</input></div>`
                     }

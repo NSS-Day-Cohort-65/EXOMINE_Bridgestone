@@ -1,7 +1,7 @@
 export const toolTipRender = () => {
     let html = `
     <img id="tooltip-img" class="image" src="images/help.png">
-    <p id="tooltip-text"><span id="tooltip-heading">MINEWARS - HOW TO PLAY:</span><br><br>
+    <p id="tooltip-text"><span id="tooltip-heading">SUPER EXOMINE - HOW TO PLAY:</span><br><br>
 
     Lead your colonies and defend against the onslaught of the space pirate hoard!<br><br>
 
@@ -15,7 +15,7 @@ export const toolTipRender = () => {
 
     If a raid is successful, the attacked colony or facility will loose a random amount of minerals. Additionally, if a colony is attacked, there is a chance one of its governors will be killed! If this happens, make sure to recruit a new one!<br><br>
 
-    God speed and good luck, leader!</div>`
+    God speed and good luck, leader!</div>` 
 
     return html
 }
