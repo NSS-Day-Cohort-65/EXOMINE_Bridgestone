@@ -107,6 +107,7 @@ const ResourcesDisplay = () => {
                     matchingMineral = {
                         id: mineral.id,
                         name: mineral.name,
+                        value: mineral.value,
                         stock: inventory.facility_stock
                     }
                     matchingMineralsArr.push(matchingMineral)
@@ -122,7 +123,7 @@ const ResourcesDisplay = () => {
             <ul id="resources_list" class="flex-list">`
         
         const mineralsListArr = resourcesToDisplay.mineralsArr.map((mineralResource) => {
-            return `<li class="mineral_resource">${mineralResource.stock} tons of ${mineralResource.name}</li>`
+            return `<li class="mineral_resource">${mineralResource.stock} tons of ${mineralResource.name} - Value: ${mineralResource.value}</li>`
         })
         html += mineralsListArr.join(``)
         html += `<li id="security-display">Security: ${resourcesToDisplay.security}
@@ -145,6 +146,7 @@ const ResourcesDisplay = () => {
                     matchingMineral = {
                         id: mineral.id,
                         name: mineral.name,
+                        value: mineral.value,
                         stock: inventory.colony_stock
                     }
                     matchingMineralsArr.push(matchingMineral)
@@ -161,7 +163,7 @@ const ResourcesDisplay = () => {
             <ul id="resources_list" class="flex-list">`
         
         const mineralsListArr = resourcesToDisplay.mineralsArr.map((mineralResource) => {
-            return `<li class="mineral_resource">${mineralResource.stock} tons of ${mineralResource.name}</li>`
+            return `<li class="mineral_resource">${mineralResource.stock} tons of ${mineralResource.name} - Value: ${mineralResource.value}</li>`
         })
         html += mineralsListArr.join(``)
         html += `<li id="security-display">Security: ${resourcesToDisplay.security}
