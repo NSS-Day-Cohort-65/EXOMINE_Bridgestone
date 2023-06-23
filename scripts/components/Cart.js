@@ -233,13 +233,13 @@ export const Cart = () => {
     html += `<div class="flex-list">`
     if (chosenMinerals.length && chosenFacility) {
         for (const mineral of chosenMinerals) {
-            html += `<p class="cart__item">${mineral.amount} tonnes of ${mineral.name} from ${chosenFacility.name}<p>`
+            html += `<p class="cart__item">${mineral.amount} tons of ${mineral.name} from ${chosenFacility.name}<p>`
         }
     }
 
     if (chosenMinerals.length && chosenFacility) {
         html += `<div>
-                <button id="purchaseButton">Purchase Minerals</button>
+                <button id="purchaseButton">Harvest Minerals</button>
             </div>
         </div>`
     } else {
