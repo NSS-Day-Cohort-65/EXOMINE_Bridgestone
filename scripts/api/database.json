@@ -156,19 +156,22 @@
       "id": 1,
       "name": "Terra Nova",
       "security": 20,
-      "is_colony": true
+      "is_colony": true,
+      "is_active": true
     },
     {
       "id": 2,
       "name": "Nexus Prime",
       "security": 20,
-      "is_colony": true
+      "is_colony": true,
+      "is_active": true
     },
     {
       "id": 3,
       "name": "Astraia",
       "security": 20,
-      "is_colony": true
+      "is_colony": true,
+      "is_active": true
     }
   ],
   "colony_inventory": [

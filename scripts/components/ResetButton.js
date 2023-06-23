@@ -113,7 +113,8 @@ const resetColonies = async () => {
       id: colony.id,
       name: colony.name,
       security: 0,
-      is_colony: true
+      is_colony: true,
+      is_active: true
     }
     await putColony(newObj, colony.id)
   }

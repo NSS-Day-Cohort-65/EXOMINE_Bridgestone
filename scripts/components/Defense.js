@@ -81,7 +81,8 @@ export const reduceSecurityAfterRaid = async () => {
                 id: matchedLocation.id,
                 name: matchedLocation.name,
                 security: matchedLocation.security - pirates[0].raider_stock,
-                is_colony: true
+                is_colony: true,
+                is_active: true
             }
             await putColony(newObj, matchedLocation.id)
         } else {
@@ -89,7 +90,8 @@ export const reduceSecurityAfterRaid = async () => {
                 id: matchedLocation.id,
                 name: matchedLocation.name,
                 security: 0,
-                is_colony: true
+                is_colony: true,
+                is_active: true
             }
             await putColony(newObj, matchedLocation.id)
 

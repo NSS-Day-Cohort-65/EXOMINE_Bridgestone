@@ -1,4 +1,4 @@
-import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getState, putColony_Inventory, putFacility_Inventory, postColony_Inventory, getColonies } from "../api/dataaccess.js"
+import { getColoniesInventory, getFacilities, getGovernors, getFacilitiesInventory, getMinerals, getState, putColony_Inventory, putFacility_Inventory, postColony_Inventory, getColonies, putColony, fetchColonies } from "../api/dataaccess.js"
 
 const MAX_MINERAL_TO_USE_EACH_TURN = 8
 
@@ -65,6 +65,52 @@ const coloniesUseMinerals = async () => {
 
         }
     }
+    //------------------------------------------------------------------------
+    const coloniesInventory = getColoniesInventory()
+    let colonies = getColonies()
+    const governors = getGovernors()
+
+    //filter all colony inventories referring to xenite 
+    const xeniteColoniesInventories = coloniesInventory.filter(colonyInventory => colonyInventory.mineral_id === 1)
+
+    const activeColoniesArr = colonies.filter(colony => colony.is_active === true)
+
+    //check if any colony inventory has 10 xenite 
+    for (const xeniteColonyInventory of xeniteColoniesInventories) {
+        //get colony name of matching colony
+        const xeniteColony = colonies.find(colony => colony.id === xeniteColonyInventory.colony_id)
+        if (xeniteColony.is_active) {
+            if (xeniteColonyInventory.colony_stock > 0 && xeniteColonyInventory.colony_stock <= 10) {           
+                window.alert(`WARNING: ${xeniteColony.name.toUpperCase()} IS AT RISK! Only ${xeniteColonyInventory.colony_stock} Xenite left!`)
+
+            } else if (xeniteColonyInventory.colony_stock <= 0) {
+                let fallenColony = {
+                    id: xeniteColony.id,
+                    name: xeniteColony.name,
+                    security: xeniteColony.security,
+                    is_colony: true,
+                    is_active: false
+                }
+                putColony(fallenColony, xeniteColony.id)
+                window.alert(`${xeniteColony.name.toUpperCase()} HAS FALLEN!`)
+            }
+        }
+    }
+    fetchColonies()
+    colonies = getColonies()
+
+    if (activeColoniesArr.length === 1) {
+        window.alert(`WARNING: ${colonies[0].name.toUpperCase()} IS YOUR LAST REMAINING COLONY!`)
+    } else if (activeColoniesArr.length === 0) {
+        window.alert(`GAME OVER. YOUR LAST COLONY HAS FALLEN! Reset to play again.`)
+    }
+
+    const activeGovernorsArr = governors.filter(governor => governor.is_active === true)
+
+    if (activeGovernorsArr.length === 0) {
+        window.alert(`GAME OVER. YOUR LAST GOVERNOR ${govKilled.toUpperCase()} WAS KILLED! Reset to play again.`)
+    }
+    //--------------------------------------------------------------------
 }
 
 export const Cart = () => {

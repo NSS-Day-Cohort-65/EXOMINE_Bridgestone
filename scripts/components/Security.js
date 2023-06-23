@@ -146,7 +146,8 @@ document.addEventListener("click",
                         id: colonySelected.id,
                         name: colonySelected.name,
                         security: colonySelected.security + securityTotal,
-                        is_colony: true
+                        is_colony: true,
+                        is_active: true
                     }
                     putColony(newColObj, newColObj.id)
 
@@ -161,7 +162,8 @@ document.addEventListener("click",
                         id: colonySelected.id,
                         name: colonySelected.name,
                         security: securityTotal,
-                        is_colony: true
+                        is_colony: true,
+                        is_active: true
                     }
                     putColony(newColObj, newColObj.id)
 
