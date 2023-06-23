@@ -25,6 +25,7 @@ body {
 #all-container {
     width: 90%;
     margin: 0 auto;
+
 }
 
 #content-container {
@@ -32,6 +33,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    
 }
 
 .flex-container {
@@ -44,9 +46,11 @@ body {
     text-align: center;
     border-radius: 5%;
     width: 320px;
-    min-height: 320px;
-    overflow: auto;
+    min-height: 330px;
+    max-height: 600px;
+    overflow-y: auto;
     box-shadow: rgb(174, 204, 247) 1px 1px 5px;
+
 
 }
 
@@ -217,20 +221,21 @@ button:disabled {
     flex-direction: column;
     justify-content: space-evenly;
     height: 150%;
-    align-items: center;
     text-align: left;
+    margin: 0 60px;
+    width: 80%;
 
 }
 
-.center-in-facilities-container{
+/* .center-in-facilities-container{
     text-align: center;
-}
+} */
 
 .addToCartButton {
     margin-top: 10px;
     font-size: 12px;
     padding: 1.5px 10px;
-    margin-left: 20px;
+    margin-left: 15px;
 
 }
 
@@ -302,6 +307,36 @@ button:disabled {
 /* governor recruiter */
 
 
+#governor-items-line {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+}
+
+.governor-mineral-heading {
+    margin: 5px 0px;
+    font-size: 18px;
+
+}
+
+.governor-mineral-input {
+    margin-left: 8px;
+}
+
+.governor-mineral-value {
+    margin-right: 8px;
+}
+
+#governor-recruitment-cost {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+#governor-current-value {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
 
 /* status */
 
@@ -315,6 +350,24 @@ button:disabled {
 
 #colony_status {
     width: 100px;
+}
+
+.left-align {
+    text-align: left !important;
+}
+
+#governors-list {
+    margin: 0;
+    text-align: left;
+    list-style-type: none;
+
+}
+
+#active-governors-heading {
+    margin: 15px 0px 8px 0px;
+    text-shadow: rgb(174, 204, 247) 1px 1px 7px;
+    font-size: 18px;
+
 }
 
 
@@ -404,7 +457,7 @@ img {
     left: 0;
     right: 0;
     text-align: center;
-    top: 250px;
+    top: 200px;
     z-index: 100;
 }
 

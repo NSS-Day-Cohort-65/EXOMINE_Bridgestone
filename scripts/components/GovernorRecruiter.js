@@ -1,6 +1,7 @@
 import { getColonies, getGovernors, getState, getMinerals, putGovernor, setSelectedRecruit, setSelectedRecruitColony, getColoniesInventory, putColony_Inventory } from '../api/dataaccess.js';
 import { appSettings } from '../../appSettings.js'
 
+
 let settings = appSettings.governorRecruiter
 
 const GOVERNOR_COST = settings.GOVERNOR_COST;
@@ -176,7 +177,7 @@ export const GovernorRecruiter = () => {
             }
         ).join("")
 
-        html += `<p>Recruitment Cost:${GOVERNOR_COST}</p><p>Current Value:${mineralTotalValue}</p>`
+        html += `<p id="governor-recruitment-cost">Recruitment Cost:${GOVERNOR_COST}</p><p id="governor-current-value">Current Value:${mineralTotalValue}</p>`
         if (mineralTotalValue >= GOVERNOR_COST) {
             html += `<button id="button-recruit">Recruit</button>`
         } else {
@@ -190,3 +191,11 @@ export const GovernorRecruiter = () => {
 
     return html
 }
+
+//increase turn anytime a governor is purchased:
+
+document.addEventListener("click", e => {
+    if (e.target.id === "button-recruit") {
+        incrementTurn()
+    }
+})
