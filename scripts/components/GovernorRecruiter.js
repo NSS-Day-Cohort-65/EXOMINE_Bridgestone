@@ -1,7 +1,12 @@
 import { getColonies, getGovernors, getState, getMinerals, putGovernor, setSelectedRecruit, setSelectedRecruitColony, getColoniesInventory, putColony_Inventory, incrementTurn, putFacility_Inventory, getFacilitiesInventory, fetchColonies_Inventory } from '../api/dataaccess.js';
 import { coloniesUseMinerals } from './Cart.js';
+import { appSettings } from '../../appSettings.js'
 
-const GOVERNOR_COST = 100;
+
+
+let settings = appSettings.governorRecruiter
+
+const GOVERNOR_COST = settings.GOVERNOR_COST;
 
 let mineralsToSpend = {};
 let mineralTotalValue = 0;

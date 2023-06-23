@@ -1,6 +1,10 @@
 import { getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, getState, putColony_Inventory, putFacility_Inventory, postColony_Inventory, getColonies } from "../api/dataaccess.js"
+import { appSettings } from '../../appSettings.js'
 
-const MAX_MINERAL_TO_USE_EACH_TURN = 8
+let settings = appSettings.cart
+
+const MAX_MINERAL_TO_USE_EACH_TURN = settings.MAX_MINERAL_TO_USE_EACH_TURN
+const YEILD_VARIENCE = settings.YEILD_VARIENCE
 
 
 document.addEventListener("click", async (clickEvent) => {
@@ -65,6 +69,15 @@ export const coloniesUseMinerals = async () => {
             }
 
         }
+    }
+}
+
+const coinFlip = () => {
+    let number = Math.random();
+    if (number < 0.5) {
+        return true
+    } else {
+        return false
     }
 }
 
@@ -148,11 +161,19 @@ export const Cart = () => {
                 for (const facInv of facilitiesInventory) {
                     const foundMineral = minerals.find(mineral => mineral.id === facInv.mineral_id);
 
+                    const yieldRandomizer = () => {
+                        let randomNum = Math.ceil(Math.random() * YEILD_VARIENCE)
+                        if (coinFlip()) {
+                            randomNum * - 1;
+                        }
+                        return randomNum;
+                    }
+
                     let newObj = {
                         id: facInv.id,
                         facility_id: facInv.facility_id,
                         mineral_id: facInv.mineral_id,
-                        facility_stock: facInv.facility_stock + foundMineral.yield
+                        facility_stock: facInv.facility_stock + (foundMineral.yield + yieldRandomizer())
                     };
                     // Delay between each PUT request
                     try {

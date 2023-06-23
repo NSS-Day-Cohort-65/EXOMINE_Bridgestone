@@ -2,7 +2,6 @@ import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventor
 import { coloniesUseMinerals } from './Cart.js'
 let facilitySelected = null
 let colonySelected = null
-let numberSelected = 0
 let mineralsToSpend = {};
 let securityTotal = 0;
 
