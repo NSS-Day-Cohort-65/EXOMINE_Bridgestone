@@ -357,14 +357,14 @@ export const Security = () => {
     if (securityTotal > 0) {
         html += `<div id="purchase-security">
             <p class="security-number-to-recruit">Number to Recruit: ${securityTotal}</p>
-            <button id="securityButton">Purchase</button>
+            <button id="securityButton">Recruit</button>
         </div>`
         return html
     } else {
         // disable security button if nothing is selected!!!!
         html += `<div id="purchase-security">
             <p class="security-number-to-recruit">Number to Recruit: ${securityTotal}</p>
-            <button disabled id="securityButton">Purchase</button>
+            <button disabled id="securityButton">Recruit</button>
         </div>`
         return html
     }
