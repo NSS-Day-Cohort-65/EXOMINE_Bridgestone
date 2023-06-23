@@ -491,8 +491,7 @@ img {
             margin-bottom: 30px;
         }
     }
-}git pull
-
+}
 
 @media screen {
     @media (max-width: 750px) {
@@ -531,6 +530,7 @@ img {
         
     }
 }
+
 
 @media screen {
     @media (max-width: 500px) {
