@@ -337,6 +337,10 @@ button:disabled {
     font-size: 18px;
 }
 
+#button-recruit {
+    width: 125px;
+}
+
 
 /* status */
 
