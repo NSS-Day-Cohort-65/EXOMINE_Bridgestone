@@ -33,7 +33,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    
+
 }
 
 .flex-container {
@@ -71,6 +71,7 @@ h1 {
     display: flex;
     justify-content: space-around;
     margin: 30px 0px 30px 0px;
+    flex-wrap: wrap;
 }
 
 
@@ -148,7 +149,7 @@ button:disabled {
     color: rgb(207, 36, 36);
     margin-right: 10px;
     position: absolute;
-    right: 40px;
+    right: 20px;
     top: 27px;
     box-shadow: 2px 3px 8px 3px #390a0a;
 
@@ -348,6 +349,7 @@ button:disabled {
     padding: 20px 0px;
     text-align: left;
 }
+
 #facility_status {
     width: 100px;
 }
@@ -439,8 +441,9 @@ img {
     width: 50px;
     margin-left: 10px;
     position: absolute;
-    left: 40px;
+    left: 20px;
     top: 15px;
+    z-index: 100;
 }
 
 #tooltip-text {
@@ -469,7 +472,34 @@ img {
     font-size: 32px;
     font-weight: bold;
     padding: 5px;
-    border-bottom:#282829 5px dotted;
+    border-bottom: #282829 5px dotted;
     text-shadow: rgb(174, 204, 247) 1px 1px 7px;
-    
+
+}
+
+@media screen {
+    @media (max-width: 650px) {
+        #tooltip-img {
+            top: 70px;
+        }
+
+        #resetButton {
+            top: 90px;
+        }
+    }
+}
+
+@media screen {
+    @media (max-width: 750px) {
+
+        #tooltip-text {
+            width: 500px;
+        }
+
+        #tooltip-heading {
+
+            line-height: 50px;
+
+        }
+    }
 }
