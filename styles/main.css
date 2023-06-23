@@ -221,20 +221,21 @@ button:disabled {
     flex-direction: column;
     justify-content: space-evenly;
     height: 150%;
-    align-items: center;
     text-align: left;
+    margin: 0 60px;
+    width: 80%;
 
 }
 
-.center-in-facilities-container{
+/* .center-in-facilities-container{
     text-align: center;
-}
+} */
 
 .addToCartButton {
     margin-top: 10px;
     font-size: 12px;
     padding: 1.5px 10px;
-    margin-left: 20px;
+    margin-left: 15px;
 
 }
 
@@ -456,7 +457,7 @@ img {
     left: 0;
     right: 0;
     text-align: center;
-    top: 250px;
+    top: 200px;
     z-index: 100;
 }
 
