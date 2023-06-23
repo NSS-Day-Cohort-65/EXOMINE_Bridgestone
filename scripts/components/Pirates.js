@@ -41,7 +41,7 @@ const addPirateRaiders = () => {
 
 const reduceRaidersAfterRaid = async () => {
     const pirates = getPirates()
-    //checking if turn is 0 because when it hits 3, it goes through the above function and click even first which then resets it back to 0. Since this check here always happens afterwards, the onlytime turn count will get here and be equal to 0 is right after it was equal to three and reset by the above function/click event, which is what would signal the if condition should occur.
+
     let randomAmount = Math.ceil(Math.random() * MAX_PIRATES_TO_ADD_EACH_TURN)
     let newObj = {
         id: pirates[0].id,
