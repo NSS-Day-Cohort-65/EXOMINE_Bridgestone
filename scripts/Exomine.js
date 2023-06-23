@@ -7,7 +7,7 @@ import { Governors } from './components/Governors.js'
 import { TurnCounter } from './components/TurnCounter.js'
 import { Pirates } from './components/Pirates.js'
 import { Security } from './components/Security.js'
-import { getState } from './api/dataaccess.js'
+import { getGovernors, getState } from './api/dataaccess.js'
 // import { raidAlertHTMLGen } from './components/RaidAlert.js'
 import { generateResetButtonHTML } from './components/ResetButton.js'
 import { StatusWindow } from './components/StatusWindow.js'
@@ -20,8 +20,16 @@ document.addEventListener("startRaid", CustomEvent => {
         if (state.lastLocationRaided.length > 1 && state.lastGovernorKilled.length > 1) {
             const placeRaided = state.lastLocationRaided
             const govKilled = state.lastGovernorKilled
+            const governors = getGovernors()
+            
+            const activeGovernorsArr = governors.filter(governor => governor.is_active === true)
 
-            window.alert(`WARNING: ${placeRaided.toUpperCase()} WAS RAIDED! GOVERNOR ${govKilled.toUpperCase()} HAS BEEN KILLED!`)
+            if (activeGovernorsArr.length > 1) {
+                window.alert(`WARNING: ${placeRaided.toUpperCase()} WAS RAIDED! GOVERNOR ${govKilled.toUpperCase()} HAS BEEN KILLED!`)
+            } else if (activeGovernorsArr.length === 1) {
+                window.alert(`WARNING: ${placeRaided.toUpperCase()} WAS RAIDED! Only 1 governor remaining!`)
+            }
+
         } else if (state.lastLocationRaided.length > 1) {
 
             const placeRaided = state.lastLocationRaided
