@@ -214,13 +214,13 @@
       "id": 4,
       "facility_id": 4,
       "mineral_id": 6,
-      "facility_stock": 1
+      "facility_stock": 10
     },
     {
       "id": 5,
       "facility_id": 1,
       "mineral_id": 2,
-      "facility_stock": 10
+      "facility_stock": 1
     },
     {
       "id": 6,
