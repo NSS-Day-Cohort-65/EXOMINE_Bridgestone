@@ -1,3 +1,5 @@
+import { coloniesUseMinerals } from "../components/Cart.js"
+
 const API = "http://localhost:8088"
 
 const applicationState = {
@@ -70,6 +72,7 @@ export const setLastGovernorKilled = (govName) => {
 
 export const incrementTurn = () => {
     transientState.turnCounter++
+    coloniesUseMinerals()
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 

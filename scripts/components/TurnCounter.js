@@ -5,6 +5,7 @@ document.addEventListener(
     e => {
         if (e.target.id === "purchaseButton") {
             incrementTurn()
+            
         }
     }
 )
