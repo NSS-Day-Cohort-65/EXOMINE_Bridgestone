@@ -26,7 +26,7 @@ function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-const addPirateRaiders = () => {
+export const addPirateRaiders = () => {
     const pirates = getPirates()
     let randomAmount = Math.ceil(Math.random() * MAX_PIRATES_TO_ADD_EACH_TURN);
 
