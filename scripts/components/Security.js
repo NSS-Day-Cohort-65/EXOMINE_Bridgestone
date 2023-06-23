@@ -1,5 +1,6 @@
 import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, putColony, putFacility, putFacility_Inventory, putColony_Inventory, incrementTurn, fetchFacility_Inventory, fetchColonies_Inventory } from "../api/dataaccess.js"
 import { coloniesUseMinerals } from './Cart.js'
+import { addPirateRaiders } from './Pirates.js';
 let facilitySelected = null
 let colonySelected = null
 let mineralsToSpend = {};
@@ -212,6 +213,7 @@ document.addEventListener("click",
 
                 }
             }
+            addPirateRaiders();
         }
     }
 
