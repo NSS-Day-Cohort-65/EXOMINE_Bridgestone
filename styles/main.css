@@ -46,7 +46,7 @@ body {
     text-align: center;
     border-radius: 5%;
     width: 320px;
-    min-height: 320px;
+    min-height: 330px;
     max-height: 600px;
     overflow-y: auto;
     box-shadow: rgb(174, 204, 247) 1px 1px 5px;
