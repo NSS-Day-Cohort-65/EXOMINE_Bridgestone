@@ -290,7 +290,7 @@ export const Cart = () => {
         </div>`
     } else {
         html += `<div>
-                <button disabled id="purchaseButton">Purchase Mineral</button>
+                <button disabled id="purchaseButton">Harvest Minerals</button>
             </div>
         </div>`
     }
