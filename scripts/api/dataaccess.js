@@ -21,7 +21,7 @@ let transientState = {
 }
 
 export const resetState = () => {
-        transientState = {
+    transientState = {
         lastLocationRaided: '',
         lastGovernorKilled: '',
         cart_minerals: [],
@@ -72,7 +72,6 @@ export const setLastGovernorKilled = (govName) => {
 
 export const incrementTurn = () => {
     transientState.turnCounter++
-    coloniesUseMinerals()
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 

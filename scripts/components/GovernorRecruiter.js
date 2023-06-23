@@ -1,4 +1,5 @@
-import { getColonies, getGovernors, getState, getMinerals, putGovernor, setSelectedRecruit, setSelectedRecruitColony, getColoniesInventory, putColony_Inventory, incrementTurn, putFacility_Inventory, getFacilitiesInventory } from '../api/dataaccess.js';
+import { getColonies, getGovernors, getState, getMinerals, putGovernor, setSelectedRecruit, setSelectedRecruitColony, getColoniesInventory, putColony_Inventory, incrementTurn, putFacility_Inventory, getFacilitiesInventory, fetchColonies_Inventory } from '../api/dataaccess.js';
+import { coloniesUseMinerals } from './Cart.js';
 
 const GOVERNOR_COST = 100;
 
@@ -27,7 +28,7 @@ document.addEventListener(
 
 document.addEventListener(
     "click",
-    e => {
+    async e => {
         if (e.target.id === "button-recruit") {
             const state = getState();
             const governors = getGovernors();
@@ -41,6 +42,8 @@ document.addEventListener(
                 is_alive: foundGovernor.is_alive,
             }
             removeMinerals()
+            await fetchColonies_Inventory()
+            coloniesUseMinerals()
             putGovernor(recruit, recruit.id);
             setSelectedRecruit(0)
             setSelectedRecruitColony(0)
@@ -221,6 +224,6 @@ document.addEventListener("click", async e => {
             }
         }
         //-----------------------------------------------------
-        
+
     }
 })
