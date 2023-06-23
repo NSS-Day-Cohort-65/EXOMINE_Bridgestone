@@ -482,10 +482,16 @@ img {
         #tooltip-img {
             top: 70px;
             width: 50px;
+            z-index: 151;
+        }
+
+        #tooltip-text {
+            z-index: 150;
         }
 
         #resetButton {
             top: 90px;
+            z-index: 100;
         }
 
         
@@ -498,6 +504,8 @@ img {
         #tooltip-text {
             width: 500px;
         }
+
+        
 
         #tooltip-heading {
 
