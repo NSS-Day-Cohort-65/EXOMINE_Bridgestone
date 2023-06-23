@@ -37,7 +37,8 @@ function delay(ms) {
 
 let purchaseMineral
 
-const coloniesUseMinerals = async () => {
+export const coloniesUseMinerals = async () => {
+
     const colInventory = getColoniesInventory()
 
     for (const colInv of colInventory) {

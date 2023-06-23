@@ -1,5 +1,7 @@
-import { getColonies, getGovernors, getState, getMinerals, putGovernor, setSelectedRecruit, setSelectedRecruitColony, getColoniesInventory, putColony_Inventory } from '../api/dataaccess.js';
+import { getColonies, getGovernors, getState, getMinerals, putGovernor, setSelectedRecruit, setSelectedRecruitColony, getColoniesInventory, putColony_Inventory, incrementTurn, putFacility_Inventory, getFacilitiesInventory, fetchColonies_Inventory } from '../api/dataaccess.js';
+import { coloniesUseMinerals } from './Cart.js';
 import { appSettings } from '../../appSettings.js'
+
 
 
 let settings = appSettings.governorRecruiter
@@ -31,7 +33,7 @@ document.addEventListener(
 
 document.addEventListener(
     "click",
-    e => {
+    async e => {
         if (e.target.id === "button-recruit") {
             const state = getState();
             const governors = getGovernors();
@@ -45,6 +47,8 @@ document.addEventListener(
                 is_alive: foundGovernor.is_alive,
             }
             removeMinerals()
+            await fetchColonies_Inventory()
+            coloniesUseMinerals()
             putGovernor(recruit, recruit.id);
             setSelectedRecruit(0)
             setSelectedRecruitColony(0)
@@ -194,8 +198,37 @@ export const GovernorRecruiter = () => {
 
 //increase turn anytime a governor is purchased:
 
-document.addEventListener("click", e => {
+document.addEventListener("click", async e => {
     if (e.target.id === "button-recruit") {
         incrementTurn()
+        //FacilitiesGainMinerals--------------------------------
+        const facilitiesInventory = getFacilitiesInventory()
+        const minerals = getMinerals()
+        for (const facInv of facilitiesInventory) {
+            const foundMineral = minerals.find(mineral => mineral.id === facInv.mineral_id);
+
+            let newObj = {
+                id: facInv.id,
+                facility_id: facInv.facility_id,
+                mineral_id: facInv.mineral_id,
+                facility_stock: facInv.facility_stock + foundMineral.yield
+            };
+            // Delay between each PUT request
+            try {
+                await putFacility_Inventory(newObj, facInv.id);
+            } catch (error) {
+                console.error('PUT request failed for facility inventory ID:', facInv.id);
+                console.error('Error:', error);
+                delay(1000);
+                try {
+                    console.log('Retrying PUT request for facility inventory ID:', facInv.id)
+                    await putFacility_Inventory(newObj, facInv.id);
+                } catch (error) {
+                    console.error('Error', error)
+                }
+            }
+        }
+        //-----------------------------------------------------
+
     }
 })
