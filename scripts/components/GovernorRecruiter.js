@@ -1,6 +1,7 @@
 import { getColonies, getGovernors, getState, getMinerals, putGovernor, setSelectedRecruit, setSelectedRecruitColony, getColoniesInventory, putColony_Inventory, incrementTurn, putFacility_Inventory, getFacilitiesInventory, fetchColonies_Inventory } from '../api/dataaccess.js';
 import { coloniesUseMinerals } from './Cart.js';
 import { appSettings } from '../../appSettings.js'
+import { addPirateRaiders } from './Pirates.js';
 
 
 
@@ -50,6 +51,7 @@ document.addEventListener(
             await fetchColonies_Inventory()
             coloniesUseMinerals()
             putGovernor(recruit, recruit.id);
+            addPirateRaiders()
             setSelectedRecruit(0)
             setSelectedRecruitColony(0)
         }
