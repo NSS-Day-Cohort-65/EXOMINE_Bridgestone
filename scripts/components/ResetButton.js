@@ -50,7 +50,23 @@ const resetFacilityMinerals = async () => {
   const facilityInv = await getFacilitiesInventory()
 
   for (const facInv of facilityInv) {
-    if (facInv.id < 5) {
+    if (facInv.id === 1) {
+      let newObj = {
+        id: facInv.id,
+        facility_id: facInv.facility_id,
+        mineral_id: facInv.mineral_id,
+        facility_stock: 20
+      }
+      await putFacility_Inventory(newObj, facInv.id)
+    } else if (facInv.id === 2) {
+      let newObj = {
+        id: facInv.id,
+        facility_id: facInv.facility_id,
+        mineral_id: facInv.mineral_id,
+        facility_stock: 15
+      }
+      await putFacility_Inventory(newObj, facInv.id)
+    } else if (facInv.id === 3) {
       let newObj = {
         id: facInv.id,
         facility_id: facInv.facility_id,
@@ -58,12 +74,12 @@ const resetFacilityMinerals = async () => {
         facility_stock: 10
       }
       await putFacility_Inventory(newObj, facInv.id)
-    } else if (facInv.id === 5) {
+    } else if (facInv.id > 3 && facInv.id < 10) {
       let newObj = {
         id: facInv.id,
         facility_id: facInv.facility_id,
         mineral_id: facInv.mineral_id,
-        facility_stock: 1
+        facility_stock: 5
       }
       await putFacility_Inventory(newObj, facInv.id)
     } else {
@@ -71,7 +87,7 @@ const resetFacilityMinerals = async () => {
         id: facInv.id,
         facility_id: facInv.facility_id,
         mineral_id: facInv.mineral_id,
-        facility_stock: 0
+        facility_stock: 3
       }
       await putFacility_Inventory(newObj, facInv.id)
     }
@@ -130,7 +146,8 @@ const resetColonies = async () => {
       id: colony.id,
       name: colony.name,
       security: 20,
-      is_colony: true
+      is_colony: true,
+      is_active: true
     }
     await putColony(newObj, colony.id)
   }
