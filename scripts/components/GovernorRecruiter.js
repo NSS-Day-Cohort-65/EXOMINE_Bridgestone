@@ -1,4 +1,4 @@
-import { getColonies, getGovernors, getState, getMinerals, putGovernor, setSelectedRecruit, setSelectedRecruitColony, getColoniesInventory, putColony_Inventory } from '../api/dataaccess.js';
+import { getColonies, getGovernors, getState, getMinerals, putGovernor, setSelectedRecruit, setSelectedRecruitColony, getColoniesInventory, putColony_Inventory, incrementTurn } from '../api/dataaccess.js';
 
 const GOVERNOR_COST = 100;
 
@@ -187,3 +187,11 @@ export const GovernorRecruiter = () => {
 
     return html
 }
+
+//increase turn anytime a governor is purchased:
+
+document.addEventListener("click", e => {
+    if (e.target.id === "button-recruit") {
+        incrementTurn()
+    }
+})

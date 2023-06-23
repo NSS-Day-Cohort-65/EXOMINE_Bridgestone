@@ -1,4 +1,4 @@
-import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, putColony, putFacility, putFacility_Inventory, putColony_Inventory } from "../api/dataaccess.js"
+import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, putColony, putFacility, putFacility_Inventory, putColony_Inventory, incrementTurn } from "../api/dataaccess.js"
 
 let facilitySelected = null
 let colonySelected = null
@@ -329,6 +329,14 @@ export const Security = () => {
         return html
     }
 }
+
+//increase turn anytime security is purchased:
+
+document.addEventListener("click", e => {
+    if (e.target.id === "securityButton") {
+        incrementTurn()
+    }
+})
 
 
 //create an html shell in exomine to interpolate security function
