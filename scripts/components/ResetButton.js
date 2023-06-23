@@ -11,7 +11,7 @@ const deleteExtraColonyInventory = async () => {
 }
 
 const resetGovernors = async () => {
-  const governors = await getGovernors()
+  const governors = getGovernors()
 
   for (const gov of governors) {
     if (gov.id > 3) {
@@ -37,7 +37,7 @@ const resetGovernors = async () => {
 }
 
 const deleteAllPirateInventory = async () => {
-  const pirateInv = await getPirateInventory()
+  const pirateInv = getPirateInventory()
 
   if (pirateInv.length >= 1) {
     for (const pirInv of pirateInv) {
@@ -79,7 +79,7 @@ const resetFacilityMinerals = async () => {
 }
 
 const resetColonyMinerals = async () => {
-  const colonyInv = await getColoniesInventory()
+  const colonyInv = getColoniesInventory()
 
   if (colonyInv.length >= 1) {
     for (const colInv of colonyInv) {
@@ -96,7 +96,7 @@ const resetColonyMinerals = async () => {
 }
 
 const resetRaiderCount = async () => {
-  const pirates = await getPirates()
+  const pirates = getPirates()
 
   for (const pirate of pirates) {
     let newObj = {
@@ -108,7 +108,7 @@ const resetRaiderCount = async () => {
 }
 
 const resetFacilities = async () => {
-  const facilities = await getFacilities()
+  const facilities = getFacilities()
 
   for (const facility of facilities) {
     let newObj = {
@@ -123,7 +123,7 @@ const resetFacilities = async () => {
 }
 
 const resetColonies = async () => {
-  const colonies = await getColonies()
+  const colonies = getColonies()
 
   for (const colony of colonies) {
     let newObj = {
@@ -145,7 +145,7 @@ const resetAll = async () => {
   await deleteAllPirateInventory()
   await resetFacilities()
   await resetColonies()
-  await resetState()
+  resetState()
 }
 
 document.addEventListener("click", async (e) => {

@@ -1,12 +1,14 @@
 import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, getPirateInventory, postPirate_Inventory, putColony_Inventory, putFacility_Inventory, putPirate_Inventory, setLastLocationRaided, getPirates, getGovernors, putGovernor, setLastGovernorKilled, putPirates } from '../api/dataaccess.js'
 import { isRaidSuccessful, reduceSecurityAfterRaid } from './Defense.js'
+import { appSettings } from '../../appSettings.js'
 
 
 //write a click even that increments turnCount by 1 everytime purchaseButton is clicked. Write function that fires after 3 turns (turncount hits 3) and adds 5 raiders to the pirate object, then returns the new value.
+let settings = appSettings.pirates;
 
-const MAX_PIRATES_TO_ADD_EACH_TURN = 20;
-const MAX = 10
-const GRACE_PERIOD = 3
+const MAX_PIRATES_TO_ADD_EACH_TURN = settings.MAX_PIRATES_TO_ADD_EACH_TURN;
+const MAX = settings.MAX
+const GRACE_PERIOD = settings.GRACE_PERIOD
 
 let turnCount = 0
 

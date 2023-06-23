@@ -261,12 +261,6 @@
     {
       "id": 12,
       "facility_id": 4,
-      "mineral_id": 4,
-      "facility_stock": 0
-    },
-    {
-      "id": 13,
-      "facility_id": 4,
       "mineral_id": 3,
       "facility_stock": 0
     }
