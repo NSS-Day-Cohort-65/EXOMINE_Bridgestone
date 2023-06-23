@@ -477,6 +477,40 @@ img {
 
 }
 
+
+/* media queries */
+
+@media screen {
+    @media (max-width: 975px) {
+
+        .primary-section {
+            margin: 0px;
+        }
+
+        #turncounter {
+            margin-bottom: 30px;
+        }
+    }
+}git pull
+
+
+@media screen {
+    @media (max-width: 750px) {
+
+        #tooltip-text {
+            width: 500px;
+        }
+        #tooltip-text {
+            font-size: 20px;
+        }
+        #tooltip-heading {
+            line-height: 50px;
+        }
+
+
+    }
+}
+
 @media screen {
     @media (max-width: 650px) {
         #tooltip-img {
@@ -499,29 +533,11 @@ img {
 }
 
 @media screen {
-    @media (max-width: 750px) {
-
-        #tooltip-text {
-            width: 500px;
-        }
-
-        
-
-        #tooltip-heading {
-
-            line-height: 50px;
-
-        }
-
-
-    }
-}
-
-@media screen {
     @media (max-width: 500px) {
 
         #tooltip-text {
             width: 400px;
+            font-size: 19px;
         }
 
         #tooltip-heading {
@@ -531,18 +547,5 @@ img {
         }
 
 
-    }
-}
-
-@media screen {
-    @media (max-width: 975px) {
-
-        .primary-section {
-            margin: 0px;
-        }
-
-        #turncounter {
-            margin-bottom: 30px;
-        }
     }
 }
