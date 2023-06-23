@@ -566,3 +566,23 @@ img {
 
     }
 }
+
+@media screen {
+    @media (max-width: 412px) {
+
+        #tooltip-img {
+            top: 10px;
+            right: 5px;
+            width: 50px;
+            z-index: 151;
+        }
+
+        #resetButton {
+            top: 30px;
+            right: 10px;
+            z-index: 100;
+        }
+
+
+    }
+}
