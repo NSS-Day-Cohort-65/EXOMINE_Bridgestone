@@ -11,6 +11,8 @@ const MAX = settings.MAX
 const GRACE_PERIOD = settings.GRACE_PERIOD
 const FRACTION_OF_MINERALS_TO_TAKE = settings.FRACTION_OF_MINERALS_TO_TAKE
 const PIRATES_TO_LOSE = settings.PIRATES_TO_LOSE
+const CHANCE_OF_GOVERNOR_DEATH = settings.CHANCE_OF_GOVERNOR_DEATH
+
 let turnCount = 0
 
 document.addEventListener("click", e => {
@@ -135,7 +137,7 @@ const raid = async () => {
 
             const randomRoll = Math.ceil(Math.random() * 10)
 
-            if (randomRoll > 7) {
+            if (randomRoll > CHANCE_OF_GOVERNOR_DEATH) {
                 const governors = getGovernors();
 
                 let foundGovernor = governors.find(governor => governor.colony_id === targetColony.id && governor.is_alive)
