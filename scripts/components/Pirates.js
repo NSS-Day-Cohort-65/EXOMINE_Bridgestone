@@ -1,12 +1,17 @@
 import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, getPirateInventory, postPirate_Inventory, putColony_Inventory, putFacility_Inventory, putPirate_Inventory, setLastLocationRaided, getPirates, getGovernors, putGovernor, setLastGovernorKilled, putPirates } from '../api/dataaccess.js'
 import { isRaidSuccessful, reduceSecurityAfterRaid } from './Defense.js'
+import { appSettings } from '../../appSettings.js'
 
 
 //write a click even that increments turnCount by 1 everytime purchaseButton is clicked. Write function that fires after 3 turns (turncount hits 3) and adds 5 raiders to the pirate object, then returns the new value.
+let settings = appSettings.pirates;
 
-const MAX_PIRATES_TO_ADD_EACH_TURN = 20;
-const MAX = 10
-const GRACE_PERIOD = 3
+const MAX_PIRATES_TO_ADD_EACH_TURN = settings.MAX_PIRATES_TO_ADD_EACH_TURN
+const MAX = settings.MAX
+const GRACE_PERIOD = settings.GRACE_PERIOD
+const FRACTION_OF_MINERALS_TO_TAKE = settings.FRACTION_OF_MINERALS_TO_TAKE
+const PIRATES_TO_LOSE = settings.PIRATES_TO_LOSE
+const CHANCE_OF_GOVERNOR_DEATH = settings.CHANCE_OF_GOVERNOR_DEATH
 
 let turnCount = 0
 
@@ -21,7 +26,7 @@ function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-const addPirateRaiders = () => {
+export const addPirateRaiders = () => {
     const pirates = getPirates()
     let randomAmount = Math.ceil(Math.random() * MAX_PIRATES_TO_ADD_EACH_TURN);
 
@@ -36,14 +41,14 @@ const addPirateRaiders = () => {
 
 const reduceRaidersAfterRaid = async () => {
     const pirates = getPirates()
-    //checking if turn is 0 because when it hits 3, it goes through the above function and click even first which then resets it back to 0. Since this check here always happens afterwards, the onlytime turn count will get here and be equal to 0 is right after it was equal to three and reset by the above function/click event, which is what would signal the if condition should occur.
+
     let randomAmount = Math.ceil(Math.random() * MAX_PIRATES_TO_ADD_EACH_TURN)
     let newObj = {
         id: pirates[0].id,
-        raider_stock: Math.ceil(pirates[0].raider_stock * 0.75) + randomAmount
+        raider_stock: Math.ceil(pirates[0].raider_stock * PIRATES_TO_LOSE) + randomAmount
     }
     await putPirates(newObj, pirates[0].id)
-    console.log(`reduced raiders by 3/4 then added ${randomAmount} raiders.`)
+    console.log(`reduced raiders by ${PIRATES_TO_LOSE} then added ${randomAmount} raiders.`)
 
 }
 
@@ -120,10 +125,10 @@ const raid = async () => {
                 piratePlunder.push(
                     {
                         mineral_id: inventory.mineral_id,
-                        pirate_stock: Math.floor(inventory.colony_stock / 2)
+                        pirate_stock: Math.floor(inventory.colony_stock * FRACTION_OF_MINERALS_TO_TAKE)
                     }
                 )
-                inventory.colony_stock = Math.floor(inventory.colony_stock / 2);
+                inventory.colony_stock = Math.floor(inventory.colony_stock * FRACTION_OF_MINERALS_TO_TAKE);
             }
 
             for (const inventory of targetColonyInventory) {
@@ -132,7 +137,7 @@ const raid = async () => {
 
             const randomRoll = Math.ceil(Math.random() * 10)
 
-            if (randomRoll > 7) {
+            if (randomRoll > CHANCE_OF_GOVERNOR_DEATH) {
                 const governors = getGovernors();
 
                 let foundGovernor = governors.find(governor => governor.colony_id === targetColony.id && governor.is_alive)
@@ -182,11 +187,11 @@ const raid = async () => {
                 piratePlunder.push(
                     {
                         mineral_id: inventory.mineral_id,
-                        pirate_stock: Math.floor(inventory.facility_stock / 2)
+                        pirate_stock: Math.floor(inventory.facility_stock * FRACTION_OF_MINERALS_TO_TAKE)
                     }
                 )
 
-                inventory.facility_stock = Math.floor(inventory.facility_stock / 2);
+                inventory.facility_stock = Math.floor(inventory.facility_stock * FRACTION_OF_MINERALS_TO_TAKE);
             }
 
             for (const inventory of targetFacilityInventory) {

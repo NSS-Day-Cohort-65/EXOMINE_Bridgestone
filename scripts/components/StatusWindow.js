@@ -173,12 +173,14 @@ const ResourcesDisplay = () => {
 
         const governorsArr = matchingGovernors.map((governor) => {
             if (governor.is_active) {
-                return `<li>${governor.name}</li>`
+                return `<li class="left-align">${governor.name}</li>`
             }
         })
 
-        html += `<b>Active Governors: </b>`
-        html += `<ul id="governors-list">${governorsArr.length ? governorsArr.join(``) : `<p>No governors</p>`}</ul>`
+        html += `<h3 id="active-governors-heading"><b>Active Governors: </b></h3>`
+        html += `<ul id="governors-list">`
+        html += `${governorsArr.length ? governorsArr.join(``) : `<li>No governors</li>`}`
+        html += `</ul>`
                 
             
 

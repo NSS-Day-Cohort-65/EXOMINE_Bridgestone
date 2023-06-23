@@ -3,19 +3,23 @@ export const toolTipRender = () => {
     <img id="tooltip-img" class="image" src="images/help.png">
     <p id="tooltip-text"><span id="tooltip-heading">SUPER EXOMINE - HOW TO PLAY:</span><br><br>
 
-    Lead your colonies and defend against the onslaught of the space pirate hoard!<br><br>
+Welcome, brave leader! In Super Exomine, you will lead your colonies and facilities in harvesting minerals to thrive while fending off the nefarious Pirate Captain and their raiders. Here's what you need to know for success:<br><br>
 
-    Choose a governor and a facility. You can switch these at anytime. Once you have made your selections, you may obtain minerals from the facility for your colony. A turn will pass everytime you purchase minerals.<br><br>
-    
-    Minerals are the lifeblood of colonies and facilities! They keep your colonies and facilities running and can be used to purchase sercurity. Minerals are consumed by each colony for every turn that passes. Additionally, facilities produce more minerals every turn.<br><br>
+1. Select governors and facilities to harvest minerals for your colonies. Switch these at anytime!<br><br>
 
-    Beware! The space pirates won't stop until they have stolen all of your minerals. Every 3 turns, the pirate captain recruits more raiders to further their conquest. Once raiders have been recruited, raids will begin!<br><br>
+2. Minerals have different values and all of them can be used to conduct purchases, but Xenite is vital for your colonies' survival. Each turn your colonies will consume Xenite to power thier life-support. Don't run out!<br><br>
 
-    Raids will happen at random and will occur at random colonies and facilities. If you have more security at your location than there are raiders, you will successfully defend the location and protect your minerals, but you will lose security forces. The pirates will also lose some of their raiders, though!<br><br>
+3. Beware! After each turn, pirates have a chance to raid your colonies and faciliites at random! Ensure you have enough security at each location to defend against them. If you have less security than the pirates have raiders, they will steal your minerals. Security and raiders are reduced after each raid, regardless of success.<br><br>
 
-    If a raid is successful, the attacked colony or facility will loose a random amount of minerals. Additionally, if a colony is attacked, there is a chance one of its governors will be killed! If this happens, make sure to recruit a new one!<br><br>
+4. Raiders increase each turn. Brace yourself for the escalating pirate threats!<br><br>
 
-    God speed and good luck, leader!</div>` 
+5. Governors are crucial leaders. There is a chance that the pirates may kill a colony's leader during a raid. If this happens, make sure to recruit a new one.<br><br>
+
+6. Turns progress anytime minerals are harvested, security is purchased, or a governor is recruited. Make strategic choices!<br><br>
+
+7. The game ends if all your governors perish or the colonies run out of Xenite. Stay vigilant!<br><br>
+
+Lead your colonies to prosperity, hold off the pirates, and conquer Super Exomine!</div>`
 
     return html
 }

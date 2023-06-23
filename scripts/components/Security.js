@@ -1,8 +1,8 @@
-import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, putColony, putFacility, putFacility_Inventory, putColony_Inventory } from "../api/dataaccess.js"
-
+import { getColonies, getColoniesInventory, getFacilities, getFacilitiesInventory, getMinerals, putColony, putFacility, putFacility_Inventory, putColony_Inventory, incrementTurn, fetchFacility_Inventory, fetchColonies_Inventory } from "../api/dataaccess.js"
+import { coloniesUseMinerals } from './Cart.js'
+import { addPirateRaiders } from './Pirates.js';
 let facilitySelected = null
 let colonySelected = null
-let numberSelected = 0
 let mineralsToSpend = {};
 let securityTotal = 0;
 
@@ -45,6 +45,39 @@ document.addEventListener("change", event => {
         numberSelected = parseInt(event.target.value)
     }
 })
+
+const facilitiesGainMinerals = async () => {
+    incrementTurn()
+    //FacilitiesGainMinerals--------------------------------
+    await fetchFacility_Inventory();
+    const facilitiesInventory = getFacilitiesInventory()
+    const minerals = getMinerals()
+    for (const facInv of facilitiesInventory) {
+        const foundMineral = minerals.find(mineral => mineral.id === facInv.mineral_id);
+
+        let newObj = {
+            id: facInv.id,
+            facility_id: facInv.facility_id,
+            mineral_id: facInv.mineral_id,
+            facility_stock: facInv.facility_stock + foundMineral.yield
+        };
+        // Delay between each PUT request
+        try {
+            await putFacility_Inventory(newObj, facInv.id);
+        } catch (error) {
+            console.error('PUT request failed for facility inventory ID:', facInv.id);
+            console.error('Error:', error);
+            delay(1000);
+            try {
+                console.log('Retrying PUT request for facility inventory ID:', facInv.id)
+                await putFacility_Inventory(newObj, facInv.id);
+            } catch (error) {
+                console.error('Error', error)
+            }
+        }
+    }
+    //-----------------------------------------------------
+}
 
 const removeMinerals = async () => {
     let selectedInventory = [];
@@ -94,6 +127,13 @@ const removeMinerals = async () => {
             }
         }
     }
+    facilitiesGainMinerals();
+    await fetchColonies_Inventory()
+    coloniesUseMinerals()
+}
+
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 //event listener for purchase button to change the amount of security property on the facility or colony
@@ -175,8 +215,10 @@ document.addEventListener("click",
 
                 }
             }
+            addPirateRaiders();
         }
     }
+
 )
 
 document.addEventListener("change",
@@ -327,6 +369,14 @@ export const Security = () => {
         return html
     }
 }
+
+//increase turn anytime security is purchased:
+
+document.addEventListener("click", async e => {
+    if (e.target.id === "securityButton") {
+
+    }
+})
 
 
 //create an html shell in exomine to interpolate security function

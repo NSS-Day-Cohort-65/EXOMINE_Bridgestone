@@ -1,3 +1,5 @@
+import { coloniesUseMinerals } from "../components/Cart.js"
+
 const API = "http://localhost:8088"
 
 const applicationState = {
@@ -19,7 +21,7 @@ let transientState = {
 }
 
 export const resetState = () => {
-        transientState = {
+    transientState = {
         lastLocationRaided: '',
         lastGovernorKilled: '',
         cart_minerals: [],

@@ -4,17 +4,17 @@ const deleteExtraColonyInventory = async () => {
   const colonyInv = await getColoniesInventory()
 
   for (const colInv of colonyInv) {
-    if (colInv.id > 20) {
+    if (colInv.id > 3) {
       await deleteColonyInventory(colInv.id)
     }
   }
 }
 
 const resetGovernors = async () => {
-  const governors = await getGovernors()
+  const governors = getGovernors()
 
   for (const gov of governors) {
-    if (gov.id > 10) {
+    if (gov.id > 3) {
       let newObj = {
         id: gov.id,
         name: gov.name,
@@ -37,8 +37,8 @@ const resetGovernors = async () => {
 }
 
 const deleteAllPirateInventory = async () => {
-  const pirateInv = await getPirateInventory()
-  
+  const pirateInv = getPirateInventory()
+
   if (pirateInv.length >= 1) {
     for (const pirInv of pirateInv) {
       await deletePirateInventory(pirInv.id)
@@ -50,27 +50,60 @@ const resetFacilityMinerals = async () => {
   const facilityInv = await getFacilitiesInventory()
 
   for (const facInv of facilityInv) {
-    let newObj = {
-      id: facInv.id,
-      facility_id: facInv.facility_id,
-      mineral_id: facInv.mineral_id,
-      facility_stock: 300
+    if (facInv.id === 1) {
+      let newObj = {
+        id: facInv.id,
+        facility_id: facInv.facility_id,
+        mineral_id: facInv.mineral_id,
+        facility_stock: 20
+      }
+      await putFacility_Inventory(newObj, facInv.id)
+    } else if (facInv.id === 2) {
+      let newObj = {
+        id: facInv.id,
+        facility_id: facInv.facility_id,
+        mineral_id: facInv.mineral_id,
+        facility_stock: 15
+      }
+      await putFacility_Inventory(newObj, facInv.id)
+    } else if (facInv.id === 3) {
+      let newObj = {
+        id: facInv.id,
+        facility_id: facInv.facility_id,
+        mineral_id: facInv.mineral_id,
+        facility_stock: 10
+      }
+      await putFacility_Inventory(newObj, facInv.id)
+    } else if (facInv.id > 3 && facInv.id < 10) {
+      let newObj = {
+        id: facInv.id,
+        facility_id: facInv.facility_id,
+        mineral_id: facInv.mineral_id,
+        facility_stock: 5
+      }
+      await putFacility_Inventory(newObj, facInv.id)
+    } else {
+      let newObj = {
+        id: facInv.id,
+        facility_id: facInv.facility_id,
+        mineral_id: facInv.mineral_id,
+        facility_stock: 3
+      }
+      await putFacility_Inventory(newObj, facInv.id)
     }
-
-    await putFacility_Inventory(newObj, facInv.id)
   }
 }
 
 const resetColonyMinerals = async () => {
-  const colonyInv = await getColoniesInventory()
-  
+  const colonyInv = getColoniesInventory()
+
   if (colonyInv.length >= 1) {
     for (const colInv of colonyInv) {
       let newObj = {
         id: colInv.id,
         colony_id: colInv.colony_id,
         mineral_id: colInv.mineral_id,
-        colony_stock: 200
+        colony_stock: 30
       }
 
       await putColony_Inventory(newObj, colInv.id)
@@ -79,26 +112,26 @@ const resetColonyMinerals = async () => {
 }
 
 const resetRaiderCount = async () => {
-  const pirates = await getPirates()
+  const pirates = getPirates()
 
   for (const pirate of pirates) {
     let newObj = {
       id: pirate.id,
-      raider_stock: 0
+      raider_stock: 10
     }
     await putPirates(newObj, pirate.id)
   }
 }
 
 const resetFacilities = async () => {
-  const facilities = await getFacilities()
+  const facilities = getFacilities()
 
   for (const facility of facilities) {
     let newObj = {
       id: facility.id,
       name: facility.name,
       is_active: true,
-      security: 0,
+      security: 10,
       is_facility: true
     }
     await putFacility(newObj, facility.id)
@@ -106,13 +139,13 @@ const resetFacilities = async () => {
 }
 
 const resetColonies = async () => {
-  const colonies = await getColonies()
+  const colonies = getColonies()
 
   for (const colony of colonies) {
     let newObj = {
       id: colony.id,
       name: colony.name,
-      security: 0,
+      security: 20,
       is_colony: true,
       is_active: true
     }
@@ -129,7 +162,7 @@ const resetAll = async () => {
   await deleteAllPirateInventory()
   await resetFacilities()
   await resetColonies()
-  await resetState()
+  resetState()
 }
 
 document.addEventListener("click", async (e) => {

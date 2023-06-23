@@ -46,6 +46,7 @@ document.addEventListener("startRaid", CustomEvent => {
 document.addEventListener("mouseover", e => {
     if (e.target.id === "tooltip-img") {
         document.getElementById("tooltip-text").style.visibility = "visible";
+        
     }
 })
 
