@@ -62,6 +62,7 @@ h1 {
     --darkreader-inline-bgcolor: #74231b;
 }
 
+
 .headings-containers {
     margin-bottom: 15px;
 }
@@ -164,6 +165,34 @@ button:disabled {
     text-align: center;
     margin-top: 40px;
     /* animation: alert 5s infinite; */
+    animation: lightPulse 5s linear infinite;
+
+}
+
+@keyframes lightPulse {
+    0% {
+        text-shadow: rgb(174, 204, 247) 1px 1px 7px;
+    }
+
+    50% {
+        text-shadow: rgb(154, 189, 238) 1px 1px 35px;
+    }
+
+    100% {
+        text-shadow: rgb(174, 204, 247) 1px 1px 7px;
+    }
+}
+
+
+
+
+/* turn counter */
+
+#turncounter {
+    text-align: center;
+    margin: 30px 0px 10px 0px;
+    font-size: 30px;
+    animation: alert linear 2.5s infinite;
 }
 
 @keyframes alert {
@@ -179,18 +208,6 @@ button:disabled {
         -webkit-transform: scale(1)
     }
 }
-
-
-
-/* turn counter */
-
-#turncounter {
-    text-align: center;
-    margin: 30px 0px 10px 0px;
-    font-size: 30px;
-    animation: alert linear 2.5s infinite;
-}
-
 /* selectors container Gov and Fac */
 
 #selectors-container {
