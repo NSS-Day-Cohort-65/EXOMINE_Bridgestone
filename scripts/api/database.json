@@ -127,14 +127,14 @@
       "id": 1,
       "name": "Warforge Alpha",
       "is_active": true,
-      "security": 58,
+      "security": 10,
       "is_facility": true
     },
     {
       "id": 2,
       "name": "Starhold Delta",
       "is_active": true,
-      "security": 56,
+      "security": 10,
       "is_facility": true
     },
     {
@@ -148,7 +148,7 @@
       "id": 4,
       "name": "Ravenspire Omega",
       "is_active": true,
-      "security": 50,
+      "security": 10,
       "is_facility": true
     }
   ],
@@ -156,8 +156,9 @@
     {
       "id": 1,
       "name": "Terra Nova",
-      "security": 0,
-      "is_colony": true
+      "security": 20,
+      "is_colony": true,
+      "is_active": true
     },
     {
       "id": 2,
@@ -179,31 +180,19 @@
       "id": 1,
       "colony_id": 1,
       "mineral_id": 1,
-      "colony_stock": 17
+      "colony_stock": 30
     },
     {
       "id": 2,
       "colony_id": 2,
       "mineral_id": 1,
-      "colony_stock": -8
+      "colony_stock": 30
     },
     {
       "id": 3,
       "colony_id": 3,
       "mineral_id": 1,
-      "colony_stock": 11
-    },
-    {
-      "colony_id": 1,
-      "mineral_id": 2,
-      "colony_stock": 11,
-      "id": 4
-    },
-    {
-      "colony_id": 1,
-      "mineral_id": 3,
-      "colony_stock": 14,
-      "id": 5
+      "colony_stock": 30
     }
   ],
   "facility_inventory": [
@@ -211,102 +200,86 @@
       "id": 1,
       "facility_id": 1,
       "mineral_id": 1,
-      "facility_stock": 11
+      "facility_stock": 20
     },
     {
       "id": 2,
       "facility_id": 2,
       "mineral_id": 1,
-      "facility_stock": 43
+      "facility_stock": 15
     },
     {
       "id": 3,
       "facility_id": 3,
       "mineral_id": 1,
-      "facility_stock": 36
+      "facility_stock": 10
     },
     {
       "id": 4,
       "facility_id": 4,
       "mineral_id": 6,
-      "facility_stock": 30
+      "facility_stock": 5
     },
     {
       "id": 5,
       "facility_id": 1,
       "mineral_id": 2,
-      "facility_stock": 111
+      "facility_stock": 5
     },
     {
       "id": 6,
       "facility_id": 1,
       "mineral_id": 3,
-      "facility_stock": 12
+      "facility_stock": 5
     },
     {
       "id": 7,
       "facility_id": 2,
       "mineral_id": 3,
-      "facility_stock": 29
+      "facility_stock": 5
     },
     {
       "id": 8,
       "facility_id": 2,
       "mineral_id": 4,
-      "facility_stock": 44
+      "facility_stock": 5
     },
     {
       "id": 9,
       "facility_id": 3,
       "mineral_id": 5,
-      "facility_stock": 31
+      "facility_stock": 5
     },
     {
       "id": 10,
       "facility_id": 3,
       "mineral_id": 2,
-      "facility_stock": 126
+      "facility_stock": 3
     },
     {
       "id": 11,
       "facility_id": 4,
       "mineral_id": 5,
-      "facility_stock": 27
+      "facility_stock": 3
     },
     {
       "id": 12,
       "facility_id": 4,
       "mineral_id": 4,
-      "facility_stock": 37
+      "facility_stock": 3
     },
     {
       "id": 13,
       "facility_id": 4,
       "mineral_id": 3,
-      "facility_stock": 32
+      "facility_stock": 3
     }
   ],
   "pirates": [
     {
       "id": 1,
-      "raider_stock": 72
+      "raider_stock": 10
     }
   ],
-  "pirate_inventory": [
-    {
-      "mineral_id": 1,
-      "pirate_stock": 21,
-      "id": 1
-    },
-    {
-      "mineral_id": 2,
-      "pirate_stock": 11,
-      "id": 2
-    },
-    {
-      "mineral_id": 3,
-      "pirate_stock": 14,
-      "id": 3
-    }
-  ]
+  "pirate_inventory": []
 }
