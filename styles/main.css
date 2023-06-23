@@ -481,11 +481,14 @@ img {
     @media (max-width: 650px) {
         #tooltip-img {
             top: 70px;
+            width: 50px;
         }
 
         #resetButton {
             top: 90px;
         }
+
+        
     }
 }
 
@@ -500,6 +503,38 @@ img {
 
             line-height: 50px;
 
+        }
+
+
+    }
+}
+
+@media screen {
+    @media (max-width: 500px) {
+
+        #tooltip-text {
+            width: 400px;
+        }
+
+        #tooltip-heading {
+
+            line-height: 50px;
+
+        }
+
+
+    }
+}
+
+@media screen {
+    @media (max-width: 975px) {
+
+        .primary-section {
+            margin: 0px;
+        }
+
+        #turncounter {
+            margin-bottom: 30px;
         }
     }
 }
